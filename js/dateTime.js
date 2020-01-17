@@ -1334,4 +1334,6 @@ if ($.dataTable) {
 	$.DataTable.DateTime = DateTime;
 }
 
+return DateTime;
+
 }));
