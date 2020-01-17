@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<title>DateTime with DayJS formatting example</title>
+
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="../dist/dateTime.css">
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/dayjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/plugin/utc.js"></script>
+		<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="../dist/dateTime.js"></script>
+		<script>
+			dayjs.extend(dayjs_plugin_utc);
+
+			$(document).ready(function() {
+				new DateTime(document.getElementById('test'), {
+					format: 'D/M/YYYY'
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>DateTime with DayJS formatting example</h1>
+		<p>This example shows the date / time input with DayJS used for the formatting rather than Moment. Note that you also need the DayJS `UTC` plugin.</p>
+
+		<p>
+			<input id="test" type="text" value="17/1/2020" />
+		</p>
+	</body>
+</html>

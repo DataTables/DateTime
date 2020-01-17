@@ -35,11 +35,18 @@
 }(function( $, window, document, undefined ) {
 'use strict';
 
+// Support libraries which support a Moment like API
+let dateLib = window.moment
+	? window.moment
+	: window.dayjs
+		? window.dayjs
+		: null;
+
 /*
  * This file provides a DateTime GUI picker (calendar and time input). Only the
  * format YYYY-MM-DD is supported without additional software, but the end user
- * experience can be greatly enhanced by including the momentjs library which
- * provides date / time parsing and formatting options.
+ * experience can be greatly enhanced by including the momentjs or dayjs library
+ * which provide date / time parsing and formatting options.
  *
  * This functionality is required because the HTML5 date and datetime input
  * types are not widely supported in desktop browsers.
@@ -56,9 +63,9 @@ var DateTime = function ( input, opts ) {
 	var classPrefix = this.c.classPrefix;
 	var i18n = this.c.i18n;
 
-	// Only IS8601 dates are supported without moment
-	if ( ! window.moment && this.c.format !== 'YYYY-MM-DD' ) {
-		throw "DateTime: Without momentjs only the format 'YYYY-MM-DD' can be used";
+	// Only IS8601 dates are supported without moment pr dayjs
+	if ( ! dateLib && this.c.format !== 'YYYY-MM-DD' ) {
+		throw "DateTime: Without momentjs or dayjs only the format 'YYYY-MM-DD' can be used";
 	}
 
 	var timeBlock = function ( type ) {
@@ -223,14 +230,14 @@ $.extend( DateTime.prototype, {
 			this.s.d = new Date();
 		}
 		else if ( typeof set === 'string' ) {
-			if ( window.moment ) {
-				// Use moment if possible (even for ISO8601 strings, since it
+			if ( dateLib ) {
+				// Use moment or dayjs if possible (even for ISO8601 strings, since it
 				// will correctly handle 0000-00-00 and the like)
-				var m = window.moment.utc( set, this.c.format, this.c.momentLocale, this.c.momentStrict );
+				var m = dateLib.utc( set, this.c.format, this.c.locale, this.c.strict );
 				this.s.d = m.isValid() ? m.toDate() : null;
 			}
 			else {
-				// Else must be using ISO8601 without moment (constructor would
+				// Else must be using ISO8601 without a date library (constructor would
 				// have thrown an error otherwise)
 				var match = set.match(/(\d{4})\-(\d{2})\-(\d{2})/ );
 				this.s.d = match ?
@@ -1222,10 +1229,10 @@ $.extend( DateTime.prototype, {
 	_writeOutput: function ( focus ) {
 		var date = this.s.d;
 
-		// Use moment if possible - otherwise it must be ISO8601 (or the
+		// Use moment or dayjs if possible - otherwise it must be ISO8601 (or the
 		// constructor would have thrown an error)
-		var out = window.moment ?
-			window.moment.utc( date, undefined, this.c.momentLocale, this.c.momentStrict ).format( this.c.format ) :
+		var out = dateLib ?
+			dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
 			date.getUTCFullYear() +'-'+
 	            this._pad(date.getUTCMonth() + 1) +'-'+
 	            this._pad(date.getUTCDate());
@@ -1286,9 +1293,9 @@ DateTime.defaults = {
 
 	minutesIncrement: 1, // deprecated
 
-	momentStrict: true,
+	strict: true,
 
-	momentLocale: 'en',
+	locale: 'en',
 
 	onChange: function () {},
 
