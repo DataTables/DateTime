@@ -1,7 +1,7 @@
 
-$datetime-selected: #4E6CA3 !default;
+$dt-datetime-selected: #4E6CA3 !default;
 
-div.datetime {
+div.dt-datetime {
 	position: absolute;
 	background-color: white;
 	z-index: 2050;
@@ -10,7 +10,7 @@ div.datetime {
 	padding: 0 20px 6px 20px;
 	width: 275px;
 
-	div.datetime-title {
+	div.dt-datetime-title {
 		text-align: center;
 	    padding: 5px 0px 3px;
 	}
@@ -20,7 +20,7 @@ div.datetime {
 		margin: 12px 0;
 		width: 100%;
 
-		&.datetime-table-nospace {
+		&.dt-datetime-table-nospace {
 			margin-top: -12px;
 		}
 
@@ -62,7 +62,7 @@ div.datetime {
 			}
 
 			&.selected button {
-				background: $datetime-selected;
+				background: $dt-datetime-selected;
 				color: white;
 				border-radius: 2px;
 			}
@@ -74,7 +74,7 @@ div.datetime {
 			}
 		}
 
-		td.datetime-week {
+		td.dt-datetime-week {
 			font-size: 0.7em;
 		}
 
@@ -102,13 +102,13 @@ div.datetime {
 		}
 	}
 
-	div.datetime-calendar {
+	div.dt-datetime-calendar {
 		table {
 			margin-top: 0;
 		}
 	}
 
-	div.datetime-label {
+	div.dt-datetime-label {
 		position: relative;
 		display: inline-block;
 		height: 30px;
@@ -136,23 +136,23 @@ div.datetime {
 	&.horizontal {
 		width: 550px;
 
-		div.datetime-date,
-		div.datetime-time {
+		div.dt-datetime-date,
+		div.dt-datetime-time {
 			width: 48%;
 		}
 
-		div.datetime-time {
+		div.dt-datetime-time {
 			margin-left: 4%;
 		}
 	}
 
-	div.datetime-date {
+	div.dt-datetime-date {
 		position: relative;
 		float: left;
 		width: 100%;
 	}
 
-	div.datetime-time {
+	div.dt-datetime-time {
 		position: relative;
 		float: left;
 		width: 100%;
@@ -167,17 +167,17 @@ div.datetime {
 			text-align: left;
 		}
 
-		div.datetime-timeblock {
+		div.dt-datetime-timeblock {
 			display: inline-block;
 			vertical-align: middle;
 		}
 	}
 
 
-	div.datetime-iconLeft,
-	div.datetime-iconRight,
-	div.datetime-iconUp,
-	div.datetime-iconDown {
+	div.dt-datetime-iconLeft,
+	div.dt-datetime-iconRight,
+	div.dt-datetime-iconUp,
+	div.dt-datetime-iconDown {
 		width: 30px;
 		height: 30px;
 		background-position: center;
@@ -203,32 +203,32 @@ div.datetime {
 		}
 	}
 
-	div.datetime-iconLeft {
+	div.dt-datetime-iconLeft {
 		position: absolute;
 		top: 5px;
 		left: 5px;
 		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAUklEQVR42u3VMQoAIBADQf8Pgj+OD9hG2CtONJB2ymQkKe0HbwAP0xucDiQWARITIDEBEnMgMQ8S8+AqBIl6kKgHiXqQqAeJepBo/z38J/U0uAHlaBkBl9I4GwAAAABJRU5ErkJggg==');
 	}
 
-	div.datetime-iconRight {
+	div.dt-datetime-iconRight {
 		position: absolute;
 		top: 5px;
 		right: 5px;
 		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAU0lEQVR42u3VOwoAMAgE0dwfAnNjU26bYkBCFGwfiL9VVWoO+BJ4Gf3gtsEKKoFBNTCoCAYVwaAiGNQGMUHMkjGbgjk2mIONuXo0nC8XnCf1JXgArVIZAQh5TKYAAAAASUVORK5CYII=');
 	}
 
-	div.datetime-iconUp {
+	div.dt-datetime-iconUp {
 		height: 20px;
 		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAALCAMAAABf9c24AAAAFVBMVEX///99fX1+fn57e3t6enoAAAAAAAC73bqPAAAABnRSTlMAYmJkZt92bnysAAAAL0lEQVR4AWOgJmBhxCvLyopHnpmVjY2VCadeoCxIHrcsWJ4RlyxCHlMWCTBRJxwAjrIBDMWSiM0AAAAASUVORK5CYII=');
 	}
 
-	div.datetime-iconDown {
+	div.dt-datetime-iconDown {
 		height: 20px;
 		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAALCAMAAABf9c24AAAAFVBMVEX///99fX1+fn57e3t6enoAAAAAAAC73bqPAAAABnRSTlMAYmJkZt92bnysAAAAMElEQVR4AWOgDmBiRQIsmPKMrGxQgJDFlEfIYpoPk8Utz8qM232MYFfhkQfKUg8AANefAQxecJ58AAAAAElFTkSuQmCC');
 	}
 }
 
-div.datetime-error {
+div.dt-datetime-error {
 	clear: both;
 	padding: 0 1em;
 	max-width: 240px;

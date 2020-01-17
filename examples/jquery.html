@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<title>DateTime with jQuery init example</title>
+
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="../dist/dateTime.css">
+
+		<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="../dist/dateTime.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#test').dtDateTime();
+			});
+		</script>
+	</head>
+	<body>
+		<h1>DateTime with jQuery init example</h1>
+		<p>This example shows the date / time input initialised via jQuery.</p>
+
+		<p>
+			<input id="test" type="text" value="2020-01-17" />
+		</p>
+	</body>
+</html>

@@ -1303,6 +1303,11 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
+// Global export - if no conflicts
+if (! window.DateTime) {
+	window.DateTime = DateTime;
+}
+
 // Make available via jQuery
 $.fn.dtDateTime = function (options) {
 	return this.each(function() {
