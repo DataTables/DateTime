@@ -1245,6 +1245,12 @@ $.extend( DateTime.prototype, {
 	}
 } );
 
+/**
+ * Use a specificmoment compatible date library
+ */
+DateTime.use = function (lib) {
+	dateLib = lib;
+};
 
 /**
  * For generating unique namespaces
