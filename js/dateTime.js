@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v0.0.3
+/*! DateTime picker for DataTables.net v0.0.4
  *
  * ©2020 SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -6,7 +6,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     0.0.3
+ * @version     0.0.4
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
