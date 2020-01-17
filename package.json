@@ -1,0 +1,29 @@
+{
+  "name": "datatables.net-datetime",
+  "version": "0.0.1",
+  "description": "DateTime picker for DataTables.net",
+  "main": "dist/dateTime.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DataTables/DateTime.git"
+  },
+  "keywords": [
+    "DateTables",
+    "Date",
+    "Time",
+    "Picker"
+  ],
+  "author": "SpryMedia Ltd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DataTables/DateTime/issues"
+  },
+  "homepage": "https://github.com/DataTables/DateTime#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2"
+  }
+}
