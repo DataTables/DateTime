@@ -68,6 +68,14 @@ var DateTime = function ( input, opts ) {
 		throw "DateTime: Without momentjs or dayjs only the format 'YYYY-MM-DD' can be used";
 	}
 
+	// Min and max need to be `Date` objects in the config
+	if (typeof this.c.minDate === 'string') {
+		this.c.minDate = new Date(this.c.minDate);
+	}
+	if (typeof this.c.maxDate === 'string') {
+		this.c.maxDate = new Date(this.c.maxDate);
+	}
+
 	var timeBlock = function ( type ) {
 		return '<div class="'+classPrefix+'-timeblock">'+
 			'</div>';
@@ -185,14 +193,18 @@ $.extend( DateTime.prototype, {
 	},
 
 	max: function ( date ) {
-		this.c.maxDate = date;
+		this.c.maxDate = typeof date === 'string'
+			? new Date(date)
+			: date;
 
 		this._optionsTitle();
 		this._setCalander();
 	},
 
 	min: function ( date ) {
-		this.c.minDate = date;
+		this.c.minDate = typeof date === 'string'
+			? new Date(date)
+			: date;
 
 		this._optionsTitle();
 		this._setCalander();
