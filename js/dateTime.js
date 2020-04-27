@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v0.0.4
+/*! DateTime picker for DataTables.net v0.0.5
  *
  * ©2020 SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -6,7 +6,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     0.0.4
+ * @version     0.0.5
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -97,22 +97,22 @@ var DateTime = function ( input, opts ) {
 						'<button>'+i18n.next+'</button>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-label">'+
-						'<span/>'+
-						'<select class="'+classPrefix+'-month"/>'+
+						'<span></span>'+
+						'<select class="'+classPrefix+'-month"></select>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-label">'+
-						'<span/>'+
-						'<select class="'+classPrefix+'-year"/>'+
+						'<span></span>'+
+						'<select class="'+classPrefix+'-year"></select>'+
 					'</div>'+
 				'</div>'+
-				'<div class="'+classPrefix+'-calendar"/>'+
+				'<div class="'+classPrefix+'-calendar"></div>'+
 			'</div>'+
 			'<div class="'+classPrefix+'-time">'+
-				'<div class="'+classPrefix+'-hours"/>'+
-				'<div class="'+classPrefix+'-minutes"/>'+
-				'<div class="'+classPrefix+'-seconds"/>'+
+				'<div class="'+classPrefix+'-hours"></div>'+
+				'<div class="'+classPrefix+'-minutes"></div>'+
+				'<div class="'+classPrefix+'-seconds"></div>'+
 			'</div>'+
-			'<div class="'+classPrefix+'-error"/>'+
+			'<div class="'+classPrefix+'-error"></div>'+
 		'</div>'
 	);
 
