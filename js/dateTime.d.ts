@@ -1,31 +1,31 @@
 
 declare module 'datatables.net-datetime' {
 	interface IDateTimeOptions {
-		classPrefix: string;
-		disableDays: number[] | null;
-		firstDay: number;
-		format: string;
-		hoursAvailable: number[] | null;
-		i18n: {
-			previous: string;
-			next: string;
-			months: string[];
-			weekdays: string[];
-			amPm: string[];
-			hours: string;
-			minutes: string;
-			seconds: string;
-			unknown: string;
+		classPrefix?: string;
+		disableDays?: number[] | null;
+		firstDay?: number;
+		format?: string;
+		hoursAvailable?: number[] | null;
+		i18n?: {
+			previous?: string;
+			next?: string;
+			months?: string[];
+			weekdays?: string[];
+			amPm?: string[];
+			hours?: string;
+			minutes?: string;
+			seconds?: string;
+			unknown?: string;
 		};
-		maxDate: Date | null;
-		minDate: Date | null;
-		minutesAvailable: number[] | null;
-		strict: boolean;
-		locale: string;
-		onChange: (value: string, date: Date, el: HTMLElement) => {};
-		secondsAvailable: number[] | null;
-		showWeekNumber: boolean;
-		yearRange: number;
+		maxDate?: Date | null;
+		minDate?: Date | null;
+		minutesAvailable?: number[] | null;
+		strict?: boolean;
+		locale?: string;
+		onChange?: (value: string, date: Date, el: HTMLElement) => {};
+		secondsAvailable?: number[] | null;
+		showWeekNumber?: boolean;
+		yearRange?: number;
 	}
 
 	class DateTime {
