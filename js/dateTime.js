@@ -186,10 +186,14 @@ $.extend( DateTime.prototype, {
 		else {
 			error.empty();
 		}
+
+		return this;
 	},
 
 	hide: function () {
 		this._hide();
+
+		return this;
 	},
 
 	max: function ( date ) {
@@ -199,6 +203,8 @@ $.extend( DateTime.prototype, {
 
 		this._optionsTitle();
 		this._setCalander();
+
+		return this;
 	},
 
 	min: function ( date ) {
@@ -208,6 +214,8 @@ $.extend( DateTime.prototype, {
 
 		this._optionsTitle();
 		this._setCalander();
+
+		return this;
 	},
 
 	/**
@@ -283,6 +291,8 @@ $.extend( DateTime.prototype, {
 		this._setTitle();
 		this._setCalander();
 		this._setTime();
+
+		return this;
 	},
 
 

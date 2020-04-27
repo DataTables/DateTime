@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v0.0.4
+/*! DateTime picker for DataTables.net v0.0.5
  *
  * ©2020 SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -6,7 +6,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     0.0.4
+ * @version     0.0.5
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -68,6 +68,14 @@ var DateTime = function ( input, opts ) {
 		throw "DateTime: Without momentjs or dayjs only the format 'YYYY-MM-DD' can be used";
 	}
 
+	// Min and max need to be `Date` objects in the config
+	if (typeof this.c.minDate === 'string') {
+		this.c.minDate = new Date(this.c.minDate);
+	}
+	if (typeof this.c.maxDate === 'string') {
+		this.c.maxDate = new Date(this.c.maxDate);
+	}
+
 	var timeBlock = function ( type ) {
 		return '<div class="'+classPrefix+'-timeblock">'+
 			'</div>';
@@ -89,22 +97,22 @@ var DateTime = function ( input, opts ) {
 						'<button>'+i18n.next+'</button>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-label">'+
-						'<span/>'+
-						'<select class="'+classPrefix+'-month"/>'+
+						'<span></span>'+
+						'<select class="'+classPrefix+'-month"></select>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-label">'+
-						'<span/>'+
-						'<select class="'+classPrefix+'-year"/>'+
+						'<span></span>'+
+						'<select class="'+classPrefix+'-year"></select>'+
 					'</div>'+
 				'</div>'+
-				'<div class="'+classPrefix+'-calendar"/>'+
+				'<div class="'+classPrefix+'-calendar"></div>'+
 			'</div>'+
 			'<div class="'+classPrefix+'-time">'+
-				'<div class="'+classPrefix+'-hours"/>'+
-				'<div class="'+classPrefix+'-minutes"/>'+
-				'<div class="'+classPrefix+'-seconds"/>'+
+				'<div class="'+classPrefix+'-hours"></div>'+
+				'<div class="'+classPrefix+'-minutes"></div>'+
+				'<div class="'+classPrefix+'-seconds"></div>'+
 			'</div>'+
-			'<div class="'+classPrefix+'-error"/>'+
+			'<div class="'+classPrefix+'-error"></div>'+
 		'</div>'
 	);
 
@@ -178,24 +186,36 @@ $.extend( DateTime.prototype, {
 		else {
 			error.empty();
 		}
+
+		return this;
 	},
 
 	hide: function () {
 		this._hide();
+
+		return this;
 	},
 
 	max: function ( date ) {
-		this.c.maxDate = date;
+		this.c.maxDate = typeof date === 'string'
+			? new Date(date)
+			: date;
 
 		this._optionsTitle();
 		this._setCalander();
+
+		return this;
 	},
 
 	min: function ( date ) {
-		this.c.minDate = date;
+		this.c.minDate = typeof date === 'string'
+			? new Date(date)
+			: date;
 
 		this._optionsTitle();
 		this._setCalander();
+
+		return this;
 	},
 
 	/**
@@ -271,6 +291,8 @@ $.extend( DateTime.prototype, {
 		this._setTitle();
 		this._setCalander();
 		this._setTime();
+
+		return this;
 	},
 
 
