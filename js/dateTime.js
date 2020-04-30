@@ -1256,10 +1256,12 @@ $.extend( DateTime.prototype, {
 		var out = dateLib ?
 			dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
 			date.getUTCFullYear() +'-'+
-	            this._pad(date.getUTCMonth() + 1) +'-'+
-	            this._pad(date.getUTCDate());
-		
-		this.dom.input.val( out );
+				this._pad(date.getUTCMonth() + 1) +'-'+
+				this._pad(date.getUTCDate());
+
+			this.dom.input
+				.val( out )
+				.trigger('change', {write: date});
 
 		if ( focus ) {
 			this.dom.input.focus();
