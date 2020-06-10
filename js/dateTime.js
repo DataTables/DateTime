@@ -36,7 +36,7 @@
 'use strict';
 
 // Support libraries which support a Moment like API
-let dateLib = window.moment
+var dateLib = window.moment
 	? window.moment
 	: window.dayjs
 		? window.dayjs
