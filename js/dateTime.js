@@ -1216,6 +1216,13 @@ $.extend( DateTime.prototype, {
 			that._hide();
 		} );
 
+		var offsetParent = this.dom.input[0].offsetParent;
+		if ( offsetParent !== document.body ) {
+			$(offsetParent).on( 'scroll.'+namespace, function () {
+				that._hide();
+			} );
+		}
+
 		// On tab focus will move to a different field (no keyboard navigation
 		// in the date picker - this might need to be changed).
 		$(document).on( 'keydown.'+namespace, function (e) {

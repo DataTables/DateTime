@@ -36,7 +36,7 @@
 'use strict';
 
 // Support libraries which support a Moment like API
-let dateLib = window.moment
+var dateLib = window.moment
 	? window.moment
 	: window.dayjs
 		? window.dayjs
@@ -1216,6 +1216,13 @@ $.extend( DateTime.prototype, {
 			that._hide();
 		} );
 
+		var offsetParent = this.dom.input[0].offsetParent;
+		if ( offsetParent !== document.body ) {
+			$(offsetParent).on( 'scroll.'+namespace, function () {
+				that._hide();
+			} );
+		}
+
 		// On tab focus will move to a different field (no keyboard navigation
 		// in the date picker - this might need to be changed).
 		$(document).on( 'keydown.'+namespace, function (e) {
@@ -1256,10 +1263,12 @@ $.extend( DateTime.prototype, {
 		var out = dateLib ?
 			dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
 			date.getUTCFullYear() +'-'+
-	            this._pad(date.getUTCMonth() + 1) +'-'+
-	            this._pad(date.getUTCDate());
-		
-		this.dom.input.val( out );
+				this._pad(date.getUTCMonth() + 1) +'-'+
+				this._pad(date.getUTCDate());
+
+			this.dom.input
+				.val( out )
+				.trigger('change', {write: date});
 
 		if ( focus ) {
 			this.dom.input.focus();
