@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v0.0.5
+/*! DateTime picker for DataTables.net v0.0.7
  *
  * ©2020 SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -6,7 +6,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     0.0.5
+ * @version     0.0.7
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -1217,6 +1217,7 @@ $.extend( DateTime.prototype, {
 		} );
 
 		var offsetParent = this.dom.input[0].offsetParent;
+
 		if ( offsetParent !== document.body ) {
 			$(offsetParent).on( 'scroll.'+namespace, function () {
 				that._hide();
