@@ -22,13 +22,15 @@ declare module 'datatables.net-datetime' {
 		minutesAvailable?: number[] | null;
 		strict?: boolean;
 		locale?: string;
-		onChange?: (value: string, date: Date, el: HTMLElement) => {};
+		onChange?: (value: string, date: Date, el: HTMLElement) => void;
 		secondsAvailable?: number[] | null;
 		showWeekNumber?: boolean;
 		yearRange?: number;
 	}
 
 	class DateTime {
+		static use(moment: any); // Moment library
+
 		constructor(el: HTMLElement, opts?: IDateTimeOptions);
 		
 		destroy(): void;
