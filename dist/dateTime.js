@@ -952,8 +952,17 @@ $.extend( DateTime.prototype, {
 		var span = 10;
 		var button = function (value, label, className) {
 			// Shift the value for PM
-			if ( count === 12 && val >= 12 && typeof value === 'number' ) {
-				value += 12;
+			if ( count === 12 && typeof value === 'number' ) {
+				if (val >= 12 ) {
+					value += 12;
+				}
+
+				if (value == 12) {
+					value = 0;
+				}
+				else if (value == 24) {
+					value = 12;
+				}
 			}
 
 			var selected = val === value || (value === 'am' && val < 12) || (value === 'pm' && val >= 12) ?
