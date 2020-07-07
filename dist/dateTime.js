@@ -952,17 +952,8 @@ $.extend( DateTime.prototype, {
 		var span = 10;
 		var button = function (value, label, className) {
 			// Shift the value for PM
-			if ( count === 12 && typeof value === 'number' ) {
-				if (val >= 12 ) {
-					value += 12;
-				}
-
-				if (value == 12) {
-					value = 0;
-				}
-				else if (value == 24) {
-					value = 12;
-				}
+			if ( count === 12 && val >= 12 && typeof value === 'number' ) {
+				value += 12;
 			}
 
 			var selected = val === value || (value === 'am' && val < 12) || (value === 'pm' && val >= 12) ?
@@ -1093,7 +1084,7 @@ $.extend( DateTime.prototype, {
 	 * @private
 	 */
 	_position: function () {
-		var offset = this.dom.input.offset();
+		var offset = this.c.attachTo === 'input' ? this.dom.input.position() : this.dom.input.offset();
 		var container = this.dom.container;
 		var inputHeight = this.dom.input.outerHeight();
 
@@ -1104,12 +1095,22 @@ $.extend( DateTime.prototype, {
 			container.removeClass('horizontal');
 		}
 
-		container
-			.css( {
-				top: offset.top + inputHeight,
-				left: offset.left
-			} )
-			.appendTo( 'body' );
+		if(this.c.attachTo === 'input') {
+			container
+				.css( {
+					top: offset.top + inputHeight,
+					left: offset.left
+				} )
+				.insertAfter( this.dom.input );
+		}
+		else {
+			container
+				.css( {
+					top: offset.top + inputHeight,
+					left: offset.left
+				} )
+				.appendTo( 'body' );
+		}
 
 		var calHeight = container.outerHeight();
 		var calWidth = container.outerWidth();
@@ -1307,6 +1308,8 @@ DateTime._instance = 0;
  * @type {Object}
  */
 DateTime.defaults = {
+	attachTo: 'body',
+
 	// Not documented - could be an internal property
 	classPrefix: 'dt-datetime',
 

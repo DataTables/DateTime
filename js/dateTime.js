@@ -1093,7 +1093,7 @@ $.extend( DateTime.prototype, {
 	 * @private
 	 */
 	_position: function () {
-		var offset = this.dom.input.offset();
+		var offset = this.c.attachTo === 'input' ? this.dom.input.position() : this.dom.input.offset();
 		var container = this.dom.container;
 		var inputHeight = this.dom.input.outerHeight();
 
@@ -1104,12 +1104,22 @@ $.extend( DateTime.prototype, {
 			container.removeClass('horizontal');
 		}
 
-		container
-			.css( {
-				top: offset.top + inputHeight,
-				left: offset.left
-			} )
-			.appendTo( 'body' );
+		if(this.c.attachTo === 'input') {
+			container
+				.css( {
+					top: offset.top + inputHeight,
+					left: offset.left
+				} )
+				.insertAfter( this.dom.input );
+		}
+		else {
+			container
+				.css( {
+					top: offset.top + inputHeight,
+					left: offset.left
+				} )
+				.appendTo( 'body' );
+		}
 
 		var calHeight = container.outerHeight();
 		var calWidth = container.outerWidth();
@@ -1307,6 +1317,8 @@ DateTime._instance = 0;
  * @type {Object}
  */
 DateTime.defaults = {
+	attachTo: 'body',
+
 	// Not documented - could be an internal property
 	classPrefix: 'dt-datetime',
 
