@@ -10,6 +10,11 @@ div.dt-datetime {
 	padding: 0 20px 6px 20px;
 	width: 275px;
 
+	&.inline {
+		position: relative;
+		box-shadow: none;
+	}
+
 	div.dt-datetime-title {
 		text-align: center;
 	    padding: 5px 0px 3px;

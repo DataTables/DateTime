@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v0.0.8
+/*! DateTime picker for DataTables.net v0.0.10
  *
  * ©2020 SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -6,7 +6,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     0.0.8
+ * @version     0.0.10
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -172,7 +172,7 @@ $.extend( DateTime.prototype, {
 	 * Destroy the control
 	 */
 	destroy: function () {
-		this._hide();
+		this._hide(true);
 		this.dom.container.off().empty();
 		this.dom.input.off('.datetime');
 	},
@@ -327,6 +327,18 @@ $.extend( DateTime.prototype, {
 
 		// Render the options
 		this._optionsTitle();
+
+		window.allan = this;
+
+		// When attached to a hidden input, we always show the input picker, and
+		// do so inline
+		if (this.dom.input.attr('type') === 'hidden') {
+			this.dom.container.addClass('inline');
+			this.c.attachTo = 'input';
+
+			this.val( this.dom.input.val(), false );
+			this._show();
+		}
 
 		// Trigger the display of the widget when clicking or focusing on the
 		// input element
@@ -637,7 +649,11 @@ $.extend( DateTime.prototype, {
 	 *
 	 * @private
 	 */
-	_hide: function () {
+	_hide: function (destroy) {
+		if (! destroy && this.dom.input.attr('type') === 'hidden') {
+			return;
+		}
+
 		var namespace = this.s.namespace;
 
 		this.dom.container.detach();
@@ -952,8 +968,17 @@ $.extend( DateTime.prototype, {
 		var span = 10;
 		var button = function (value, label, className) {
 			// Shift the value for PM
-			if ( count === 12 && val >= 12 && typeof value === 'number' ) {
-				value += 12;
+			if ( count === 12 && typeof value === 'number' ) {
+				if (val >= 12 ) {
+					value += 12;
+				}
+
+				if (value == 12) {
+					value = 0;
+				}
+				else if (value == 24) {
+					value = 12;
+				}
 			}
 
 			var selected = val === value || (value === 'am' && val < 12) || (value === 'pm' && val >= 12) ?
@@ -1087,6 +1112,11 @@ $.extend( DateTime.prototype, {
 		var offset = this.c.attachTo === 'input' ? this.dom.input.position() : this.dom.input.offset();
 		var container = this.dom.container;
 		var inputHeight = this.dom.input.outerHeight();
+
+		if (container.hasClass('inline')) {
+			container.insertAfter( this.dom.input );
+			return;
+		}
 
 		if ( this.s.parts.date && this.s.parts.time && $(window).width() > 550 ) {
 			container.addClass('horizontal');
@@ -1280,6 +1310,10 @@ $.extend( DateTime.prototype, {
 			this.dom.input
 				.val( out )
 				.trigger('change', {write: date});
+		
+		if ( this.dom.input.attr('type') === 'hidden' ) {
+			this.val(out, false);
+		}
 
 		if ( focus ) {
 			this.dom.input.focus();
