@@ -777,7 +777,7 @@ $.extend( DateTime.prototype, {
 				           (maxDate && day > maxDate);
 
 			var disableDays = this.c.disableDays;
-			if ( $.isArray( disableDays ) && $.inArray( day.getUTCDay(), disableDays ) !== -1 ) {
+			if ( Array.isArray( disableDays ) && $.inArray( day.getUTCDay(), disableDays ) !== -1 ) {
 				disabled = true;
 			}
 			else if ( typeof disableDays === 'function' && disableDays( day ) === true ) {
