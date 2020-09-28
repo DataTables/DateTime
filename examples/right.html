@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<title>DateTime simple example</title>
+
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="../dist/dateTime.css">
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+		<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="../dist/dateTime.js"></script>
+		<script>
+			$(document).ready(function() {
+				new DateTime(document.getElementById('test'), {
+					attachTo: 'input',
+					format: 'D MMM YYYY HH:mm'
+				});
+
+				new DateTime(document.getElementById('test2'), {
+					attachTo: 'input',
+					format: 'D MMM YYYY HH:mm'
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>DateTime right aligned example</h1>
+		<p>This shows adjustment to the selector position if it isn't fully visible.</p>
+
+		<p>
+			<input id="test" type="text" value="2020-01-17" style="float: right" />
+		</p>
+
+		<p style="position: absolute; top: 200px; left: 50px; right: 0;">
+			<input id="test2" type="text" value="2020-01-17" style="float: right" />
+		</p>
+	</body>
+</html>
