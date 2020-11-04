@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v0.0.12
+/*! DateTime picker for DataTables.net v1.0.0
  *
  * ©2020 SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -6,7 +6,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     0.0.12
+ * @version     1.0.0
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -1412,9 +1412,9 @@ $.fn.dtDateTime = function (options) {
 }
 
 // Attach to DataTables if present
-if ($.dataTable) {
-	$.dataTable.DateTime = DateTime;
-	$.DataTable.DateTime = DateTime;
+if ($.fn.dataTable) {
+	$.fn.dataTable.DateTime = DateTime;
+	$.fn.DataTable.DateTime = DateTime;
 }
 
 return DateTime;
