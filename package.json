@@ -1,6 +1,6 @@
 {
   "name": "datatables.net-datetime",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DateTime picker for DataTables.net",
   "main": "dist/dateTime.js",
   "types": "js/dateTime.d.ts",
