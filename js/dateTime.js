@@ -64,9 +64,12 @@ var DateTime = function ( input, opts ) {
 	var i18n = this.c.i18n;
 
 	// Only IS8601 dates are supported without moment pr dayjs
-	if ( ! dateLib && this.c.format !== 'YYYY-MM-DD' ) {
+    if ( this.c.format !== 'YYYY-MM-DD' ) {
+        if ( !dateLib )
 		throw "DateTime: Without momentjs or dayjs only the format 'YYYY-MM-DD' can be used";
-	}
+        else if ( this.c.format.indexOf('Z') > -1 && typeof dateLib.parseZone === 'undefined' )
+		throw "DateTime: Momentjs required for Timezone support";
+    }
 
 	// Min and max need to be `Date` objects in the config
 	if (typeof this.c.minDate === 'string') {
@@ -111,6 +114,7 @@ var DateTime = function ( input, opts ) {
 				'<div class="'+classPrefix+'-hours"></div>'+
 				'<div class="'+classPrefix+'-minutes"></div>'+
 				'<div class="'+classPrefix+'-seconds"></div>'+
+                '<div class="'+classPrefix+'-tz"></div>' +
 			'</div>'+
 			'<div class="'+classPrefix+'-error"></div>'+
 		'</div>'
@@ -122,6 +126,7 @@ var DateTime = function ( input, opts ) {
 		title:     structure.find( '.'+classPrefix+'-title' ),
 		calendar:  structure.find( '.'+classPrefix+'-calendar' ),
 		time:      structure.find( '.'+classPrefix+'-time' ),
+        tz:        structure.find( '.'+classPrefix+'-tz'),
 		error:     structure.find( '.'+classPrefix+'-error' ),
 		input:     $(input)
 	};
@@ -147,7 +152,8 @@ var DateTime = function ( input, opts ) {
 			date:    this.c.format.match( /[YMD]|L(?!T)|l/ ) !== null,
 			time:    this.c.format.match( /[Hhm]|LT|LTS/ ) !== null,
 			seconds: this.c.format.indexOf( 's' )   !== -1,
-			hours12: this.c.format.match( /[haA]/ ) !== null
+            hours12: this.c.format.match(/[haA]/) !== null,
+            tz:      this.c.format.indexOf('Z') !== -1 
 		}
 	};
 
@@ -253,8 +259,31 @@ $.extend( DateTime.prototype, {
 			if ( dateLib ) {
 				// Use moment or dayjs if possible (even for ISO8601 strings, since it
 				// will correctly handle 0000-00-00 and the like)
-				var m = dateLib.utc( set, this.c.format, this.c.locale, this.c.strict );
-				this.s.d = m.isValid() ? m.toDate() : null;
+                if (String(this.c.format).indexOf('Z') > -1) {
+                    // parseZone from MomentJS required since it will not loose/corrupt the stored timezone
+                    var m1 = moment.parseZone(set, this.c.format);
+                    if (!m1.isValid) {
+                        this.s.d = null;
+                        this.s.tz = null;
+                    }
+                    else {
+                        // Recreate date without timezone
+                        var plainFormat = 'YYYY-MM-DDTHH:mm:ss';
+                        var m2 = dateLib.utc(m1.format(plainFormat), plainFormat,this.c.locale, this.c.strict)
+                        this.s.d = m2.isValid() ? m2.toDate() : null;
+
+                        // Extract TimeZone
+                        var tzBits = String(m1.format('Z')).split(':');
+                        var tzHours = parseInt(tzBits[0]);
+                        var tzMinutes = parseInt(tzBits[1]);
+                        this.s.tz = (tzHours * 60) + ((tzHours < 0 ? -1 : 1) * tzMinutes); // Save timezone separtly.
+                    }
+                }
+                else {
+					var m = dateLib.utc( set, this.c.format, this.c.locale, this.c.strict );
+					this.s.d = m.isValid() ? m.toDate() : null;
+                    this.s.tz = null;
+                }
 			}
 			else {
 				// Else must be using ISO8601 without a date library (constructor would
@@ -324,7 +353,10 @@ $.extend( DateTime.prototype, {
 			this.dom.time.children('div.'+classPrefix+'-seconds').remove();
 			this.dom.time.children('span').eq(1).remove();
 		}
-
+		if ( ! this.s.parts.tz ) {
+			this.dom.time.children('div.'+classPrefix+'-tz').remove();
+			this.dom.time.children('span').eq(1).remove(); // ??? What is the purpose of this in the seconds..
+		}
 		// Render the options
 		this._optionsTitle();
 
@@ -418,6 +450,14 @@ $.extend( DateTime.prototype, {
 
 					onChange();
 				}
+                else if (select.hasClass(classPrefix+'-tz')) {
+                    // TimeZone select
+                    that.s.tz = parseInt(val);
+                    // that._setTime(); // Not needed..
+                    that._writeOutput(true);
+
+                    onChange();
+                }
 
 				that.dom.input.focus();
 				that._position();
@@ -1229,11 +1269,55 @@ $.extend( DateTime.prototype, {
 			return that.c[prop+'Available'] ?
 				that.c[prop+'Available'] :
 				that._range( 0, 59, that.c[prop+'Increment'] );
-		}
+		};
 
-		this._optionsTime( 'hours', this.s.parts.hours12 ? 12 : 24, hours, this.c.hoursAvailable )
+        this._optionsTime( 'hours', this.s.parts.hours12 ? 12 : 24, hours, this.c.hoursAvailable );
 		this._optionsTime( 'minutes', 60, d ? d.getUTCMinutes() : 0, allowed('minutes'), this.s.minutesRange );
 		this._optionsTime( 'seconds', 60, d ? d.getSeconds() : 0, allowed('seconds'), this.s.secondsRange );
+        if (this.s.parts.tz) {
+            var tz = this.s.tz || 0;
+            var classPrefix = this.c.classPrefix;
+            var container = this.dom.container.find('div.' + classPrefix + '-tz');
+            if (!container.length)
+                return;
+
+            var className = classPrefix + '-tz';
+            var i18n = this.c.i18n;
+            // This list of valid timezone options.
+            var timeZoneData = [-720, -660, -600, -570, -540, -480, -420, -360, -300, -270, -240, -210, -180, -120, -60, 0, 60, 120, 180, 210, 240, 270, 300, 330, 345, 360, 390, 420, 480, 525, 540, 570, 600, 630, 660, 690, 720, 765, 780, 840];
+            var timeZoneList = [];
+            timeZoneData.forEach(function (v, i) {
+                var valStr = 'UTC';
+                if (v !== 0) {
+                    valStr = that._formatTZ(v, that);
+                }
+                var selected = v == tz ? 'selected="selected" ' : '';
+                timeZoneList.push('<option value="' + v + '" ' + selected + '>' + valStr + '</option>');
+            });
+            container
+                .empty()
+                .append(
+                    '<table><tr>' +
+                    '<th colspan="' + 4 + '">' + i18n['timezone'] + '</th><td><select class="' + className + '">' + timeZoneList.join('') + '</select></td>' +
+                    '</tr></table>'
+                );
+        }
+    },
+
+    /**
+     * Format a TimeZone integer.
+     *
+     * @private
+     */
+    _formatTZ: function (v) {
+        if (v === undefined || v === null || v === "")
+            return null;
+        var hour = Math.trunc(v / 60);
+        var minutes = this._pad(Math.abs(v % 60));
+        if (v >= 0)
+            return '+' + this._pad(hour) + ':' + minutes;
+        else
+            return '-' + this._pad(Math.abs(hour)) + ':' + minutes;
 	},
 
 	/**
@@ -1303,11 +1387,13 @@ $.extend( DateTime.prototype, {
 	 */
 	_writeOutput: function ( focus ) {
 		var date = this.s.d;
+        var tz = this._formatTZ(this.s.tz);
+        var dateFormat = this.c.format.replace('Z', tz);
 
 		// Use moment or dayjs if possible - otherwise it must be ISO8601 (or the
 		// constructor would have thrown an error)
 		var out = dateLib ?
-			dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
+            dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( dateFormat ) :
 			date.getUTCFullYear() +'-'+
 				this._pad(date.getUTCMonth() + 1) +'-'+
 				this._pad(date.getUTCDate());
@@ -1371,6 +1457,7 @@ DateTime.defaults = {
 		hours:    'Hour',
 		minutes:  'Minute',
 		seconds:  'Second',
+        timezone: 'Timezone',
 		unknown:  '-'
 	},
 
