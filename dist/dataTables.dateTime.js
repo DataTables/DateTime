@@ -1417,6 +1417,10 @@ $.fn.dtDateTime = function (options) {
 if ($.fn.dataTable) {
 	$.fn.dataTable.DateTime = DateTime;
 	$.fn.DataTable.DateTime = DateTime;
+
+	if ($.fn.dataTable.Editor) {
+		$.fn.dataTable.Editor.DateTime = DateTime;
+	}
 }
 
 return DateTime;

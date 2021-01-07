@@ -4,14 +4,14 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 
 gulp.task('scss', function() {
-	return gulp.src('./css/dateTime.scss')
+	return gulp.src('./css/dataTables.dateTime.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('js', function() {
 	// Just a straight copy for now - nothing fancy. TS / Babel in future
-	return gulp.src('./js/dateTime.js')
+	return gulp.src('./js/dataTables.dateTime.js')
 		.pipe(gulp.dest('./dist/'));
 });
 
