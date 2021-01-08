@@ -34,6 +34,10 @@ css_compress dist/dataTables.dateTime.css
 
 rsync -r dist/* $OUT_DIR
 
+# Copy and build examples
+rsync -r examples $OUT_DIR
+examples_process $OUT_DIR/examples
+
 # Readme and license
 cp readme.md $OUT_DIR
 cp license.txt $OUT_DIR
