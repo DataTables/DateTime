@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" table-class="display nowrap" order="2">
+
+<css lib="datatables datetime"/>
+<js lib="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"/>
+<js lib="jquery datatables datetime">
+<![CDATA[
+
+$(document).ready(function() {
+    new DateTime(document.getElementById('test'), {
+        format: 'D MMM YYYY HH:mm'
+    });
+});
+
+]]>
+</js>
+
+<title lib="DateTime">DateTime - date and time example</title>
+
+<info><![CDATA[
+
+This example shows the date / time input used for both date and time inputs.
+
+]]></info>
+
+<custom-table>
+    <input id="test" type="text" value="17 Jan 2020 12:19" />
+</custom-table>
+
+</dt-example>

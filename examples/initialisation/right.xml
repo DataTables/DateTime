@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" table-class="display nowrap" order="7">
+
+<css lib="datatables datetime"/>
+<js lib="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"/>
+<js lib="jquery datatables datetime">
+<![CDATA[
+
+$(document).ready(function() {
+    new DateTime(document.getElementById('test'), {
+        attachTo: 'input',
+        format: 'D MMM YYYY HH:mm'
+    });
+
+    new DateTime(document.getElementById('test2'), {
+        attachTo: 'input',
+        format: 'D MMM YYYY HH:mm'
+    });
+});
+
+]]>
+</js>
+
+<title lib="DateTime">DateTime right aligned example</title>
+
+<info><![CDATA[
+
+This shows adjustment to the selector position if it isn't fully visible.
+
+]]></info>
+
+<custom-table>
+    <p>
+        <input id="test" type="text" value="2020-01-17" style="float: right" />
+    </p>
+
+    <p style="position: absolute; top: 200px; left: 50px; right: 0;">
+        <input id="test2" type="text" value="2020-01-17" style="float: right" />
+    </p>
+</custom-table>
+
+</dt-example>

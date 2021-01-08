@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" table-class="display nowrap" order="3">
+
+<css lib="datatables datetime"/>
+<js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/dayjs.min.js"/>
+<js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/plugin/utc.js"/>
+<js lib="jquery datatables datetime">
+<![CDATA[
+
+dayjs.extend(dayjs_plugin_utc);
+
+$(document).ready(function() {
+    new DateTime(document.getElementById('test'), {
+        format: 'D/M/YYYY'
+    });
+});
+]]>
+</js>
+
+<title lib="DateTime">DateTime with DayJS formatting example</title>
+
+<info><![CDATA[
+
+This example shows the date / time input with DayJS used for the formatting rather than Moment. Note that you also need the DayJS `UTC` plugin.
+
+]]></info>
+
+<custom-table>
+    <input id="test" type="text" value="17/1/2020" />
+</custom-table>
+
+</dt-example>
