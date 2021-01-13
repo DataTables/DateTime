@@ -328,7 +328,12 @@ $.extend( DateTime.prototype, {
 		// Render the options
 		this._optionsTitle();
 
-		window.allan = this;
+		$(document).on('i18n.dt', (e, settings) => {
+			if (settings.oLanguage.datetime) {
+				$.extend(true, this.c.i18n, settings.oLanguage.datetime);
+				this._optionsTitle();
+			}
+		});
 
 		// When attached to a hidden input, we always show the input picker, and
 		// do so inline
