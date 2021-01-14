@@ -1255,22 +1255,22 @@ $.extend( DateTime.prototype, {
 
 		// Need to reposition on scroll
 		$(window).on( 'scroll.'+namespace+' resize.'+namespace, function () {
-			that._hide();
+			that._position();
 		} );
 
 		$('div.DTE_Body_Content').on( 'scroll.'+namespace, function () {
-			that._hide();
+			that._position();
 		} );
 
 		$('div.dataTables_scrollBody').on( 'scroll.'+namespace, function () {
-			that._hide();
+			that._position();
 		} );
 
 		var offsetParent = this.dom.input[0].offsetParent;
 
 		if ( offsetParent !== document.body ) {
 			$(offsetParent).on( 'scroll.'+namespace, function () {
-				that._hide();
+				that._position();
 			} );
 		}
 
