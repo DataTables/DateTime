@@ -40,12 +40,14 @@ var dateLib = window.moment
 	? window.moment
 	: window.dayjs
 		? window.dayjs
-		: null;
+		: window.luxon
+			? window.luxon
+			: null;
 
 /*
  * This file provides a DateTime GUI picker (calendar and time input). Only the
  * format YYYY-MM-DD is supported without additional software, but the end user
- * experience can be greatly enhanced by including the momentjs or dayjs library
+ * experience can be greatly enhanced by including the momentjs, dayjs or luxon library
  * which provide date / time parsing and formatting options.
  *
  * This functionality is required because the HTML5 date and datetime input
@@ -63,9 +65,9 @@ var DateTime = function ( input, opts ) {
 	var classPrefix = this.c.classPrefix;
 	var i18n = this.c.i18n;
 
-	// Only IS8601 dates are supported without moment pr dayjs
+	// Only IS8601 dates are supported without moment, dayjs or luxon
 	if ( ! dateLib && this.c.format !== 'YYYY-MM-DD' ) {
-		throw "DateTime: Without momentjs or dayjs only the format 'YYYY-MM-DD' can be used";
+		throw "DateTime: Without momentjs, dayjs or luxon only the format 'YYYY-MM-DD' can be used";
 	}
 
 	// Min and max need to be `Date` objects in the config
@@ -250,8 +252,13 @@ $.extend( DateTime.prototype, {
 			this.s.d = new Date();
 		}
 		else if ( typeof set === 'string' ) {
-			if ( dateLib ) {
-				// Use moment or dayjs if possible (even for ISO8601 strings, since it
+			// luxon uses different method names so need to be able to call them
+			if(dateLib == window.luxon) {
+				var luxDT = dateLib.DateTime.fromFormat(set, this.c.format)
+				this.s.d = luxDT.isValid ? luxDT.toJSDate() : null;
+			}
+			else if ( dateLib ) {
+				// Use moment, dayjs or luxon if possible (even for ISO8601 strings, since it
 				// will correctly handle 0000-00-00 and the like)
 				var m = dateLib.utc( set, this.c.format, this.c.locale, this.c.strict );
 				this.s.d = m.isValid() ? m.toDate() : null;
@@ -576,7 +583,10 @@ $.extend( DateTime.prototype, {
 	 */
 	_compareDates: function( a, b ) {
 		// Can't use toDateString as that converts to local time
-		return this._dateToUtcString(a) === this._dateToUtcString(b);
+		// luxon uses different method names so need to be able to call them
+		return dateLib == window.luxon
+			? dateLib.DateTime.fromJSDate(a).toISODate() === dateLib.DateTime.fromJSDate(b).toISODate()
+			: this._dateToUtcString(a) === this._dateToUtcString(b);
 	},
 
 	/**
@@ -639,9 +649,12 @@ $.extend( DateTime.prototype, {
 	 * @return {string} ISO formatted date
 	 */
 	_dateToUtcString: function ( d ) {
-		return d.getUTCFullYear()+'-'+
-			this._pad(d.getUTCMonth()+1)+'-'+
-			this._pad(d.getUTCDate());
+		// luxon uses different method names so need to be able to call them
+		return dateLib == window.luxon
+			? dateLib.DateTime.fromJSDate(d).toISODate()
+			: d.getUTCFullYear()+'-'+
+				this._pad(d.getUTCMonth()+1)+'-'+
+				this._pad(d.getUTCDate());
 	},
 
 	/**
@@ -1224,7 +1237,18 @@ $.extend( DateTime.prototype, {
 	_setTime: function () {
 		var that = this;
 		var d = this.s.d;
-		var hours = d ? d.getUTCHours() : 0;
+
+		var luxDT = null
+		if (dateLib == window.luxon) {
+			luxDT = dateLib.DateTime.fromJSDate(d);
+		}
+
+		var hours = luxDT != null
+			? luxDT.hour
+			: d
+				? d.getUTCHours()
+				: 0;
+
 		var allowed = function ( prop ) { // Backwards compt with `Increment` option
 			return that.c[prop+'Available'] ?
 				that.c[prop+'Available'] :
@@ -1232,8 +1256,27 @@ $.extend( DateTime.prototype, {
 		}
 
 		this._optionsTime( 'hours', this.s.parts.hours12 ? 12 : 24, hours, this.c.hoursAvailable )
-		this._optionsTime( 'minutes', 60, d ? d.getUTCMinutes() : 0, allowed('minutes'), this.s.minutesRange );
-		this._optionsTime( 'seconds', 60, d ? d.getSeconds() : 0, allowed('seconds'), this.s.secondsRange );
+		this._optionsTime(
+			'minutes',
+			60,
+			luxDT != null
+				? luxDT.minute
+				: d
+					? d.getUTCMinutes()
+					: 0, allowed('minutes'),
+			this.s.minutesRange
+		);
+		this._optionsTime(
+			'seconds',
+			60,
+			luxDT != null
+				? luxDT.second
+				: d
+					? d.getSeconds()
+					: 0,
+			allowed('seconds'),
+			this.s.secondsRange
+		);
 	},
 
 	/**
@@ -1304,13 +1347,19 @@ $.extend( DateTime.prototype, {
 	_writeOutput: function ( focus ) {
 		var date = this.s.d;
 
-		// Use moment or dayjs if possible - otherwise it must be ISO8601 (or the
+		// Use moment, dayjs or luxon if possible - otherwise it must be ISO8601 (or the
 		// constructor would have thrown an error)
-		var out = dateLib ?
-			dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
-			date.getUTCFullYear() +'-'+
-				this._pad(date.getUTCMonth() + 1) +'-'+
-				this._pad(date.getUTCDate());
+		var out;
+		if(dateLib == window.luxon) {
+			out = dateLib.DateTime.fromJSDate(this.s.d).toFormat(this.c.format);
+		}
+		else {
+			out = dateLib ?
+				dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
+				date.getUTCFullYear() +'-'+
+					this._pad(date.getUTCMonth() + 1) +'-'+
+					this._pad(date.getUTCDate());
+		}
 
 			this.dom.input
 				.val( out )

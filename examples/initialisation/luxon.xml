@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" table-class="display nowrap" order="3">
+
+<css lib="datatables datetime"/>
+<js lib="//cdnjs.cloudflare.com/ajax/libs/luxon/1.25.0/luxon.min.js"/>
+<js lib="jquery datatables datetime">
+<![CDATA[
+
+$(document).ready(function() {
+    new DateTime(document.getElementById('test'), {
+        format: 'd/M/yyyy, HH:mm'
+    });
+});
+]]>
+</js>
+
+<title lib="DateTime">DateTime with Luxon formatting example</title>
+
+<info><![CDATA[
+
+This example shows the date / time input with Luxon used for the formatting rather than Moment.
+
+]]></info>
+
+<custom-table>
+    <input id="test" type="text" value="17/1/2020, 16:56" />
+</custom-table>
+
+</dt-example>
