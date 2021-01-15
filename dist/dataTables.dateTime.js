@@ -335,7 +335,12 @@ $.extend( DateTime.prototype, {
 		// Render the options
 		this._optionsTitle();
 
-		window.allan = this;
+		$(document).on('i18n.dt', (e, settings) => {
+			if (settings.oLanguage.datetime) {
+				$.extend(true, this.c.i18n, settings.oLanguage.datetime);
+				this._optionsTitle();
+			}
+		});
 
 		// When attached to a hidden input, we always show the input picker, and
 		// do so inline
@@ -1293,22 +1298,22 @@ $.extend( DateTime.prototype, {
 
 		// Need to reposition on scroll
 		$(window).on( 'scroll.'+namespace+' resize.'+namespace, function () {
-			that._hide();
+			that._position();
 		} );
 
 		$('div.DTE_Body_Content').on( 'scroll.'+namespace, function () {
-			that._hide();
+			that._position();
 		} );
 
 		$('div.dataTables_scrollBody').on( 'scroll.'+namespace, function () {
-			that._hide();
+			that._position();
 		} );
 
 		var offsetParent = this.dom.input[0].offsetParent;
 
 		if ( offsetParent !== document.body ) {
 			$(offsetParent).on( 'scroll.'+namespace, function () {
-				that._hide();
+				that._position();
 			} );
 		}
 
