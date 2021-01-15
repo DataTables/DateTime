@@ -253,7 +253,7 @@ $.extend( DateTime.prototype, {
 		}
 		else if ( typeof set === 'string' ) {
 			// luxon uses different method names so need to be able to call them
-			if(dateLib == window.luxon) {
+			if(dateLib && dateLib == window.luxon) {
 				var luxDT = dateLib.DateTime.fromFormat(set, this.c.format)
 				this.s.d = luxDT.isValid ? luxDT.toJSDate() : null;
 			}
@@ -589,7 +589,7 @@ $.extend( DateTime.prototype, {
 	_compareDates: function( a, b ) {
 		// Can't use toDateString as that converts to local time
 		// luxon uses different method names so need to be able to call them
-		return dateLib == window.luxon
+		return dateLib && dateLib == window.luxon
 			? dateLib.DateTime.fromJSDate(a).toISODate() === dateLib.DateTime.fromJSDate(b).toISODate()
 			: this._dateToUtcString(a) === this._dateToUtcString(b);
 	},
@@ -655,7 +655,7 @@ $.extend( DateTime.prototype, {
 	 */
 	_dateToUtcString: function ( d ) {
 		// luxon uses different method names so need to be able to call them
-		return dateLib == window.luxon
+		return dateLib && dateLib == window.luxon
 			? dateLib.DateTime.fromJSDate(d).toISODate()
 			: d.getUTCFullYear()+'-'+
 				this._pad(d.getUTCMonth()+1)+'-'+
@@ -1245,7 +1245,7 @@ $.extend( DateTime.prototype, {
 		
 		// luxon uses different method names so need to be able to call them. This happens a few time later in this method too
 		var luxDT = null
-		if (dateLib == window.luxon) {
+		if (dateLib && dateLib == window.luxon) {
 			luxDT = dateLib.DateTime.fromJSDate(d);
 		}
 
@@ -1356,7 +1356,7 @@ $.extend( DateTime.prototype, {
 		// Use moment, dayjs or luxon if possible - otherwise it must be ISO8601 (or the
 		// constructor would have thrown an error)
 		// luxon uses different method names so need to be able to call them.
-		var out = dateLib == window.luxon
+		var out = dateLib && dateLib == window.luxon
 			? dateLib.DateTime.fromJSDate(this.s.d).toFormat(this.c.format)
 			: dateLib ?
 				dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
