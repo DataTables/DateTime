@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="DateTime">
+	<name>max()</name>
+	<summary>Set the max date for the DateTime instance</summary>
+	<since>1.0.0</since>
+
+	<type type="function">
+		<signature>max()</signature>
+		<description>Set the max date for the DateTime instance</description>
+		<parameter type="string" name="date">
+            Date as a string that is to be the max date for this instance of DateTime.
+        </parameter>
+		<returns type="DateTime">Self for chaining</returns>
+	</type>
+	<type type="function">
+		<signature>max()</signature>
+		<description>Set the max date for the DateTime instance</description>
+		<parameter type="Date" name="date">
+            Date that is to be the max date for this instance of DateTime.
+        </parameter>
+		<returns type="DateTime">Self for chaining</returns>
+	</type>
+
+	<description>
+		This method sets the max date for the DateTime instance. It takes either a Date instance directly or a string representing a date that is then parsed into a date.
+	</description>
+
+	<example title="Set the max date for DateTime"><![CDATA[
+$(document).ready(function() {
+    var dt = new DateTime(document.getElementById('example'), {});
+	dt.max("2025-12-31");
+});
+]]></example>
+
+</dt-api>

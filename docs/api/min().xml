@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="DateTime">
+	<name>min()</name>
+	<summary>Set the min date for the DateTime instance</summary>
+	<since>1.0.0</since>
+
+	<type type="function">
+		<signature>min()</signature>
+		<description>Set the min date for the DateTime instance</description>
+		<parameter type="string" name="date">
+            Date as a string that is to be the min date for this instance of DateTime.
+        </parameter>
+		<returns type="DateTime">Self for chaining</returns>
+	</type>
+	<type type="function">
+		<signature>min()</signature>
+		<description>Set the min date for the DateTime instance</description>
+		<parameter type="Date" name="date">
+            Date that is to be the min date for this instance of DateTime.
+        </parameter>
+		<returns type="DateTime">Self for chaining</returns>
+	</type>
+
+	<description>
+		This method sets the min date for the DateTime instance. It takes either a Date instance directly or a string representing a date that is then parsed into a date.
+	</description>
+
+	<example title="Set the min date for DateTime"><![CDATA[
+$(document).ready(function() {
+    var dt = new DateTime(document.getElementById('example'), {});
+	dt.min("2015-12-31");
+});
+]]></example>
+
+</dt-api>

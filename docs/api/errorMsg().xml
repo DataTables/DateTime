@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="DateTime">
+	<name>errorMsg()</name>
+	<summary>Either sets the error message or removes it</summary>
+	<since>1.0.0</since>
+
+	<type type="function">
+		<signature>errorMsg()</signature>
+		<description>Sets the error message</description>
+		<parameter type="string" name="msg" optional="true">
+            Message to be displayed.
+        </parameter>
+		<returns type="DateTime">Self for chaining.</returns>
+	</type>
+	<type type="function">
+		<signature>errorMsg()</signature>
+		<description>Empties the error message.</description>
+		<returns type="DateTime">Self for chaining.</returns>
+	</type>
+
+	<description>
+		Either sets the error message or removes it depending on if the `msg` parameter is passed or not.
+
+		This is useful for providing custom error messages when an error occurs.
+	</description>
+
+	<example title="Set Error Message"><![CDATA[
+$(document).ready(function() {
+    var dt = new DateTime(document.getElementById('example'), {});
+	dt.errMsg("Oops an error occurred!")
+});
+]]></example>
+
+<example title="Remove Error Message"><![CDATA[
+$(document).ready(function() {
+    var dt = new DateTime(document.getElementById('example'), {});
+	dt.errMsg("Oops an error occurred!")
+	dt.errMsg()
+});
+]]></example>
+
+</dt-api>

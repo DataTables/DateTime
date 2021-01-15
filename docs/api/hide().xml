@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="DateTime">
+	<name>hide()</name>
+	<summary>Hides the DateTime instance</summary>
+	<since>1.0.0</since>
+
+	<type type="function">
+		<signature>hide()</signature>
+		<description>Hides the DateTime instance</description>
+		<returns type="DateTime">Self for chaining</returns>
+	</type>
+
+	<description>
+		This method removes the DateTime from the instance and also turns off any listeners that are in place. It doesn't empty it's own container though, so it is in effect a 'weak' `-api destroy()`.
+	</description>
+
+	<example title="Hide an instance of DateTime"><![CDATA[
+$(document).ready(function() {
+    var dt = new DateTime(document.getElementById('example'), {});
+	dt.hide();
+});
+]]></example>
+
+</dt-api>
