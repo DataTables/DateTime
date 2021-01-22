@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>i18n</name>
+	<summary>DateTime Language Options</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="object">
 		<description>
-		
-	    </description>
+			This option is capable of holding all of the sub-options for languages for the DateTime picker.
+		</description>
 	</type>
 
-	<default value="">
-		
+	<default value="object">
+		The default value for this property is an object containing all of the default values for the DateTime picker's options. These are the default values that DateTime uses.
 	</default>
 	<description>
 		<![CDATA[
+        As standard, no custom options will be applied to the DateTime specific language options if `i18n` is unaltered. Otherwise the related options will be applied if they are defined within this object.
 
+        This option allows direct configuration on the language options for the DateTime instance and can be different for different instances.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Alter previous and next buttons."><![CDATA[
+
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    var dt = new DateTime(document.getElementById('example'), {
+		i18n: {
+			previous: '&lt;'
+			next: '&gt;'
+		}
+    });
 });
+
 ]]></example>
 
 </dt-option>

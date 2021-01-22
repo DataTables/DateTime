@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>i18n.weekdays</name>
+	<summary>Text used to indicate the days of the week.</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="array">
 		<description>
-		
+			Array with 7 elements each representing a day of the week.
 	    </description>
 	</type>
 
-	<default value="">
-		
+	<default value="[ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ]">
+		An array containing abbreviated values for the days of the week.
 	</default>
 	<description>
 		<![CDATA[
-
+		As standard DateTime will use the values detailed above within the calendar to represent each of the days of the week.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="French values for days of the week"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		i18n: {
+			weekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Dim']
+		}
+	});
 });
 ]]></example>
 

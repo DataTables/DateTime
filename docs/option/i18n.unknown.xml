@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>i18n.unknown</name>
+	<summary>String to use if a value is unknown.</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="string">
 		<description>
-		
+			The string that is used if a value is unknown.
 	    </description>
 	</type>
 
-	<default value="">
-		
+	<default value="-">
+		As default a `-` is used to represent unknown values.
 	</default>
 	<description>
 		<![CDATA[
-
+		This value is used to represent values that are unknown in within DateTime.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Change the value for `i18n.unknown`"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		i18n: {
+			unknown: 'n/a'
+		}
+	});
 });
 ]]></example>
 

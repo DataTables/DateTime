@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>i18n.amPm</name>
+	<summary>The strings appended to hours to distinguish between am and pm.</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="array">
 		<description>
-		
+			This is an array that has 2 elements to represent am and pm respectively.
 	    </description>
 	</type>
 
-	<default value="">
+	<default value="['am', 'pm']">
 		
 	</default>
 	<description>
 		<![CDATA[
-
+		The strings within the array are appended to the hours in the selection when a 12 hour format is being used. This allows the user to differentiate between am and pm times.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Change the strings for am and pm"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		i18n: {
+			weekdays: ['morning', 'afternoon']
+		}
+	});
 });
 ]]></example>
 

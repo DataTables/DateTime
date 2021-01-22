@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>i18n.minutes</name>
+	<summary>Label for the minutes selection</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="string">
 		<description>
-		
+			The string value for the label to indicate minutes selection.
 	    </description>
 	</type>
 
-	<default value="">
+	<default value="Second">
 		
 	</default>
 	<description>
 		<![CDATA[
-
+		This value is used as a label next to the selection for the value of minutes within DateTime.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Change the value for `i18n.minutes`"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		i18n: {
+			minutes: 'm'
+		}
+	});
 });
 ]]></example>
 
