@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>locale</name>
+	<summary>The locale that DateTime should use.</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="string">
 		<description>
-		
+			This option is used to set the locale that DateTime should use.
 	    </description>
 	</type>
 
-	<default value="">
-		
+	<default value="en">
+		The locale that DateTime uses by default is English.
 	</default>
 	<description>
 		<![CDATA[
-
+		This allows the locale that DateTime uses to be set to any value that the user requires. This is particularly useful when making use of moment, luxon or dayjs.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Change the locale to French"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		locale: 'fr'
+	});
 });
 ]]></example>
 

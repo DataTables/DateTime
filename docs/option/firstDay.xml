@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>firstDay</name>
+	<summary>Change which day is first on the calendar</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="number">
 		<description>
-		
+			This value represents which day should be in the first column of datetime.
 	    </description>
 	</type>
 
-	<default value="">
-		
+	<default value="0">
+		The default value of 0 represents Sunday - the days are 0 indexed starting from Sunday.
 	</default>
 	<description>
 		<![CDATA[
-
+		This option allows for the "first" day to be changed to any of the days of the week as desired.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Change first day to Monday"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		firstDay: 1
+	});
 });
 ]]></example>
 

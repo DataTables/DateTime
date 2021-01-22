@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>onChange</name>
+	<summary>Function that is called whenever the value selected for DateTime changes</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="function">
+		<parameter type="DateTime" name="dt">The instance of DateTime</parameter>
+		<parameter type="string" name="value">The current value that has been selected as a string</parameter>
+		<parameter type="Date" name="date">The current value that has been selected as a Date</parameter>
+		<parameter type="HTML Element" name="input">The DateTime input element</parameter>
 		<description>
-		
+			This function is called whenever the value selected for DateTime changes. It allows for custom functionality to be defined
 	    </description>
 	</type>
 
-	<default value="">
-		
+	<default value="function">
+		The default value for this option is a function, but it is empty and does nothing.
 	</default>
 	<description>
 		<![CDATA[
-
+		This option allows users to define custom functionality that should occur whenever a change to the selection within a DateTime instance occurs.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Alert the user that they have made a change"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		onChange: function (dt, value, date, input) {
+			alert("Your new value is " + value);
+		}
+	});
 });
 ]]></example>
 

@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>showWeekNumber</name>
+	<summary>Whether the week number should be shown</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="boolean">
 		<description>
-		
+			If true, the week number is shown. If false, it isn't.
 	    </description>
 	</type>
 
-	<default value="">
+	<default value="false">
 		
 	</default>
 	<description>
 		<![CDATA[
-
+		This options decides whether the ISO week number should be shown at the head of each row in the calendar.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Show the ISO week number"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		showWeekNumber: true
+	});
 });
 ]]></example>
 

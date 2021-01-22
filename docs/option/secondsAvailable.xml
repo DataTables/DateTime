@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>secondsAvailable</name>
+	<summary>Sets which seconds are selectable</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="null">
 		<description>
-		
+			When this option is null all of the seconds are selectable.
 	    </description>
 	</type>
 
-	<default value="">
+	<type type="number[]">
+		<description>
+			When this option is an array, any value for the second that is in this array will be selectable and all others will not.
+	    </description>
+	</type>
+
+	<default value="null">
 		
 	</default>
 	<description>
 		<![CDATA[
-
+		This option allows the user to restrict which seconds the user is able to select. Any values that are placed within the array are going to be selectable while all others will not.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Restrict the user to select either 00, 15, 30 or 45"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		secondsAvailable: [00, 15, 30, 45]
+	});
 });
 ]]></example>
 

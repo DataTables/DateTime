@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>maxDate</name>
+	<summary>Set the max date that can be selected and displayed</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="null">
 		<description>
-		
+			When this option is null there is no max date imposed by DateTime.
 	    </description>
 	</type>
 
-	<default value="">
-		
+	<type type="string">
+		<description>
+			This option can also be a string. If this is the case it must be able to be taken by the Date constructor as an argument to create a Date instance to represent the `maxDate`.
+	    </description>
+	</type>
+
+	<type type="Date">
+		<description>
+			This option can also be a directly given a Date, saving DateTime from creating one from a string.
+	    </description>
+	</type>
+
+	<default value="null">
+		As default, no maxDate is applied to DateTime instances.
 	</default>
 	<description>
 		<![CDATA[
@@ -19,9 +31,19 @@
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Set maxDate to the end of 2029 using a string"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		maxDate: 'December 31, 2029 23:59:59'
+	});
+});
+]]></example>
+
+<example title="Set maxDate to the end of 2029 using a Date"><![CDATA[
+$(document).ready(function() {
+    new DateTime(document.getElementById('test'), {
+		maxDate: new Date('December 31, 2029 23:59:59')
+	});
 });
 ]]></example>
 

@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>dateTime.</name>
-	<summary></summary>
+	<name>format</name>
+	<summary>The format of the date data</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="">
+	<type type="string">
 		<description>
-		
+		This string is used to represent the structure of the date that is being used by DateTime.
 	    </description>
 	</type>
 
-	<default value="">
-		
+	<default value="YYYY-MM-DD">
+		The default value for format is to use the ISO-8601 format.
 	</default>
 	<description>
 		<![CDATA[
-
+		This string is used to represent the structure of the date that is being used by DateTime. This format is set in accordance to the format used by moment, luxon or dayjs depending on which is in use.
 		]]>
 	</description>
 
-	<example title=""><![CDATA[
+	<example title="Change format to use '/' instead of '-'."><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {});
+    new DateTime(document.getElementById('test'), {
+		format: 'YYYY/MM/DD
+	});
 });
 ]]></example>
 
