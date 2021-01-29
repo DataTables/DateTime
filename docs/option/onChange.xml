@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>onChange</name>
-	<summary>Function that is called whenever the value selected for DateTime changes</summary>
+	<summary>Function that is called whenever the value selected for DateTime changes.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="function">
-		<parameter type="DateTime" name="dt">The instance of DateTime</parameter>
-		<parameter type="string" name="value">The current value that has been selected as a string</parameter>
-		<parameter type="Date" name="date">The current value that has been selected as a Date</parameter>
-		<parameter type="HTML Element" name="input">The DateTime input element</parameter>
+		<signature>onChange(dt, value, date, input)</signature>
+		<parameter type="DateTime" name="dt">The instance of DateTime.</parameter>
+		<parameter type="string" name="value">The current value that has been selected as a string.</parameter>
+		<parameter type="Date" name="date">The current value that has been selected as a Date.</parameter>
+		<parameter type="HTML Element" name="input">The DateTime input element.</parameter>
 		<description>
-			This function is called whenever the value selected for DateTime changes. It allows for custom functionality to be defined
+			This function is called whenever the value selected for DateTime changes. It allows for custom functionality to be defined.
 	    </description>
 	</type>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>i18n</name>
-	<summary>DateTime Language Options</summary>
+	<summary>DateTime language options.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="object">
@@ -21,7 +21,7 @@
 		]]>
 	</description>
 
-	<example title="Alter previous and next buttons."><![CDATA[
+	<example title="Alter previous and next buttons"><![CDATA[
 
 $(document).ready(function() {
     var dt = new DateTime(document.getElementById('example'), {

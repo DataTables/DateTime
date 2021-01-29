@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-api library="DateTime">
 	<name>val()</name>
-	<summary>Get / set the value of the DateTime instance</summary>
+	<summary>Get / set the value of the DateTime instance.</summary>
 	<since>1.0.0</since>
 
 	<type type="function">
 		<signature>val()</signature>
-		<description>Set the value of the DateTime instance</description>
+		<description>Get the value of the DateTime instance.</description>
+		<returns type="Date">Date instance representing the current date selected within the DateTime instance.</returns>
+	</type>
+	<type type="function">
+		<signature>val(set[, write])</signature>
+		<description>Set the value of the DateTime instance.</description>
 		<parameter type="string|Date" name="set">
 			The value to be set.
 		</parameter>
@@ -16,19 +21,14 @@
 		<returns type="DateTime">Self for chaining.</returns>
 	</type>
 
-	<type type="function">
-		<signature>val()</signature>
-		<description>Get the value of the DateTime instance</description>
-		<returns type="Date">Date instance representing the current date selected within the DateTime instance.</returns>
-	</type>
-
 	<description>
 		Get or set the value for the DateTime instance. If the set parameter is provided then a DateTime instance is provided for chaining. If not then the value stored within DateTime is returned as a Date.
 	</description>
 
 	<example title=""><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('example'), {});
+    var dt = new DateTime(document.getElementById('example'), {});
+	dt.val("2021-12-31");
 });
 ]]></example>
 

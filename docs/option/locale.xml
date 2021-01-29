@@ -10,7 +10,7 @@
 	    </description>
 	</type>
 
-	<default value="en">
+	<default value="'en'">
 		The locale that DateTime uses by default is English.
 	</default>
 	<description>

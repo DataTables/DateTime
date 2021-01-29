@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-api library="DateTime">
 	<name>destroy()</name>
-	<summary>Destroy a DateTime Control</summary>
+	<summary>Destroy a DateTime control.</summary>
 	<since>1.0.0</since>
 
 	<type type="function">
 		<signature>destroy()</signature>
-		<description>Destroy a DateTime Control</description>
+		<description>Destroy a DateTime control.</description>
 	</type>
 
 	<description>
 		Destroys the given DateTime control, hiding and removing it from the dom and also stripping any event listeners that are in place.		
 	</description>
 
-	<example title="Destroy DateTime Instance"><![CDATA[
+	<example title="Destroy DateTime instance"><![CDATA[
 $(document).ready(function() {
     var dt = new DateTime(document.getElementById('example'), {});
 	dt.destroy();

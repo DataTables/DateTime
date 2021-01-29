@@ -10,8 +10,8 @@
 	    </description>
 	</type>
 
-	<default value="Next">
-		As default `Next` is the text used within the next button.
+	<default value="'Next'">
+		As default `'Next'` is the text used within the next button.
 	</default>
 	<description>
 		<![CDATA[

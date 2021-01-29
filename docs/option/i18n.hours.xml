@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>i18n.hours</name>
-	<summary>Label for the hours selection</summary>
+	<summary>Label for the hours selection.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="string">
@@ -10,7 +10,7 @@
 	    </description>
 	</type>
 
-	<default value="Second">
+	<default value="'Hour'">
 		
 	</default>
 	<description>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>showWeekNumber</name>
-	<summary>Whether the week number should be shown</summary>
+	<summary>Whether the week number should be shown.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="boolean">
 		<description>
-			If true, the week number is shown. If false, it isn't.
+			If `true`, the week number is shown. If `false`, it isn't.
 	    </description>
 	</type>
 
 	<default value="false">
-		
+		By default DateTime will not show the week numbers.
 	</default>
 	<description>
 		<![CDATA[

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>secondsAvailable</name>
-	<summary>Sets which seconds are selectable</summary>
+	<summary>Sets which seconds are selectable.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="null">
@@ -17,7 +17,7 @@
 	</type>
 
 	<default value="null">
-		
+		As default all of the seconds are selectable.
 	</default>
 	<description>
 		<![CDATA[

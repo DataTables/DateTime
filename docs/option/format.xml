@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>format</name>
-	<summary>The format of the date data</summary>
+	<summary>The format of the date data.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="string">
@@ -10,7 +10,7 @@
 	    </description>
 	</type>
 
-	<default value="YYYY-MM-DD">
+	<default value="'YYYY-MM-DD'">
 		The default value for format is to use the ISO-8601 format.
 	</default>
 	<description>

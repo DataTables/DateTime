@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>hoursAvailable</name>
-	<summary>Sets which hours are selectable</summary>
+	<summary>Sets which hours are selectable.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="null">
@@ -17,7 +17,7 @@
 	</type>
 
 	<default value="null">
-		
+		As default, all of the hours are selectable.
 	</default>
 	<description>
 		<![CDATA[

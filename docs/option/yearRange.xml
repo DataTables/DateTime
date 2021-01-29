@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>yearRange</name>
-	<summary>The range of years provided for selection</summary>
+	<summary>The range of years provided for selection.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="number">
 		<description>
-			The number of years after and before the current year that should be avaialble to be selected.
+			The number of years after and before the current year that should be available to be selected.
 	    </description>
 	</type>
 
 	<default value="25">
-		
+		The default range of years that can be selected is plus or minus 25 years.
 	</default>
 	<description>
 		<![CDATA[
@@ -28,5 +28,8 @@ $(document).ready(function() {
 	});
 });
 ]]></example>
+
+<related type="option">maxDate</related>
+<related type="option">minDate</related>
 
 </dt-option>

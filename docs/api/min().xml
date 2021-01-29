@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-api library="DateTime">
 	<name>min()</name>
-	<summary>Set the min date for the DateTime instance</summary>
+	<summary>Set the min date for the DateTime instance.</summary>
 	<since>1.0.0</since>
 
 	<type type="function">
-		<signature>min()</signature>
-		<description>Set the min date for the DateTime instance</description>
+		<signature>min(date)</signature>
+		<description>Set the min date for the DateTime instance.</description>
 		<parameter type="string" name="date">
             Date as a string that is to be the min date for this instance of DateTime.
         </parameter>
-		<returns type="DateTime">Self for chaining</returns>
+		<returns type="DateTime">Self for chaining.</returns>
 	</type>
 	<type type="function">
-		<signature>min()</signature>
-		<description>Set the min date for the DateTime instance</description>
+		<signature>min(date)</signature>
+		<description>Set the min date for the DateTime instance.</description>
 		<parameter type="Date" name="date">
             Date that is to be the min date for this instance of DateTime.
         </parameter>
-		<returns type="DateTime">Self for chaining</returns>
+		<returns type="DateTime">Self for chaining.</returns>
 	</type>
 
 	<description>

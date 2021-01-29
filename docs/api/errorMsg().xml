@@ -6,15 +6,15 @@
 
 	<type type="function">
 		<signature>errorMsg()</signature>
-		<description>Sets the error message</description>
-		<parameter type="string" name="msg" optional="true">
-            Message to be displayed.
-        </parameter>
+		<description>Empties the error message.</description>
 		<returns type="DateTime">Self for chaining.</returns>
 	</type>
 	<type type="function">
-		<signature>errorMsg()</signature>
-		<description>Empties the error message.</description>
+		<signature>errorMsg(msg)</signature>
+		<description>Sets the error message.</description>
+		<parameter type="string" name="msg" optional="true">
+            Message to be displayed.
+        </parameter>
 		<returns type="DateTime">Self for chaining.</returns>
 	</type>
 

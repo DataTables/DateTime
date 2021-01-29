@@ -10,8 +10,8 @@
 	    </description>
 	</type>
 
-	<default value="-">
-		As default a `-` is used to represent unknown values.
+	<default value="'-'">
+		As default a `'-'` is used to represent unknown values.
 	</default>
 	<description>
 		<![CDATA[

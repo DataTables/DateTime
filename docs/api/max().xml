@@ -5,20 +5,20 @@
 	<since>1.0.0</since>
 
 	<type type="function">
-		<signature>max()</signature>
-		<description>Set the max date for the DateTime instance</description>
+		<signature>max(date)</signature>
+		<description>Set the max date for the DateTime instance.</description>
 		<parameter type="string" name="date">
             Date as a string that is to be the max date for this instance of DateTime.
         </parameter>
-		<returns type="DateTime">Self for chaining</returns>
+		<returns type="DateTime">Self for chaining.</returns>
 	</type>
 	<type type="function">
-		<signature>max()</signature>
-		<description>Set the max date for the DateTime instance</description>
+		<signature>max(date)</signature>
+		<description>Set the max date for the DateTime instance.</description>
 		<parameter type="Date" name="date">
             Date that is to be the max date for this instance of DateTime.
         </parameter>
-		<returns type="DateTime">Self for chaining</returns>
+		<returns type="DateTime">Self for chaining.</returns>
 	</type>
 
 	<description>

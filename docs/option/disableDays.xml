@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>disableDays</name>
-	<summary>Allows for certain days not to be selectable</summary>
+	<summary>Allows for certain days not to be selectable.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="null">
@@ -12,13 +12,13 @@
 
 	<type type="number[]">
 		<description>
-			When this option is an array of numbers, any of the days indexes (0 indexed starting from Sunday) that are present here will not be selectable within the DateTime Picker.
+			When this option is an array of numbers, any of the days indexes (0 indexed starting from Sunday) that are present here will not be selectable within the DateTime picker.
 	    </description>
 	</type>
 
 	<type type="function">
-		<signature>disableDays()</signature>
-		<parameter type="number" name="day">The index of the day to check if it is disabled or not</parameter>
+		<signature>disableDays(day)</signature>
+		<parameter type="number" name="day">The index of the day to check if it is disabled or not.</parameter>
 		<returns type="boolean"/>
 		<description>
 			If this option is a function it should take one parameter, a number representing the index of the day being checked (again, 0 indexed starting from Sunday) if that day should be selectable it returns `true`, otherwise `false`.
@@ -26,7 +26,7 @@
 	</type>
 
 	<default value="null">
-		
+		As default, all of the days can be selected.
 	</default>
 	<description>
 		<![CDATA[

@@ -10,8 +10,8 @@
 	    </description>
 	</type>
 
-	<default value="Previous">
-		As default `Previous` is the text used within the previous button.
+	<default value="'Previous'">
+		As default `'Previous'` is the text used within the previous button.
 	</default>
 	<description>
 		<![CDATA[

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>minDate</name>
-	<summary>Set the min date that can be selected and displayed</summary>
+	<summary>Set the min date that can be selected and displayed.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="null">
@@ -12,7 +12,7 @@
 
 	<type type="string">
 		<description>
-			This option can also be a string. If this is the case it must be able to be taken by the Date constructor as an argument to create a Date instance to represent the `minDate`.
+			This option can also be a string. If this is the case it must be able to be taken by the Date constructor as an argument to create a Date instance to represent the minimum selectable date.
 	    </description>
 	</type>
 
@@ -23,11 +23,11 @@
 	</type>
 
 	<default value="null">
-		As default, no minDate is applied to DateTime instances.
+		As default, no minimum date is applied to DateTime instances.
 	</default>
 	<description>
 		<![CDATA[
-
+		This option allows a minimum selectable date to be imposed. This means that users won't be able to view or select dates that occur before the date set here.
 		]]>
 	</description>
 
@@ -46,5 +46,8 @@ $(document).ready(function() {
 	});
 });
 ]]></example>
+
+<related type="option">maxDate</related>
+<related type="option">yearRange</related>
 
 </dt-option>
