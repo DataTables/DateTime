@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>firstDay</name>
-	<summary>Change which day is first on the calendar.</summary>
+	<summary>Change which day of the week is first on the calendar.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="number">
 		<description>
-			This value represents which day should be in the first column of datetime.
+			This value represents which day of the week should be in the first column of datetime.
 	    </description>
 	</type>
 

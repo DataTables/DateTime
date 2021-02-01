@@ -15,7 +15,7 @@
 	</default>
 	<description>
 		<![CDATA[
-		This string is used to represent the structure of the date that is being used by DateTime. This format is set in accordance to the format used by moment, luxon or dayjs depending on which is in use.
+		This string is used to represent the structure of the date that is being used by DateTime. This format is set in accordance with the format used by Moment, Luxon or Day.js depending on which is in use.
 		]]>
 	</description>
 
