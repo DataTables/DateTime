@@ -8,12 +8,12 @@ describe('dateTime - options - minDate', function () {
 		return num < 10 ? '0' + num : num;
 	}
 
-	function getToday(midMonth = false) {
+	function getToday() {
 		let d = new Date();
 		return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + pad(d.getDate());
 	}
 
-	function getMidMonth(midMonth = false) {
+	function getMidMonth() {
 		let d = new Date();
 		return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + '15';
 	}

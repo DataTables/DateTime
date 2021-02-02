@@ -8,7 +8,7 @@ describe('dateTime - options - yearRange', function () {
 		return num < 10 ? '0' + num : num;
 	}
 
-	function getToday(midMonth = false) {
+	function getToday() {
 		let d = new Date();
 		return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + pad(d.getDate());
 	}
@@ -23,7 +23,6 @@ describe('dateTime - options - yearRange', function () {
 			expect($('select.dt-datetime-year option').length).toBe(51);
 			expect($('select.dt-datetime-year option:first-child').val()).toBe((thisYear - 25).toString());
 			expect($('select.dt-datetime-year option:last-child').val()).toBe((thisYear + 25).toString());
-
 		});
 
 		dt.html('input');
@@ -46,7 +45,7 @@ describe('dateTime - options - yearRange', function () {
 			$('#test').click();
 			expect($('select.dt-datetime-year option').length).toBe(6);
 			expect($('select.dt-datetime-year option:first-child').val()).toBe((thisYear - 5).toString());
-			expect($('select.dt-datetime-year option:last-child').val()).toBe((thisYear).toString());
+			expect($('select.dt-datetime-year option:last-child').val()).toBe(thisYear.toString());
 		});
 	});
 });
