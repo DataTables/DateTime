@@ -13,7 +13,7 @@ $(document).ready(function() {
 ]]>
 </js>
 
-<title lib="DateTime">Basic DateTime Example</title>
+<title lib="DateTime">Basic initialisation</title>
 
 <info><![CDATA[
 

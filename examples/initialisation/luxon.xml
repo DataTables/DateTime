@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" table-class="display nowrap" order="3">
+<dt-example table-type="html" table-class="display nowrap" order="8">
 
 <css lib="datetime"/>
 <js lib="//cdnjs.cloudflare.com/ajax/libs/luxon/1.25.0/luxon.min.js"/>
@@ -14,11 +14,11 @@ $(document).ready(function() {
 ]]>
 </js>
 
-<title lib="DateTime">DateTime with Luxon formatting example</title>
+<title lib="DateTime">Luxon formatting</title>
 
 <info><![CDATA[
 
-This example shows the date / time input with Luxon used for the formatting rather than Moment.
+This example shows the date / time input with [Luxon](https://moment.github.io/luxon/) used to provide the date / time formatting.
 
 ]]></info>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" table-class="display nowrap" order="3">
+<dt-example table-type="html" table-class="display nowrap" order="9">
 
 <css lib="datetime"/>
 <js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/dayjs.min.js"/>
@@ -17,11 +17,13 @@ $(document).ready(function() {
 ]]>
 </js>
 
-<title lib="DateTime">DateTime with DayJS formatting example</title>
+<title lib="DateTime">DayJS formatting</title>
 
 <info><![CDATA[
 
-This example shows the date / time input with DayJS used for the formatting rather than Moment. Note that you also need the DayJS `UTC` plugin.
+This example shows the date / time input with [DayJS](https://github.com/iamkun/dayjs) used to provide the date / time formatting.
+
+Please note that you also need the DayJS `UTC` plugin.
 
 ]]></info>
 
