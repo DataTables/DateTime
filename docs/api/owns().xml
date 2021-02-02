@@ -8,22 +8,23 @@
 		<signature>owns(node)</signature>
 		<description>Check if an element belongs to this control.</description>
 		<parameter type="node" name="node">
-            Element to check.
-        </parameter>
+			Element to check.
+		</parameter>
 		<returns type="boolean">`true` if owned by this control, `false` otherwise.</returns>
 	</type>
 
 	<description>
-		This method takes a node as a parameter and returns `true` if it belongs to this control, `false` if not.
+		This method takes a node as a parameter and returns `true` if it belongs to this control, `false` if not. It can be useful to know this information when creating a form that has multiple click event handlers and you might need to know if a click happens inside the date picker, or elsewhere in your form.
 	</description>
 
 	<example title=""><![CDATA[
-$(document).ready(function() {
-    var dt = new DateTime(document.getElementById('example'), {});
-	if(dt.owns(document.getElementByClassName('dt-datetime-date'))) {
-		console.log("It is owned");
-	}
-});
+
+var dt = new DateTime(document.getElementById('example'));
+
+if(dt.owns(document.getElementByClassName('dt-datetime-date'))) {
+	console.log("It is owned");
+}
+
 ]]></example>
 
 </dt-api>

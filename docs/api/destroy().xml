@@ -17,12 +17,12 @@
 	</description>
 
 	<example title="Destroy DateTime instance"><![CDATA[
-$(document).ready(function() {
-    var dt = new DateTime(document.getElementById('example'), {});
 
-	// Then sometime later, destory it...
-	dt.destroy();
-});
+var dt = new DateTime(document.getElementById('example'));
+
+// Then sometime later, destory it...
+dt.destroy();
+
 ]]></example>
 
 </dt-api>

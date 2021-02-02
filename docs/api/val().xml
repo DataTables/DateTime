@@ -10,14 +10,11 @@
 		<returns type="Date">Date instance representing the current date selected within the DateTime instance.</returns>
 	</type>
 	<type type="function">
-		<signature>val(set[, write])</signature>
+		<signature>val(set)</signature>
 		<description>Set the value of the DateTime instance.</description>
 		<parameter type="string|Date" name="set">
 			The value to be set.
 		</parameter>
-		<parameter type="boolean" name="write" default="true">
-            Flag to indicate if the formatted value should be written into the input element.
-        </parameter>
 		<returns type="DateTime">Self for chaining.</returns>
 	</type>
 
@@ -25,11 +22,23 @@
 		Get or set the value for the DateTime instance. If the set parameter is provided then a DateTime instance is provided for chaining. If not then the value stored within DateTime is returned as a Date.
 	</description>
 
-	<example title=""><![CDATA[
-$(document).ready(function() {
-    var dt = new DateTime(document.getElementById('example'), {});
-	dt.val("2021-12-31");
-});
+	<example title="Get a value from the input"><![CDATA[
+
+let el = document.getElementById('example');
+let dt = new DateTime(el);
+
+el.addEventListener('change', function () {
+	console.log('Selected value is: ', dt.val());
+} );
+
+]]></example>
+
+<example title="Set a value into the input"><![CDATA[
+
+let dt = new DateTime(document.getElementById('example'));
+
+dt.val("2021-12-31");
+
 ]]></example>
 
 </dt-api>

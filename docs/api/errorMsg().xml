@@ -13,8 +13,8 @@
 		<signature>errorMsg(msg)</signature>
 		<description>Sets the error message.</description>
 		<parameter type="string" name="msg" optional="true">
-            Message to be displayed.
-        </parameter>
+			Message to be displayed.
+		</parameter>
 		<returns type="DateTime">Self for chaining.</returns>
 	</type>
 
@@ -25,18 +25,28 @@
 	</description>
 
 	<example title="Set Error Message"><![CDATA[
-$(document).ready(function() {
-    var dt = new DateTime(document.getElementById('example'), {});
-	dt.errMsg("Oops an error occurred!")
-});
+
+var dt = new DateTime(document.getElementById('example'));
+
+dt.errMsg('Oops an error occurred!');
+
 ]]></example>
 
-<example title="Remove Error Message"><![CDATA[
-$(document).ready(function() {
-    var dt = new DateTime(document.getElementById('example'), {});
-	dt.errMsg("Oops an error occurred!")
-	dt.errMsg()
-});
+<example title="Basic validation - set and clear an error message"><![CDATA[
+
+var dt = new DateTime(document.getElementById('example'));
+
+el.addEventListener('change', function () {
+	if (dt.val()) {
+		// There is a value - clear the error message
+		dt.errMsg();
+	}
+	else {
+		// No value - error
+		dt.errMsg('oops an error occurred!);
+	}
+} );
+
 ]]></example>
 
 </dt-api>
