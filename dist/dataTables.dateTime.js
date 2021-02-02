@@ -176,7 +176,9 @@ $.extend( DateTime.prototype, {
 	destroy: function () {
 		this._hide(true);
 		this.dom.container.off().empty();
-		this.dom.input.off('.datetime');
+		this.dom.input
+			.removeAttr('autocomplete')
+			.off('.datetime');
 	},
 
 	errorMsg: function ( msg ) {
