@@ -11,7 +11,7 @@
 	</type>
 
 	<description>
-		This method detaches the DateTime from the dom and also turns off any listeners that are in place. It doesn't empty it's own container though, so it is in effect a 'weak' `de-api destroy()`.
+		This method detaches the DateTime picker element from the DOM, effectively leaving just the original `-tag input` element in the document.
 
 		This can be useful in cases where a container that holds the `-tag input` for the DateTime is removed from the display (e.g. a modal form). Calling this method will ensure that the date / time picker is hidden, regardless of its focus state.
 	</description>
