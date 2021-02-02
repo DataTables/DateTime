@@ -21,6 +21,8 @@
 	</default>
 	<description>
 		This option allows users to define custom functionality that should occur whenever a change to the selection within a DateTime instance occurs.
+
+		Note that you can also use the [`change` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event) that your browser will trigger on the `-tag input` element to determine when the value has been changed.
 	</description>
 
 	<example title="Alert the user that they have made a change"><![CDATA[
