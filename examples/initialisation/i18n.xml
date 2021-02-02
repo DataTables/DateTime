@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" table-class="display nowrap" order="1">
+
+<css lib="datatables datetime"/>
+
+<js lib="jquery datatables datetime">
+<![CDATA[
+
+$(document).ready(function() {
+    new DateTime(document.getElementById('test'), {
+		i18n: {
+			previous: 'Précédent',
+			next:     'Premier',
+			months:   [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+			weekdays: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ]
+		}
+	});
+});
+
+]]>
+</js>
+
+<title lib="DateTime">Internationalisation</title>
+
+<info><![CDATA[
+
+All of the text fields displayed to the end user by the DateTime input can be customised during initialisation of the DateTime control through its `-de i18n` configuration option. This example demonstrates that by displaying all string in French.
+
+Note that you will likely wish to also use the `-de format` option to customise the display of the date / time value into a format that will be familar to your end users.
+
+]]></info>
+
+<custom-table>
+    <input id="test" type="text" value="2020-01-17" />
+</custom-table>
+
+</dt-example>

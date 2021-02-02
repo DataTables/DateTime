@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 <info><![CDATA[
 
-This is the `-init dateTime`extension for DataTables. It is used to select dates throughtout DataTables and it's extensions.
+This is the `-init dateTime` extension for DataTables. It is used to select dates throughtout DataTables and it's extensions.
 
 See other examples for more detail.
 
