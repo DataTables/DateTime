@@ -7,23 +7,27 @@
 	<type type="number">
 		<description>
 			This value represents which day of the week should be in the first column of datetime.
-	    </description>
+		</description>
 	</type>
 
 	<default value="0">
-		The default value of 0 represents Sunday - the days are 0 indexed starting from Sunday.
+		The default value of 0 represents Monday - the days are 0 indexed starting from Monday:
+
+		* 0 - Monday
+		* 1 - Tuesday
+		* 2 - Wednesday
+		* 3 - Thursday
+		* 4 - Friday
+		* 5 - Saturday
+		* 6 - Sunday
 	</default>
 	<description>
-		<![CDATA[
 		This option allows for the "first" day to be changed to any of the days of the week as desired.
-		]]>
 	</description>
 
-	<example title="Change first day to Monday"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
-		firstDay: 1
-	});
+	<example title="Change first day to Sunday"><![CDATA[
+new DateTime(document.getElementById('test'), {
+	firstDay: 6
 });
 ]]></example>
 
