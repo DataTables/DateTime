@@ -2,13 +2,13 @@
 <dt-example table-type="html" table-class="display nowrap" order="6">
 
 <css lib="datetime"/>
-<js lib="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"/>
-<js lib="jquery datetime">
+<js lib="jquery moment datetime">
 <![CDATA[
 
 $(document).ready(function() {
     new DateTime(document.getElementById('test'), {
-        format: 'D/M/YYYY'
+        format: 'D/M/YYYY',
+        locale: 'fr'
     });
 });
 
@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 <info><![CDATA[
 
-This example shows the date / time input with Moment used for the formatting.
+This example shows the date / time input with [Moment](https://momentjs.com/) used to provide formatting.
 
 ]]></info>
 
