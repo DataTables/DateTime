@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-example table-type="html" table-class="display nowrap" order="6">
 
-<css lib="datatables datetime"/>
+<css lib="datetime"/>
 <js lib="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"/>
-<js lib="jquery datatables datetime">
+<js lib="jquery datetime">
 <![CDATA[
 
 $(document).ready(function() {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-example table-type="html" table-class="display nowrap" order="3">
 
-<css lib="datatables datetime"/>
+<css lib="datetime"/>
 <js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/dayjs.min.js"/>
 <js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/plugin/utc.js"/>
-<js lib="jquery datatables datetime">
+<js lib="jquery datetime">
 <![CDATA[
 
 dayjs.extend(dayjs_plugin_utc);
