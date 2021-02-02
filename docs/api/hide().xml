@@ -11,14 +11,26 @@
 	</type>
 
 	<description>
-		This method detaches the DateTime from the dom and also turns off any listeners that are in place. It doesn't empty it's own container though, so it is in effect a 'weak' `-api destroy()`.
+		This method detaches the DateTime from the dom and also turns off any listeners that are in place. It doesn't empty it's own container though, so it is in effect a 'weak' `de-api destroy()`.
+
+		This can be useful in cases where a container that holds the `-tag input` for the DateTime is removed from the display (e.g. a modal form). Calling this method will ensure that the date / time picker is hidden, regardless of its focus state.
 	</description>
 
 	<example title="Hide an instance of DateTime"><![CDATA[
-$(document).ready(function() {
-    var dt = new DateTime(document.getElementById('example'), {});
+
+var dt = new DateTime(document.getElementById('#dtInput'), {});
+dt.hide();
+
+]]></example>
+
+<example title="Ensure the date picker is hidden when closing a Bootstrap 4 modal"><![CDATA[
+	
+var dt = new DateTime($('#dtInput')[0], {});
+
+$('#myModal').on('hide.bs.modal', function (event) {
 	dt.hide();
 });
+
 ]]></example>
 
 </dt-api>
