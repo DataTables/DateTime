@@ -13,18 +13,19 @@
 	<default value="'YYYY-MM-DD'">
 		The default value for format is to use the ISO-8601 format.
 	</default>
+
 	<description>
 		<![CDATA[
-		This string is used to represent the structure of the date that is being used by DateTime. This format is set in accordance with the format used by Moment, Luxon or Day.js depending on which is in use.
+		This string is used to represent the structure of the date that is being used by DateTime. This format is set in accordance with the format used by [Moment](https://momentjs.com/), [Luxon](https://moment.github.io/luxon/) or [DayJS](https://github.com/iamkun/dayjs) depending on which is in use.
 		]]>
 	</description>
 
 	<example title="Change format to use '/' instead of '-'."><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
-		format: 'YYYY/MM/DD
-	});
+
+new DateTime(document.getElementById('test'), {
+	format: 'YYYY/MM/DD
 });
+
 ]]></example>
 
 </dt-option>
