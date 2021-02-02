@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>maxDate</name>
-	<summary>Set the max date that can be selected and displayed.</summary>
+	<summary>Set the maximum date that can be selected and displayed.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="null">
 		<description>
-			When this option is null there is no max date imposed by DateTime.
+			When this option is null there is no maximum date imposed by DateTime.
 	    </description>
 	</type>
 
 	<type type="string">
 		<description>
-			This option can also be a string. If this is the case it must be able to be taken by the Date constructor as an argument to create a Date instance to represent the maximum selectable date.
+			This option can also be a string. If this is the case it must be able to be taken by the [`Date` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) as an argument to create a Date instance to represent the maximum selectable date (i.e. an ISO 8601 or RFC 2822 string).
 	    </description>
 	</type>
 
 	<type type="Date">
 		<description>
-			This option can also be a directly given a Date, saving DateTime from creating one from a string.
+			This option can also be a directly given a [`Date` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
 	    </description>
 	</type>
 
@@ -26,25 +26,23 @@
 		As default, no maximum date is applied to DateTime instances.
 	</default>
 	<description>
-		<![CDATA[
-		This option allows a maximum selectable date to be imposed. This means that users won't be able to view or select dates that occur after the date set here.
-		]]>
+		This option allows a maximum selectable date to be imposed. This means that users won't be able to select dates that occur after the date set here.
 	</description>
 
-	<example title="Set maxDate to the end of 2029 using a string"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
-		maxDate: 'December 31, 2029 23:59:59'
-	});
+	<example title="Set maxDate to the end of 2029 using a RFC 2822 string"><![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	maxDate: 'December 31, 2029 23:59:59'
 });
+
 ]]></example>
 
-<example title="Set maxDate to the end of 2029 using a Date"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
-		maxDate: new Date('December 31, 2029 23:59:59')
-	});
+<example title="Set maxDate to the end of 2029 using a Date (from ISO8601 format)"><![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	maxDate: new Date('2029-12-31 23:59:59')
 });
+
 ]]></example>
 
 <related type="option">minDate</related>

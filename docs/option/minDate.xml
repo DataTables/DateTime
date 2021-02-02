@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
 	<name>minDate</name>
-	<summary>Set the min date that can be selected and displayed.</summary>
+	<summary>Set the minimum date that can be selected and displayed.</summary>
 	<since>DateTime 1.0.0</since>
 
 	<type type="null">
 		<description>
-			When this option is null there is no min date imposed by DateTime.
+			When this option is null there is no minimum date imposed by DateTime.
 	    </description>
 	</type>
 
 	<type type="string">
 		<description>
-			This option can also be a string. If this is the case it must be able to be taken by the Date constructor as an argument to create a Date instance to represent the minimum selectable date.
+			This option can also be a string. If this is the case it must be able to be taken by the [`Date` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) as an argument to create a Date instance to represent the minimum selectable date (i.e. an ISO 8601 or RFC 2822 string).
 	    </description>
 	</type>
 
 	<type type="Date">
 		<description>
-			This option can also be a directly given a Date, saving DateTime from creating one from a string.
+			This option can also be a directly given a [`Date` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date).
 	    </description>
 	</type>
 
 	<default value="null">
 		As default, no minimum date is applied to DateTime instances.
 	</default>
+
 	<description>
-		<![CDATA[
-		This option allows a minimum selectable date to be imposed. This means that users won't be able to view or select dates that occur before the date set here.
-		]]>
+		This option allows a minimum selectable date to be imposed. This means that users won't be able or select dates that occur before the date set here.
 	</description>
 
-	<example title="Set minDate to the start of 2000 using a string"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
-		minDate: 'January 1, 2000 00:00:00'
-	});
+	<example title="Set minDate to the start of 2000 using a RFC 2822 string"><![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	minDate: 'January 1, 2000 00:00:00'
 });
+
 ]]></example>
 
-<example title="Set minDate to the start of 2000 using a Date"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
-		minDate: new Date('January 1, 2000 00:00:00')
-	});
+<example title="Set minDate to the start of 2000 using a Date (from ISO8601 format)"><![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	minDate: new Date('2000-01-01 00:00:00')
 });
+
 ]]></example>
 
 <related type="option">maxDate</related>
