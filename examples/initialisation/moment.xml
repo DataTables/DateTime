@@ -7,8 +7,7 @@
 
 $(document).ready(function() {
     new DateTime(document.getElementById('test'), {
-        format: 'D/M/YYYY',
-        locale: 'fr'
+        format: 'D/M/YYYY'
     });
 });
 
