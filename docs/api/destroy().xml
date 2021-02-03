@@ -20,7 +20,7 @@
 
 var dt = new DateTime(document.getElementById('example'));
 
-// Then sometime later, destory it...
+// Then sometime later, destroy it...
 dt.destroy();
 
 ]]></example>

@@ -15,34 +15,33 @@ describe('dateTime - options - disableDays', function () {
 	describe('Functional tests', function () {
 		dt.html('input');
 		it('Default - all enabled', function () {
-			new DateTime(document.getElementById('test'), {});
-			$('#test').click();
+			new DateTime(document.getElementById('value'), {});
+			$('#value').click();
 			checkDays([false, false, false, false, false, false, false]);
 			expect($('.dt-datetime-date tbody td.disabled').length).toBe(0);
 		});
 
 		dt.html('input');
 		it('Array', function () {
-			// DD-1854 - have to specify first day
-			new DateTime(document.getElementById('test'), {firstDay: 0, disableDays: [1, 2]});
-			$('#test').click();
-			checkDays([false, true, true, false, false, false, false]);
+			new DateTime(document.getElementById('value'), {
+				disableDays: [1, 2]
+			});
+			$('#value').click();
+			checkDays([true, true, false, false, false, false, false]);
 			expect($('.dt-datetime-date tbody td.disabled').length).toBeGreaterThan(7);
 		});
 
 		dt.html('input');
 		it('Function', function () {
 			let i = 0;
-			// DD-1854 - have to specify first day
-			new DateTime(document.getElementById('test'), {
-				firstDay: 0,
+			new DateTime(document.getElementById('value'), {
 				disableDays: function (day) {
 					i++;
 					return i === 11 || i === 12 ? true : false;
 				}
 			});
-			$('#test').click();
-			checkDays([false, false, false, true, true, false, false, false, false]);
+			$('#value').click();
+			checkDays([false, false, false, true, true, false, false]);
 			expect($('.dt-datetime-date tbody td.disabled').length).toBe(2);
 		});
 	});

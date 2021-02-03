@@ -17,34 +17,33 @@ describe('dateTime - api - hide()', function () {
 		});
 	});
 
-	// DD-1865/1866 not clear what this should do so stopping here
 	describe('Functional tests', function () {
 		dt.html('input');
 		it('Hide when picker closed', function () {
 			el = new DateTime(document.getElementById('test'), {});
 			el.hide();
 
-			// expect($('#test').attr('autocomplete')).toBe(undefined);
+			expect($('.dt-datetime').length).toBe(0);
 		});
-		// it('... date picker cant be opened', function () {
-		// 	$('#test').click();
-		// 	expect($('.dt-datetime').length).toBe(0);
-		// });
+		it('... date picker can be opened', function () {
+			$('#test').click();
+			expect($('.dt-datetime').length).toBe(1);
+		});
 
-		// dt.html('input');
-		// it('Hide when picker open', function () {
-		// 	el = new DateTime(document.getElementById('test'), {});
-		// 	$('#test').click();
+		dt.html('input');
+		it('Hide when picker open', function () {
+			el = new DateTime(document.getElementById('test'), {});
+			$('#test').click();
 
-		// 	expect($('.dt-datetime').length).toBe(1);
+			expect($('.dt-datetime').length).toBe(1);
 
-		// 	el.hide();
+			el.hide();
 
-		// 	expect($('.dt-datetime').length).toBe(0);
-		// });
-		// it('... date picker cant be opened', function () {
-		// 	$('#test').click();
-		// 	expect($('.dt-datetime').length).toBe(0);
-		// });
+			expect($('.dt-datetime').length).toBe(0);
+		});
+		it('... date picker can be opened', function () {
+			$('#test').click();
+			expect($('.dt-datetime').length).toBe(1);
+		});
 	});
 });

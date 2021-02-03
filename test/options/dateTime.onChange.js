@@ -35,11 +35,7 @@ describe('dateTime - options - onChange', function () {
 		it('Trigger a change and confirm correct number of params', function () {
 			$('#test').click();
 			$('.now button span').click();
-			// DD-1860 - and note the numbering will change in the following tests
 			expect(params.length).toBe(3);
-		});
-		it('DateTime instance', function () {
-			// DD-1860 - and note the numbering will change in the following tests
 		});
 		it('Current value', function () {
 			expect(params[0]).toBe(getToday());
@@ -96,21 +92,19 @@ describe('dateTime - options - onChange', function () {
 		dt.html('input');
 		it('Does not trigger on disabled days', function () {
 			count = 0;
-			// DD-1854 - have to specify first day
 			new DateTime(document.getElementById('test'), {
-				firstDay: 0,
 				disableDays: [1, 2],
 				onChange: function () {
 					count++;
 					params = arguments;
 				}
-			});
+			}).val('2021-02-05');
 			$('#test').click();
 			$('.dt-datetime-calendar tbody tr:eq(1) td:eq(1) button span').click();
 			expect(count).toBe(0);
 		});
 		it('... but does on enabled days', function () {
-			$('.dt-datetime-calendar tbody tr:eq(1) td:eq(0) button span').click();
+			$('.dt-datetime-calendar tbody tr:eq(1) td:eq(3) button span').click();
 			expect(count).toBe(1);
 		});
 

@@ -12,7 +12,7 @@ describe('dateTime - api - destroy()', function () {
 			el = new DateTime(document.getElementById('test'));
 			expect(typeof el.destroy).toBe('function');
 		});
-		it('Returns an API instance', function () {
+		it('Return value', function () {
 			expect(el.destroy()).toBe(undefined);
 		});
 	});
@@ -23,8 +23,7 @@ describe('dateTime - api - destroy()', function () {
 			el = new DateTime(document.getElementById('test'), {});
 			el.destroy();
 
-			// DD-1864
-			// expect($('#test').attr('autocomplete')).toBe(undefined);
+			expect($('#test').attr('autocomplete')).toBe(undefined);
 		});
 		it('... date picker cant be opened', function () {
 			$('#test').click();
