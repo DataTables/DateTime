@@ -6,7 +6,7 @@
 
 	<type type="null">
 		<description>
-			When this option is null there is no minimum date imposed by DateTime.
+			When this option is `null` there is no minimum date imposed by DateTime.
 	    </description>
 	</type>
 

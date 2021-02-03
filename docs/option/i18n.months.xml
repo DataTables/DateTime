@@ -6,7 +6,7 @@
 
 	<type type="array">
 		<description>
-			Array with 12 elements each representing a day of the week.
+			Array with 12 elements each representing a month of the year.
 	    </description>
 	</type>
 
@@ -21,7 +21,7 @@
 
 	<example title="Abbreviated values for days Months"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+	new DateTime(document.getElementById('test'), {
 		i18n: {
 			months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 		}

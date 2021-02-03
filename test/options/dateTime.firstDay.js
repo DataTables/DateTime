@@ -9,8 +9,7 @@ describe('dateTime - options - firstDay', function () {
 		it('Default', function () {
 			new DateTime(document.getElementById('test'), {});
 			$('#test').click();
-			// DD-1854
-			// expect($('.dt-datetime-date thead th').text()).toBe('SunMonTueWedThuFriSat');
+			expect($('.dt-datetime-date thead th').text()).toBe('MonTueWedThuFriSatSun');
 		});
 
 		dt.html('input');

@@ -6,7 +6,7 @@
 
 	<type type="null">
 		<description>
-			When this option is null all of the minutes are selectable.
+			When this option is `null` all of the minutes are selectable.
 	    </description>
 	</type>
 

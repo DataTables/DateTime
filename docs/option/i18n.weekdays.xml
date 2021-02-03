@@ -21,7 +21,7 @@
 
 	<example title="French values for days of the week"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+	new DateTime(document.getElementById('test'), {
 		i18n: {
 			weekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Dim']
 		}
