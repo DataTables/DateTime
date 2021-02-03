@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" table-class="display nowrap" order="1">
+
+<css lib="datetime bootstrap4"/>
+
+<js lib="jquery moment datetime">
+<![CDATA[
+
+$(document).ready(function() {
+	new DateTime($('#inputDate'), {
+		format: 'MMMM Do YYYY'
+	});
+	new DateTime($('#inputTime'), {
+		format: 'h:mm a'
+	});
+
+	$('#appointment').on('submit', function (e) {
+		e.preventDefault();
+
+		alert(
+			'Making an appointment for ' +
+			$('#inputName').val() +
+			' (' + $('#inputPhone').val() + ') on ' +
+			$('#inputDate').val() + ' at ' +
+			$('#inputTime').val()
+		);
+	});
+});
+
+]]>
+</js>
+
+<title lib="DateTime">Use in a form</title>
+
+<info><![CDATA[
+
+This example shows the DateTime picker being used in a [Bootstrap 4](https://getbootstrap.com/docs/4.6/components/forms/) styled form. The date and time have been separated into separate fields to demonstrate that ability, but equally could be combined into a single field if needed.
+
+The form submission will just show an alert with the information from the form in this case.
+
+]]></info>
+
+<custom-table>
+	<form id="appointment">
+		<div class="form-group">
+		  <label for="inputName">Name</label>
+		  <input type="text" class="form-control" id="inputName" />
+		</div>
+		<div class="form-group">
+		  <label for="inputPhone">Phone number</label>
+		  <input type="text" class="form-control" id="inputPhone"/>
+		</div>
+		<div class="form-group">
+		  <label for="inputDate">Appointment Date</label>
+		  <input type="text" class="form-control" id="inputDate"/>
+		</div>
+		<div class="form-group">
+		  <label for="inputTime">Appointment Time</label>
+		  <input type="text" class="form-control" id="inputTime"/>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	  </form>
+</custom-table>
+
+</dt-example>

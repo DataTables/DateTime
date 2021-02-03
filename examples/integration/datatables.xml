@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" table-class="display nowrap" order="2">
+
+<css lib="datatables datetime"/>
+
+<js lib="jquery datatables moment datetime">
+<![CDATA[
+
+var minDate, maxDate;
+
+// Custom filtering function which will search data in column four between two values
+$.fn.dataTable.ext.search.push(
+	function( settings, data, dataIndex ) {
+		var min = minDate.val();
+		var max = maxDate.val();
+		var date = new Date( data[4] );
+
+		if (
+			( min === null && max === null ) ||
+			( min === null && date <= max ) ||
+			( min <= date   && max === null ) ||
+			( min <= date   && date <= max )
+		) {
+			return true;
+		}
+		return false;
+	}
+);
+
+$(document).ready(function() {
+	// Create date inputs
+	minDate = new DateTime($('#min'), {
+		format: 'MMMM Do YYYY'
+	});
+	maxDate = new DateTime($('#max'), {
+		format: 'MMMM Do YYYY'
+	});
+
+	// DataTables initialisation
+	var table = $('#example').DataTable();
+
+	// Refilter the table
+	$('#min, #max').on('change', function () {
+		table.draw();
+	});
+});
+
+]]>
+</js>
+
+<title lib="DateTime">DataTables date range filter</title>
+
+<info><![CDATA[
+
+This example shows the DateTime picker being used to filter a DataTable. The example is [the same as the DataTables number range filter](https://datatables.net/examples/plug-ins/range_filtering.html), but operating on the _Start date_ column rather than _Age_.
+
+In this example we use `de-api val()` to get a `Date` object from the input element which can then be easily compared to the value from the table's rows in [a DataTables search function](https://datatables.net/manual/plug-ins/search).
+
+]]></info>
+
+<demo-html>
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr>
+			<td>Minimum date:</td>
+			<td><input type="text" id="min" name="min" /></td>
+		</tr>
+		<tr>
+			<td>Maximum date:</td>
+			<td><input type="text" id="max" name="max" /></td>
+		</tr>
+	</table>
+</demo-html>
+
+</dt-example>
