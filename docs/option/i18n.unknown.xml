@@ -15,13 +15,13 @@
 	</default>
 	<description>
 		<![CDATA[
-		This value is used to represent values that are unknown in within DateTime.
+		This value is used to represent values that are unknown within DateTime.
 		]]>
 	</description>
 
 	<example title="Change the value for `i18n.unknown`"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+	new DateTime(document.getElementById('test'), {
 		i18n: {
 			unknown: 'n/a'
 		}

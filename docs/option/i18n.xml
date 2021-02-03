@@ -24,7 +24,7 @@
 	<example title="Alter previous and next buttons"><![CDATA[
 
 $(document).ready(function() {
-    var dt = new DateTime(document.getElementById('example'), {
+	var dt = new DateTime(document.getElementById('example'), {
 		i18n: {
 			previous: '&lt;'
 			next: '&gt;'

@@ -26,8 +26,6 @@ describe('dateTime - options - onChange', function () {
 		it('Set stuff up', function () {
 			new DateTime(document.getElementById('test'), {
 				onChange: function () {
-					console.log('fred');
-
 					params = arguments;
 				}
 			});
@@ -64,7 +62,7 @@ describe('dateTime - options - onChange', function () {
 					count++;
 					params = arguments;
 				}
-			});
+			}).val('2021-01-01 12:12:12');
 
 			$('#test').click();
 			expect(count).toBe(0);
@@ -74,29 +72,25 @@ describe('dateTime - options - onChange', function () {
 			$('.dt-datetime-calendar .selected button span').click();
 			expect(count).toBe(1);
 		});
-		it('... triggers on date again even if no change', function () {
-			// DD-1861 - i disagree with this so raised
+		it('... does not trigger again if no change', function () {
 			$('#test').click();
 			$('.dt-datetime-calendar .selected button span').click();
-			expect(count).toBe(2);
+			expect(count).toBe(1);
 		});
 		it('... triggers on hours', function () {
-			// DD-1861 - i disagree with this so raised
 			$('#test').click();
-			$('.dt-datetime-hours .selected button span').click();
-			expect(count).toBe(3);
+			$('.dt-datetime-hours tbody tr:eq(0) td:eq(0) button span').click();
+			expect(count).toBe(2);
 		});
 		it('... triggers on minutes', function () {
-			// DD-1861 - i disagree with this so raised
 			$('#test').click();
-			$('.dt-datetime-minutes .selected button span').click();
-			expect(count).toBe(4);
+			$('.dt-datetime-minutes tbody tr:eq(0) td:eq(0) button span').click();
+			expect(count).toBe(3);
 		});
 		it('... triggers on seconds', function () {
-			// DD-1861 - i disagree with this so raised
 			$('#test').click();
-			$('.dt-datetime-seconds .selected button span').click();
-			expect(count).toBe(5);
+			$('.dt-datetime-seconds tbody tr:eq(0) td:eq(0) button span').click();
+			expect(count).toBe(4);
 		});
 
 		dt.html('input');

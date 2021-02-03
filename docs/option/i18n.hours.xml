@@ -21,7 +21,8 @@
 
 	<example title="Change the value for `i18n.hours`"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+	new DateTime(document.getElementById('test'), {
+		format: 'HH:mm',
 		i18n: {
 			hours: 'h'
 		}

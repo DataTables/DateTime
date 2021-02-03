@@ -20,9 +20,10 @@
 
 	<example title="Change the strings for am and pm"><![CDATA[
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+	new DateTime(document.getElementById('test'), {
+		format: 'HH:mm A',
 		i18n: {
-			weekdays: ['morning', 'afternoon']
+			amPm: ['morning', 'afternoon']
 		}
 	});
 });

@@ -6,7 +6,7 @@
 
 	<type type="null">
 		<description>
-			When this option is null any and all of the days of the week can be selected.
+			When this option is `null` any and all of the days of the week can be selected.
 	    </description>
 	</type>
 
