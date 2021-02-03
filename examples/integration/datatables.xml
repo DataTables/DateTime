@@ -1,13 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dt-example table-type="html" table-class="display nowrap" order="1">
+<dt-example table-type="html" table-class="display nowrap" order="2">
 
 <css lib="datatables datetime"/>
 
-<js lib="jquery datatables datetime">
+<js lib="jquery datatables moment datetime">
 <![CDATA[
 
+var minDate, maxDate;
+
+// Custom filtering function which will search data in column four between two values
+$.fn.dataTable.ext.search.push(
+	function( settings, data, dataIndex ) {
+		var min = minDate.val();
+		var max = maxDate.val();
+		var date = new Date( data[4] );
+
+		if (
+			( min === null && max === null ) ||
+			( min === null && date <= max ) ||
+			( min <= date   && max === null ) ||
+			( min <= date   && date <= max )
+		) {
+			return true;
+		}
+		return false;
+	}
+);
+
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'));
+	// Create date inputs
+	minDate = new DateTime($('#min'), {
+		format: 'MMMM Do YYYY'
+	});
+	maxDate = new DateTime($('#max'), {
+		format: 'MMMM Do YYYY'
+	});
+
+	// DataTables initialisation
+	var table = $('#example').DataTable();
+
+	// Refilter the table
+	$('#min, #max').on('change', function () {
+		table.draw();
+	});
 });
 
 ]]>
@@ -17,43 +52,20 @@ $(document).ready(function() {
 
 <info><![CDATA[
 
-/* Custom filtering function which will search data in column four between two values */
-$.fn.dataTable.ext.search.push(
-	function( settings, data, dataIndex ) {
-		var min = parseInt( $('#min').val(), 10 );
-		var max = parseInt( $('#max').val(), 10 );
-		var age = parseFloat( data[3] ) || 0; // use data for the age column
+This example shows the DateTime picker being used to filter a DataTable. The example is [the same as the DataTables number range filter](https://datatables.net/examples/plug-ins/range_filtering.html), but operating on the _Start date_ column rather than _Age_.
 
-		if ( ( isNaN( min ) && isNaN( max ) ) ||
-				( isNaN( min ) && age <= max ) ||
-				( min <= age   && isNaN( max ) ) ||
-				( min <= age   && age <= max ) )
-		{
-			return true;
-		}
-		return false;
-	}
-);
-
-$(document).ready(function() {
-	var table = $('#example').DataTable();
-	
-	// Event listener to the two range filtering inputs to redraw on input
-	$('#min, #max').keyup( function() {
-		table.draw();
-	} );
-} );
+In this example we use `de-api val()` to get a `Date` object from the input element which can then be easily compared to the value from the table's rows in [a DataTables search function](https://datatables.net/manual/plug-ins/search).
 
 ]]></info>
 
 <demo-html>
 	<table border="0" cellspacing="5" cellpadding="5">
 		<tr>
-			<td>Minimum age:</td>
+			<td>Minimum date:</td>
 			<td><input type="text" id="min" name="min" /></td>
 		</tr>
 		<tr>
-			<td>Maximum age:</td>
+			<td>Maximum date:</td>
 			<td><input type="text" id="max" name="max" /></td>
 		</tr>
 	</table>
