@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="DateTime">
+	<name>DateTime.use()</name>
+	<summary>Set the formatting / parsing library to use.</summary>
+	<since>1.0.0</since>
+
+	<type type="function">
+		<signature>DateTime.use()</signature>
+		<description>Change or apply the formatting / parsing date and time library that the DateTime picker will use.</description>
+		<returns type="undefined">No return value.</returns>
+	</type>
+
+	<description>
+		This static class method can be used to assign the date / time formatting and parsing library to be used. At this time it can be one of:
+
+		* [Moment](https://momentjs.com/)
+		* [Luxon](https://moment.github.io/luxon/)
+		* [DayJS](https://github.com/iamkun/dayjs)
+
+		By default DateTime will attempt to detect which library you have installed, but if one is not available (e.g. it is loaded after the DateTime library), you can use this static method to assign the formatting library to use.
+	</description>
+
+	<example title="Use Moment"><![CDATA[
+
+DateTime.use(moment);
+
+let el = document.getElementById('example');
+let dt = new DateTime(el);
+
+]]></example>
+
+</dt-api>
