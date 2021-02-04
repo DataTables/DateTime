@@ -361,6 +361,10 @@ $.extend( DateTime.prototype, {
 			this._show();
 		}
 
+		if (last) {
+			this.val( last, false );
+		}
+
 		// Trigger the display of the widget when clicking or focusing on the
 		// input element
 		this.dom.input
