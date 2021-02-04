@@ -7,19 +7,16 @@ describe('dateTime - i18n - weekdays', function () {
 	describe('Functional tests', function () {
 		dt.html('input');
 		it('Default', function () {
-			let el = new DateTime(document.getElementById('test'), {
-				firstDay: 0
-			});
+			let el = new DateTime(document.getElementById('test'));
 
 			$('#test').click();
 
-			expect($('.dt-datetime-calendar thead').text()).toBe('SunMonTueWedThuFriSat');
+			expect($('.dt-datetime-calendar thead').text()).toBe('MonTueWedThuFriSatSun');
 		});
 
 		dt.html('input');
 		it('Change', function () {
 			let el = new DateTime(document.getElementById('test'), {
-				firstDay: 0,
 				i18n: {
 					weekdays: ['1', '2', '3', '4', '5', '6', '7']
 				}
@@ -27,7 +24,7 @@ describe('dateTime - i18n - weekdays', function () {
 
 			$('#test').click();
 
-			expect($('.dt-datetime-calendar thead').text()).toBe('1234567');
+			expect($('.dt-datetime-calendar thead').text()).toBe('2345671');
 		});
 	});
 });

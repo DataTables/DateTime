@@ -4,83 +4,67 @@ describe('dateTime - api - val()', function () {
 		css: ['datatables', 'datetime']
 	});
 
-	// DD-1867 disabled  until clearer on the usage
-	// let el;
+	let el;
 
-	// function pad(num) {
-	// 	return num < 10 ? '0' + num : num;
-	// }
+	function pad(num) {
+		return num < 10 ? '0' + num : num;
+	}
 
-	// function getToday() {
-	// 	let d = new Date();
-	// 	return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + pad(d.getDate());
-	// }
+	function format(d) {
+		return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + pad(d.getDate());
+	}
 
-	// function getMidMonth() {
-	// 	let d = new Date();
-	// 	return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + '15';
-	// }
+	let today = format(new Date());
 
-	// function get20YearsAhead() {
-	// 	let d = new Date();
-	// 	return d.getFullYear() + 20 + '-' + pad(1 + d.getMonth()) + '-' + '15';
-	// }
+	describe('Check the defaults', function () {
+		dt.html('input');
+		it('Ensure its a function', function () {
+			el = new DateTime(document.getElementById('test'));
+			expect(typeof el.min).toBe('function');
+		});
+		it('Getter returns null if no date set', function () {
+			expect(el.val()).toBe(null);
+		});
+		it('Setter returns an API instance', function () {
+			expect(el.val(today) instanceof DateTime).toBe(true);
+		});
+		it('Getter returns an Date instance', function () {
+			expect(el.val() instanceof Date).toBe(true);
+		});
+	});
 
-	// let thisYear = new Date().getFullYear().toString();
+	describe('Functional tests', function () {
+		dt.html('input');
+		it('Get value when set in element', function () {
+			el = new DateTime(document.getElementById('value'));
+			// DD-1867
+			expect(el.val()).toBe(null);
+		});
+		it('... applied when opened', function () {
+			$('#value').click();
+			expect(format(el.val())).toBe('2021-10-20');
+		});
+		it('... set when opened', function () {
+			el.val(today);
+			expect(format(el.val())).toBe(today);
+		});
 
-	// describe('Check the defaults', function () {
-	// 	dt.html('input');
-	// 	it('Ensure its a function', function () {
-	// 		el = new DateTime(document.getElementById('test'));
-	// 		expect(typeof el.min).toBe('function');
-	// 	});
-	// 	it('Setting with a string returns an API instance', function () {
-	// 		expect(el.min(getToday()) instanceof DateTime).toBe(true);
-	// 	});
-	// 	it('Setter returns an API instance', function () {
-	// 		expect(el.min(new Date(getToday())) instanceof DateTime).toBe(true);
-	// 	});
-	// });
-
-	// describe('Functional tests', function () {
-	// 	dt.html('input');
-	// 	it('String - When picker closed', function () {
-	// 		el = new DateTime(document.getElementById('test'), {});
-	// 		el.min(getMidMonth());
-	// 		expect($('.dt-datetime-error').length).toBe(0);
-	// 	});
-	// 	it('... applied when opened', function () {
-	// 		$('#test').click();
-	// 		expect($('select.dt-datetime-year option').length).toBe(26);
-	// 		expect($('select.dt-datetime-year option:first-child').val()).toBe(thisYear);
-	// 		expect($('tbody tr:eq(1) td:eq(0)').hasClass('disabled')).toBe(true);
-	// 		expect($('tbody tr:eq(3) td:eq(0)').hasClass('disabled')).toBe(false);
-	// 	});
-	// 	it('... set when opened', function () {
-	// 		el.min(get20YearsAhead());
-	// 		expect($('select.dt-datetime-year option').length).toBe(6);
-	// 		expect($('tbody tr:eq(1) td:eq(0)').hasClass('disabled')).toBe(true);
-	// 		expect($('tbody tr:eq(3) td:eq(0)').hasClass('disabled')).toBe(true);
-	// 	});
-
-	// 	dt.html('input');
-	// 	it('Date - When picker closed', function () {
-	// 		el = new DateTime(document.getElementById('test'), {});
-	// 		el.min(new Date(getMidMonth()));
-	// 		expect($('.dt-datetime-error').length).toBe(0);
-	// 	});
-	// 	it('... applied when opened', function () {
-	// 		$('#test').click();
-	// 		expect($('select.dt-datetime-year option').length).toBe(26);
-	// 		expect($('select.dt-datetime-year option:first-child').val()).toBe(thisYear);
-	// 		expect($('tbody tr:eq(1) td:eq(0)').hasClass('disabled')).toBe(true);
-	// 		expect($('tbody tr:eq(3) td:eq(0)').hasClass('disabled')).toBe(false);
-	// 	});
-	// 	it('... set when opened', function () {
-	// 		el.min(new Date(get20YearsAhead()));
-	// 		expect($('select.dt-datetime-year option').length).toBe(6);
-	// 		expect($('tbody tr:eq(1) td:eq(0)').hasClass('disabled')).toBe(true);
-	// 		expect($('tbody tr:eq(3) td:eq(0)').hasClass('disabled')).toBe(true);
-	// 	});
-	// });
+		dt.html('input');
+		it('Set time element', function () {
+			el = new DateTime(document.getElementById('test'), {format: 'HH:mm'});
+			el.val('11:22');
+			expect(el.val().getHours()).toBe(11);
+			expect(el.val().getMinutes()).toBe(22);
+		});
+		it('... set when opened', function () {
+			$('#test').click();
+			el.val('10:33');
+			expect(el.val().getHours()).toBe(10);
+			expect(el.val().getMinutes()).toBe(33);
+		});
+		it('... updates display', function () {
+			expect($('.dt-datetime-hours .selected').text()).toBe('10');
+			expect($('.dt-datetime-minutes .selected').text()).toBe('33');
+		});
+	});
 });

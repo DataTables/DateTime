@@ -12,9 +12,7 @@ describe('dateTime - i18n - next', function () {
 
 			$('#test').click();
 
-			// expect($('.dt-datetime-month').text()).toBe(
-			// 	'JanuaryFebruaryMarchAprilMayJuneJulyAugustSeptemberOctoberNovemberDecember'
-			// );
+			expect($('.dt-datetime-iconRight').text()).toBe('Next');
 		});
 
 		dt.html('input');
@@ -27,7 +25,7 @@ describe('dateTime - i18n - next', function () {
 
 			$('#test').click();
 
-			// expect($('.dt-datetime-month').text()).toBe('123456789101112');
+			expect($('.dt-datetime-iconRight').text()).toBe('test');
 		});
 	});
 });
