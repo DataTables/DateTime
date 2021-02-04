@@ -37,7 +37,7 @@ describe('dateTime - api - val()', function () {
 		dt.html('input');
 		it('Get value when set in element', function () {
 			el = new DateTime(document.getElementById('value'));
-			expect(el.val().toString().substr(0, 15)).toBe('Wed Oct 20 2021');
+			expect(format(el.val())).toBe('2021-10-20');
 		});
 		it('... applied when opened', function () {
 			$('#value').click();
