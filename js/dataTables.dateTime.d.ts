@@ -42,7 +42,6 @@ declare module 'datatables.net-datetime' {
 		owns(el: HTMLElement): boolean;
 		val(): Date;
 		val(set: string | Date): this;
-		val(set: string | Date, write: boolean): this;
 	}
 
 	export = DateTime;
