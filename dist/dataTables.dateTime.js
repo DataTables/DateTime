@@ -361,6 +361,7 @@ $.extend( DateTime.prototype, {
 			this._show();
 		}
 
+		// Set the initial value
 		if (last) {
 			this.val( last, false );
 		}
