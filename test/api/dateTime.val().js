@@ -10,6 +10,7 @@ describe('dateTime - api - val()', function () {
 		return num < 10 ? '0' + num : num;
 	}
 
+	// TK COLIN make this a generic function somewhere as repeated
 	function format(d) {
 		return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + pad(d.getDate());
 	}
