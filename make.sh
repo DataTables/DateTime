@@ -32,7 +32,14 @@ gulp
 js_compress dist/dataTables.dateTime.js
 css_compress dist/dataTables.dateTime.css
 
-rsync -r dist/* $OUT_DIR
+if [ ! -d $OUT_DIR ]; then
+	mkdir $OUT_DIR
+	mkdir $OUT_DIR/js
+	mkdir $OUT_DIR/css
+fi
+
+rsync -r dist/*.js $OUT_DIR/js
+rsync -r dist/*.css $OUT_DIR/css
 
 # Copy and build examples
 rsync -r examples $OUT_DIR
