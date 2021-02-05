@@ -33,16 +33,14 @@ describe('dateTime - options - disableDays', function () {
 
 		dt.html('input');
 		it('Function', function () {
-			let i = 0;
 			new DateTime(document.getElementById('value'), {
 				disableDays: function (day) {
-					i++;
-					return i === 11 || i === 12 ? true : false;
+					return day.toString().includes('Oct 0')? true : false;
 				}
 			});
 			$('#value').click();
-			checkDays([false, false, false, true, true, false, false]);
-			expect($('.dt-datetime-date tbody td.disabled').length).toBe(2);
+			checkDays([true, true, true, true, true, true, false]);
+			expect($('.dt-datetime-date tbody td.disabled').length).toBe(9);
 		});
 	});
 });

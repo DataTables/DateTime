@@ -10,6 +10,7 @@ describe('dateTime - api - val()', function () {
 		return num < 10 ? '0' + num : num;
 	}
 
+	// TK COLIN make this a generic function somewhere as repeated
 	function format(d) {
 		return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + pad(d.getDate());
 	}
@@ -37,8 +38,7 @@ describe('dateTime - api - val()', function () {
 		dt.html('input');
 		it('Get value when set in element', function () {
 			el = new DateTime(document.getElementById('value'));
-			// DD-1867
-			expect(el.val()).toBe(null);
+			expect(format(el.val())).toBe('2021-10-20');
 		});
 		it('... applied when opened', function () {
 			$('#value').click();
