@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>datatables.net-datetime</id>
+        <version>1.0.2</version>
+        <description>DataTables date / time picker</description>
+        <authors>SpryMedia Ltd</authors>
+        <projectUrl>http://datatables.net</projectUrl>
+        <license type="expression">MIT</license>
+        <tags>date time DataTables jQuery table</tags>
+        <repository type="git" url="https://github.com/DataTables/DateTime.git"/>
+        <dependencies>
+            <dependency id="jquery" version="1.7.0"/>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="dist/**"/>
+        <file src="js/dataTables.dateTime.d.ts"/>
+    </files>
+</package>
