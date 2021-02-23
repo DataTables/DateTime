@@ -344,9 +344,9 @@ $.extend( DateTime.prototype, {
 		// Render the options
 		this._optionsTitle();
 
-		$(document).on('i18n.dt', (e, settings) => {
+		$(document).on('i18n.dt', function (e, settings) {
 			if (settings.oLanguage.datetime) {
-				$.extend(true, this.c.i18n, settings.oLanguage.datetime);
+				$.extend(true, that.c.i18n, settings.oLanguage.datetime);
 				this._optionsTitle();
 			}
 		});
