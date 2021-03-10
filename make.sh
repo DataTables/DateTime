@@ -27,7 +27,7 @@ if [ ! -d node_modules ]; then
 	npm install -dev
 fi
 
-gulp
+./node_modules/gulp/bin/gulp.js
 
 js_compress dist/dataTables.dateTime.js
 css_compress dist/dataTables.dateTime.css

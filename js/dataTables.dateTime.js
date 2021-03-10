@@ -317,10 +317,10 @@ $.extend( DateTime.prototype, {
 	_constructor: function () {
 		var that = this;
 		var classPrefix = this.c.classPrefix;
-		let last = this.dom.input.val();
+		var last = this.dom.input.val();
 
 		var onChange = function () {
-			let curr = that.dom.input.val();
+			var curr = that.dom.input.val();
 
 			if (curr !== last) {
 				that.c.onChange.call( that, curr, that.s.d, that.dom.input );
