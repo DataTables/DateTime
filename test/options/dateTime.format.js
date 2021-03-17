@@ -73,6 +73,10 @@ describe('dateTime - options - format', function () {
 			let time2 = getNow();
 			let val = $('#test').val();
 
+			console.log(time1);
+			console.log(time2);
+			console.log(val);
+
 			expect(val == time1 || val == time2).toBe(true);
 		});
 	});
