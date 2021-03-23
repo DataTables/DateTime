@@ -35,14 +35,11 @@
 }(function( $, window, document, undefined ) {
 'use strict';
 
-// Support libraries which support a Moment like API
-var dateLib = window.moment
-	? window.moment
-	: window.dayjs
-		? window.dayjs
-		: window.luxon
-			? window.luxon
-			: null;
+// Supported formatting and parsing libraries:
+// * Moment
+// * Luxon
+// * DayJS
+var dateLib;
 
 /*
  * This file provides a DateTime GUI picker (calendar and time input). Only the
@@ -61,6 +58,18 @@ var dateLib = window.moment
  * options based on the `DateTime.defaults` object.
  */
 var DateTime = function ( input, opts ) {
+	// Attempt to auto detect the formatting library (if there is one). Having it in
+	// the constructor allows load order independence.
+	if (typeof dateLib === 'undefined') {
+		dateLib = window.moment
+			? window.moment
+			: window.dayjs
+				? window.dayjs
+				: window.luxon
+					? window.luxon
+					: null;
+	}
+
 	this.c = $.extend( true, {}, DateTime.defaults, opts );
 	var classPrefix = this.c.classPrefix;
 	var i18n = this.c.i18n;
