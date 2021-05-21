@@ -32,6 +32,8 @@ describe('dateTime - options - format', function () {
 		);
 	}
 
+	let time1, time2;
+
 	describe('Functional tests', function () {
 		dt.html('input');
 		it('Default - no time', function () {
@@ -63,14 +65,14 @@ describe('dateTime - options - format', function () {
 		dt.html('input');
 		it('With time', function () {
 			new DateTime(document.getElementById('test'), {format: 'YYYY-MM-DD HH:mm:ss'});
+			time1 = getNow();
 			$('#test').click();
 			expect($('.dt-datetime-time').is(':visible')).toBe(true);
 		});
 		it('... confirm setting', function () {
 			// get two times in case it flips over
-			let time1 = getNow();
 			$('.now button span').click();
-			let time2 = getNow();
+			time2 = getNow();
 			let val = $('#test').val();
 
 			console.log(time1);
