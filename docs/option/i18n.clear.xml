@@ -4,7 +4,7 @@
 	<summary>Clear button text value</summary>
 	<since>DateTime 1.1.0</since>
 
-	<default value="Clear">
+	<default value="Clear"></default>
 
 	<description>
 		Sets the string that will be shown in the _Clear_ button when enabled by `dt-init buttons.clear`.
