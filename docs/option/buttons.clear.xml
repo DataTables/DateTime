@@ -5,6 +5,8 @@
 	<since>DateTime 1.1.0</since>
 
 	<default value="false">
+		Button will not be shown.
+	</default>
 
 	<description>
 		When enabled, this option will cause DateTime to show a _clear_ button (text set by `dt-init i18n.clear`) which they user can activate to clear the input's value.

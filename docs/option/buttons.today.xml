@@ -5,6 +5,8 @@
 	<since>DateTime 1.1.0</since>
 
 	<default value="false">
+		Button will not be shown.
+	</default>
 
 	<description>
 		When enabled, this option will cause DateTime to show a button which the end user can activate to shift the calendar view to show today's date.
