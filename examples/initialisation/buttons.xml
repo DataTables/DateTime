@@ -7,7 +7,7 @@
 <![CDATA[
 
 $(document).ready(function() {
-    window.allan = new DateTime(document.getElementById('test'), {
+    new DateTime(document.getElementById('test'), {
 		buttons: {
 			today: true,
 			clear: true
