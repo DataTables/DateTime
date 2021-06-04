@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="DateTime">
+	<name>buttons.today</name>
+	<summary>Enable button move "today" into view</summary>
+	<since>DateTime 1.1.0</since>
+
+	<default value="false">
+
+	<description>
+		When enabled, this option will cause DateTime to show a button which the end user can activate to shift the calendar view to show today's date.
+
+		Note that the value of the field does not change when activating this button.
+	</description>
+
+	<example title="Enable today button"><![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	buttons: {
+		today: true
+	}
+});
+
+]]></example>
+
+<related>dt-init buttons.clear</related>
+
+</dt-option>

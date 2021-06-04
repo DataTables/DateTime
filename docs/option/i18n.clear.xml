@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="DateTime">
+	<name>i18n.clear</name>
+	<summary>Clear button text value</summary>
+	<since>DateTime 1.1.0</since>
+
+	<default value="Clear">
+
+	<description>
+		Sets the string that will be shown in the _Clear_ button when enabled by `dt-init buttons.clear`.
+	</description>
+
+	<example title="Set clear button text"><![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	buttons: {
+		clear: true
+	},
+	i18n: {
+		clear: "Empty"
+	}
+});
+
+]]></example>
+
+<related>dt-init buttons.clear</related>
+
+</dt-option>

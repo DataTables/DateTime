@@ -116,6 +116,10 @@ var DateTime = function ( input, opts ) {
 						'<select class="'+classPrefix+'-year"></select>'+
 					'</div>'+
 				'</div>'+
+				'<div class="'+classPrefix+'-buttons">'+
+					'<a class="'+classPrefix+'-clear">'+i18n.clear+'</a>'+
+					'<a class="'+classPrefix+'-today">'+i18n.today+'</a>'+
+				'</div>'+
 				'<div class="'+classPrefix+'-calendar"></div>'+
 			'</div>'+
 			'<div class="'+classPrefix+'-time">'+
@@ -134,6 +138,9 @@ var DateTime = function ( input, opts ) {
 		calendar:  structure.find( '.'+classPrefix+'-calendar' ),
 		time:      structure.find( '.'+classPrefix+'-time' ),
 		error:     structure.find( '.'+classPrefix+'-error' ),
+		buttons:     structure.find( '.'+classPrefix+'-buttons' ),
+		clear:     structure.find( '.'+classPrefix+'-clear' ),
+		today:     structure.find( '.'+classPrefix+'-today' ),
 		input:     $(input)
 	};
 
@@ -169,6 +176,7 @@ var DateTime = function ( input, opts ) {
 
 	this.dom.date
 		.append( this.dom.title )
+		.append( this.dom.buttons )
 		.append( this.dom.calendar );
 
 	this._constructor();
@@ -294,12 +302,10 @@ $.extend( DateTime.prototype, {
 			}
 		}
 
-		// We need a date to be able to display the calendar at all
-		if ( ! this.s.d ) {
-			this.s.d = this._dateToUtc( new Date() );
-		}
-
-		this.s.display = new Date( this.s.d.toString() );
+		// Need something to display
+		this.s.display = this.s.d
+			? new Date( this.s.d.toString() )
+			: new Date();
 
 		// Set the day of the month to be 1 so changing between months doesn't
         // run into issues when going from day 31 to 28 (for example)
@@ -348,6 +354,14 @@ $.extend( DateTime.prototype, {
 		if ( ! this.s.parts.seconds ) {
 			this.dom.time.children('div.'+classPrefix+'-seconds').remove();
 			this.dom.time.children('span').eq(1).remove();
+		}
+
+		if ( ! this.c.buttons.clear ) {
+			this.dom.clear.css( 'display', 'none' );
+		}
+
+		if ( ! this.c.buttons.today ) {
+			this.dom.today.css( 'display', 'none' );
 		}
 
 		// Render the options
@@ -472,6 +486,28 @@ $.extend( DateTime.prototype, {
 
 				e.stopPropagation();
 
+				if ( nodeName === 'a' ) {
+					e.preventDefault();
+
+					if ($(target).hasClass(classPrefix+'-clear')) {
+						// Clear the value and don't change the display
+						that.s.d = null;
+						that.dom.input.val('');
+						that._writeOutput();
+						that._setCalander();
+						that._setTime();
+
+						onChange();
+					}
+					else if ($(target).hasClass(classPrefix+'-today')) {
+						// Don't change the value, but jump to the month
+						// containing today
+						that.s.display = new Date();
+
+						that._setTitle();
+						that._setCalander();
+					}
+				}
 				if ( nodeName === 'button' ) {
 					var button = $(target);
 					var parent = button.parent();
@@ -500,6 +536,8 @@ $.extend( DateTime.prototype, {
 					else if ( button.parents('.'+classPrefix+'-time').length ) {
 						var val = button.data('value');
 						var unit = button.data('unit');
+
+						d = that._needValue();
 
 						if ( unit === 'minutes' ) {
 							if ( parent.hasClass('disabled') && parent.hasClass('range') ) {
@@ -554,9 +592,7 @@ $.extend( DateTime.prototype, {
 					}
 					else {
 						// Calendar click
-						if ( ! d ) {
-							d = that._dateToUtc( new Date() );
-						}
+						d = that._needValue();
 
 						// Can't be certain that the current day will exist in
 						// the new month, and likewise don't know that the
@@ -935,6 +971,20 @@ $.extend( DateTime.prototype, {
 		var weekNum = Math.ceil( ( ( (date - oneJan) / 86400000) + 1)/7 );
 
 		return '<td class="'+this.c.classPrefix+'-week">' + weekNum + '</td>';
+	},
+
+	/**
+	 * Check if the instance has a date object value - it might be null.
+	 * If is doesn't set one to now.
+	 * @returns A Date object
+	 * @private
+	 */
+	_needValue: function () {
+		if ( ! this.s.d ) {
+			this.s.d = this._dateToUtc( new Date() );
+		}
+
+		return this.s.d;
 	},
 
 	/**
@@ -1375,21 +1425,24 @@ $.extend( DateTime.prototype, {
 	 */
 	_writeOutput: function ( focus ) {
 		var date = this.s.d;
+		var out = '';
 
 		// Use moment, dayjs or luxon if possible - otherwise it must be ISO8601 (or the
 		// constructor would have thrown an error)
 		// luxon uses different method names so need to be able to call them.
-		var out = dateLib && dateLib == window.luxon
+		if (date) {
+			out = dateLib && dateLib == window.luxon
 			? dateLib.DateTime.fromJSDate(this.s.d).toFormat(this.c.format)
 			: dateLib ?
 				dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
 				date.getUTCFullYear() +'-'+
 					this._pad(date.getUTCMonth() + 1) +'-'+
 					this._pad(date.getUTCDate());
+		}
 
-			this.dom.input
-				.val( out )
-				.trigger('change', {write: date});
+		this.dom.input
+			.val( out )
+			.trigger('change', {write: date});
 		
 		if ( this.dom.input.attr('type') === 'hidden' ) {
 			this.val(out, false);
@@ -1424,6 +1477,11 @@ DateTime._instance = 0;
 DateTime.defaults = {
 	attachTo: 'body',
 
+	buttons: {
+		clear: false,
+		today: false
+	},
+
 	// Not documented - could be an internal property
 	classPrefix: 'dt-datetime',
 
@@ -1438,6 +1496,7 @@ DateTime.defaults = {
 	hoursAvailable: null,
 
 	i18n: {
+		clear:    'Clear',
 		previous: 'Previous',
 		next:     'Next',
 		months:   [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
@@ -1446,7 +1505,8 @@ DateTime.defaults = {
 		hours:    'Hour',
 		minutes:  'Minute',
 		seconds:  'Second',
-		unknown:  '-'
+		unknown:  '-',
+		today:    'Today'
 	},
 
 	maxDate: null,

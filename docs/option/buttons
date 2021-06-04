@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="DateTime">
+	<name>buttons</name>
+	<summary>Container for navigation buttons</summary>
+	<since>DateTime 1.1.0</since>
+
+	<description>
+		This property is an object that contains the navigation helper properties:
+
+		* `dt-init buttons.clear`
+		* `dt-init buttons.today`
+	</description>
+
+	<example title="Enable clear and today buttons"><![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	buttons: {
+		today: true,
+		clear: true
+	}
+});
+
+]]></example>
+
+<related>dt-init buttons.clear</related>
+<related>dt-init buttons.today</related>
+
+</dt-option>

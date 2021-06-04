@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="DateTime">
+	<name>buttons.clear</name>
+	<summary>Enable button to clear the value</summary>
+	<since>DateTime 1.1.0</since>
+
+	<default value="false">
+
+	<description>
+		When enabled, this option will cause DateTime to show a _clear_ button (text set by `dt-init i18n.clear`) which they user can activate to clear the input's value.
+	</description>
+
+	<example title="Enable clear button"><![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	buttons: {
+		clear: true
+	}
+});
+
+]]></example>
+
+<related>dt-init buttons.today</related>
+
+</dt-option>

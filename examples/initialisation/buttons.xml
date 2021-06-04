@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-example table-type="html" table-class="display nowrap" order="6">
+
+<css lib="datetime"/>
+
+<js lib="jquery datetime">
+<![CDATA[
+
+$(document).ready(function() {
+    window.allan = new DateTime(document.getElementById('test'), {
+		buttons: {
+			today: true,
+			clear: true
+		}
+	});
+});
+
+]]>
+</js>
+
+<title lib="DateTime">Action buttons (today and clear)</title>
+
+<info><![CDATA[
+
+DateTable offers two built in buttons which can help make it easier for the end user to navigate around the calendar:
+
+* `dt-init buttons.today` - change the display to show today's date (but without changing the value)
+* `dt-init buttons.clear` - clear the current value.
+
+This example shows both buttons enabled.
+
+]]></info>
+
+<custom-table>
+    <input id="test" type="text" value="2021-06-01" />
+</custom-table>
+
+</dt-example>

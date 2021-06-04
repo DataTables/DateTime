@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="DateTime">
+	<name>i18n.today</name>
+	<summary>Today button text value</summary>
+	<since>DateTime 1.1.0</since>
+
+	<default value="Today">
+
+	<description>
+		Sets the string that will be shown in the _Today_ button when enabled by `dt-init buttons.today`.
+	</description>
+
+	<example title="Set today button text"><![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	buttons: {
+		today: true
+	},
+	i18n: {
+		today: "Jump to today"
+	}
+});
+
+]]></example>
+
+<related>dt-init buttons.today</related>
+
+</dt-option>
