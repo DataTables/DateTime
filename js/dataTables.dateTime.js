@@ -1,12 +1,12 @@
-/*! DateTime picker for DataTables.net v1.0.3
+/*! DateTime picker for DataTables.net v1.1.0
  *
- * ©2020 SpryMedia Ltd, all rights reserved.
+ * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
  */
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.0.3
+ * @version     1.1.0
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -1534,7 +1534,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.0.3';
+DateTime.version = '1.1.0';
 
 // Global export - if no conflicts
 if (! window.DateTime) {
