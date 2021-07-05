@@ -24,6 +24,6 @@ new DateTime(document.getElementById('test'), {
 
 ]]></example>
 
-<related>dt-init buttons.clear</related>
+<related>de-init buttons.clear</related>
 
 </dt-option>

@@ -15,9 +15,9 @@
 	</default>
 	<description>
 		<![CDATA[
-		This option is used if either `-init maxDate` or `-init minDate` are not in use to determine how many years to show to the user for selection.
+		This option is used if either `de-init maxDate` or `de-init minDate` are not in use to determine how many years to show to the user for selection.
 
-		To determine the max year that can be selected this value is added to the current year. Similarly for min year this value is subtracted. If `-init maxDate` or `-init minDate` are declared then it will not be used to determine the range in the relative directions.
+		To determine the max year that can be selected this value is added to the current year. Similarly for min year this value is subtracted. If `de-init maxDate` or `de-init minDate` are declared then it will not be used to determine the range in the relative directions.
 		]]>
 	</description>
 
@@ -29,7 +29,7 @@ $(document).ready(function() {
 });
 ]]></example>
 
-<related type="option">maxDate</related>
-<related type="option">minDate</related>
+<related>de-init maxDate</related>
+<related>de-init minDate</related>
 
 </dt-option>

@@ -9,7 +9,7 @@
 	</default>
 
 	<description>
-		When enabled, this option will cause DateTime to show a _clear_ button (text set by `dt-init i18n.clear`) which they user can activate to clear the input's value.
+		When enabled, this option will cause DateTime to show a _clear_ button (text set by `de-init i18n.clear`) which they user can activate to clear the input's value.
 	</description>
 
 	<example title="Enable clear button"><![CDATA[
@@ -22,6 +22,6 @@ new DateTime(document.getElementById('test'), {
 
 ]]></example>
 
-<related>dt-init buttons.today</related>
+<related>de-init buttons.today</related>
 
 </dt-option>

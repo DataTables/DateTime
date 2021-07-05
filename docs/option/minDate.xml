@@ -46,7 +46,7 @@ new DateTime(document.getElementById('test'), {
 
 ]]></example>
 
-<related type="option">maxDate</related>
-<related type="option">yearRange</related>
+<related>de-init maxDate</related>
+<related>de-init yearRange</related>
 
 </dt-option>

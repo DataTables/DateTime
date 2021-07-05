@@ -45,7 +45,7 @@ new DateTime(document.getElementById('test'), {
 
 ]]></example>
 
-<related type="option">minDate</related>
-<related type="option">yearRange</related>
+<related>de-init minDate</related>
+<related>de-init yearRange</related>
 
 </dt-option>

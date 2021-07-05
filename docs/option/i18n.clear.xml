@@ -7,7 +7,7 @@
 	<default value="Clear"></default>
 
 	<description>
-		Sets the string that will be shown in the _Clear_ button when enabled by `dt-init buttons.clear`.
+		Sets the string that will be shown in the _Clear_ button when enabled by `de-init buttons.clear`.
 	</description>
 
 	<example title="Set clear button text"><![CDATA[
@@ -23,6 +23,6 @@ new DateTime(document.getElementById('test'), {
 
 ]]></example>
 
-<related>dt-init buttons.clear</related>
+<related>de-init buttons.clear</related>
 
 </dt-option>
