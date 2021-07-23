@@ -370,7 +370,7 @@ $.extend( DateTime.prototype, {
 		$(document).on('i18n.dt', function (e, settings) {
 			if (settings.oLanguage.datetime) {
 				$.extend(true, that.c.i18n, settings.oLanguage.datetime);
-				this._optionsTitle();
+				that._optionsTitle();
 			}
 		});
 
