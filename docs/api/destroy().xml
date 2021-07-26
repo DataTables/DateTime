@@ -13,7 +13,7 @@
 	<description>
 		Destroys the given DateTime control, hiding and removing it from the dom and also stripping any event listeners that are in place.
 		
-		This example is a somewhat redundant since it creates the input element only to immediately destroy it. In a real appliction you would destroy the DateTime instance if you no longer require it and wish to release any memory allocated to it and its event handlers.
+		This example is a somewhat redundant since it creates the input element only to immediately destroy it. In a real application you would destroy the DateTime instance if you no longer require it and wish to release any memory allocated to it and its event handlers.
 	</description>
 
 	<example title="Destroy DateTime instance"><![CDATA[
