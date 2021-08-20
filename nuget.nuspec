@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>datatables.net-datetime</id>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
         <description>DataTables date / time picker</description>
         <authors>SpryMedia Ltd</authors>
         <projectUrl>http://datatables.net</projectUrl>
