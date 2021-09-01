@@ -740,6 +740,7 @@ $.extend( DateTime.prototype, {
 		$('div.dataTables_scrollBody').off( 'scroll.'+namespace );
 		$('div.DTE_Body_Content').off( 'scroll.'+namespace );
 		$('body').off( 'click.'+namespace );
+		$(this.dom.input[0].offsetParent).off('.'+namespace);
 	},
 
 	/**
@@ -1371,15 +1372,21 @@ $.extend( DateTime.prototype, {
 		this._position();
 
 		// Need to reposition on scroll
+		console.log('ON', 'window', 'scroll.'+namespace+' resize.'+namespace)
 		$(window).on( 'scroll.'+namespace+' resize.'+namespace, function () {
+			console.log(arguments);
 			that._position();
 		} );
 
+		console.log('ON', 'div.DTE_Body_Content', 'scroll.'+namespace)
 		$('div.DTE_Body_Content').on( 'scroll.'+namespace, function () {
+			console.log(arguments);
 			that._position();
 		} );
 
+		console.log('ON', 'div.dataTables_scrollBody', 'scroll.'+namespace)
 		$('div.dataTables_scrollBody').on( 'scroll.'+namespace, function () {
+			console.log(arguments);
 			that._position();
 		} );
 
@@ -1387,6 +1394,7 @@ $.extend( DateTime.prototype, {
 
 		if ( offsetParent !== document.body ) {
 			$(offsetParent).on( 'scroll.'+namespace, function () {
+				console.log(arguments);
 				that._position();
 			} );
 		}

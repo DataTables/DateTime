@@ -740,6 +740,7 @@ $.extend( DateTime.prototype, {
 		$('div.dataTables_scrollBody').off( 'scroll.'+namespace );
 		$('div.DTE_Body_Content').off( 'scroll.'+namespace );
 		$('body').off( 'click.'+namespace );
+		$(this.dom.input[0].offsetParent).off('.'+namespace);
 	},
 
 	/**
