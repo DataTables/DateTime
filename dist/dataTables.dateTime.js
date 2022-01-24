@@ -102,10 +102,10 @@ var DateTime = function ( input, opts ) {
 			'<div class="'+classPrefix+'-date">'+
 				'<div class="'+classPrefix+'-title">'+
 					'<div class="'+classPrefix+'-iconLeft">'+
-						'<button title="'+i18n.previous+'">'+i18n.previous+'</button>'+
+						'<button type="button" title="'+i18n.previous+'">'+i18n.previous+'</button>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-iconRight">'+
-						'<button title="'+i18n.next+'">'+i18n.next+'</button>'+
+						'<button type="button" title="'+i18n.next+'">'+i18n.next+'</button>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-label">'+
 						'<span></span>'+
@@ -1372,21 +1372,15 @@ $.extend( DateTime.prototype, {
 		this._position();
 
 		// Need to reposition on scroll
-		console.log('ON', 'window', 'scroll.'+namespace+' resize.'+namespace)
 		$(window).on( 'scroll.'+namespace+' resize.'+namespace, function () {
-			console.log(arguments);
 			that._position();
 		} );
 
-		console.log('ON', 'div.DTE_Body_Content', 'scroll.'+namespace)
 		$('div.DTE_Body_Content').on( 'scroll.'+namespace, function () {
-			console.log(arguments);
 			that._position();
 		} );
 
-		console.log('ON', 'div.dataTables_scrollBody', 'scroll.'+namespace)
 		$('div.dataTables_scrollBody').on( 'scroll.'+namespace, function () {
-			console.log(arguments);
 			that._position();
 		} );
 
@@ -1394,7 +1388,6 @@ $.extend( DateTime.prototype, {
 
 		if ( offsetParent !== document.body ) {
 			$(offsetParent).on( 'scroll.'+namespace, function () {
-				console.log(arguments);
 				that._position();
 			} );
 		}

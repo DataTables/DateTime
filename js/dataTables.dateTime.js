@@ -102,10 +102,10 @@ var DateTime = function ( input, opts ) {
 			'<div class="'+classPrefix+'-date">'+
 				'<div class="'+classPrefix+'-title">'+
 					'<div class="'+classPrefix+'-iconLeft">'+
-						'<button title="'+i18n.previous+'">'+i18n.previous+'</button>'+
+						'<button type="button" title="'+i18n.previous+'">'+i18n.previous+'</button>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-iconRight">'+
-						'<button title="'+i18n.next+'">'+i18n.next+'</button>'+
+						'<button type="button" title="'+i18n.next+'">'+i18n.next+'</button>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-label">'+
 						'<span></span>'+
