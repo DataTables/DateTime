@@ -23,8 +23,8 @@ DT_SRC=$(dirname $(dirname $(pwd)))
 DT_BUILT="${DT_SRC}/built/DataTables"
 . $DT_SRC/build/include.sh
 
-if [ ! -d node_modules ]; then
-	npm install -dev
+if [ ! -d node_modules -o ! -d node_modules/node-sass ]; then
+	npm install
 fi
 
 ./node_modules/gulp/bin/gulp.js
