@@ -268,7 +268,7 @@ $.extend( DateTime.prototype, {
 			this.s.d = null;
 		}
 		else if ( set === '--now' ) {
-			this.s.d = new Date();
+			this.s.d = this._dateToUtc(new Date());
 		}
 		else if ( typeof set === 'string' ) {
 			// luxon uses different method names so need to be able to call them

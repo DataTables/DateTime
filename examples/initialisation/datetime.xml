@@ -7,7 +7,7 @@
 <![CDATA[
 
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+    window.d = new DateTime(document.getElementById('test'), {
         format: 'D MMM YYYY HH:mm'
     });
 });
