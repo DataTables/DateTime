@@ -586,6 +586,7 @@ $.extend( DateTime.prototype, {
 								'setSeconds';
 
 						d[set]( val );
+						that._setCalander();
 						that._setTime();
 						that._writeOutput( true );
 						onChange();
@@ -619,6 +620,7 @@ $.extend( DateTime.prototype, {
 						}
 						else {
 							that._setCalander();
+							that._setTime();
 						}
 
 						onChange();
@@ -1137,9 +1139,11 @@ $.extend( DateTime.prototype, {
 			// Slight hack to allow for the different number of columns
 			a += '</tbody></thead><table class="'+className+' '+className+'-nospace"><tbody>';
 
-			var start = range !== null ?
-				range :
-				Math.floor( val / 10 )*10;
+			var start = range !== null
+				? range
+				: val === -1
+					? 0
+					: Math.floor( val / 10 )*10;
 
 			a += '<tr>';
 			for (j=start+1 ; j<start+10 ; j++ ) {
@@ -1327,7 +1331,7 @@ $.extend( DateTime.prototype, {
 			? luxDT.hour
 			: d
 				? d.getUTCHours()
-				: 0;
+				: -1;
 
 		var allowed = function ( prop ) { // Backwards compt with `Increment` option
 			return that.c[prop+'Available'] ?
@@ -1343,7 +1347,8 @@ $.extend( DateTime.prototype, {
 				? luxDT.minute
 				: d
 					? d.getUTCMinutes()
-					: 0, allowed('minutes'),
+					: -1,
+			allowed('minutes'),
 			this.s.minutesRange
 		);
 		this._optionsTime(
@@ -1353,7 +1358,7 @@ $.extend( DateTime.prototype, {
 				? luxDT.second
 				: d
 					? d.getSeconds()
-					: 0,
+					: -1,
 			allowed('seconds'),
 			this.s.secondsRange
 		);
