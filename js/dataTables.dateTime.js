@@ -1079,7 +1079,7 @@ $.extend( DateTime.prototype, {
 				'selected' :
 				'';
 			
-			if (allowed && $.inArray(value, allowed) === -1) {
+			if (typeof value === 'number' && allowed && $.inArray(value, allowed) === -1) {
 				selected += ' disabled';
 			}
 

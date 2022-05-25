@@ -536,6 +536,7 @@ $.extend( DateTime.prototype, {
 					else if ( button.parents('.'+classPrefix+'-time').length ) {
 						var val = button.data('value');
 						var unit = button.data('unit');
+						var hoursAllowed = that.c.hoursAvailable;
 
 						d = that._needValue();
 
@@ -1079,7 +1080,7 @@ $.extend( DateTime.prototype, {
 				'selected' :
 				'';
 			
-			if (allowed && $.inArray(value, allowed) === -1) {
+			if (typeof value === 'number' && allowed && $.inArray(value, allowed) === -1) {
 				selected += ' disabled';
 			}
 
