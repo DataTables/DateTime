@@ -536,7 +536,6 @@ $.extend( DateTime.prototype, {
 					else if ( button.parents('.'+classPrefix+'-time').length ) {
 						var val = button.data('value');
 						var unit = button.data('unit');
-						var hoursAllowed = that.c.hoursAvailable;
 
 						d = that._needValue();
 
@@ -986,6 +985,13 @@ $.extend( DateTime.prototype, {
 	_needValue: function () {
 		if ( ! this.s.d ) {
 			this.s.d = this._dateToUtc( new Date() );
+
+			if (! this.s.parts.time) {
+				this.s.d.setUTCHours(0);
+				this.s.d.setUTCMinutes(0);
+				this.s.d.setSeconds(0);
+				this.s.d.setMilliseconds(0);
+			}
 		}
 
 		return this.s.d;
