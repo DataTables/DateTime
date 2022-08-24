@@ -2,15 +2,17 @@
 <dt-example table-type="html" table-class="display nowrap" order="9">
 
 <css lib="datetime"/>
-<js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/dayjs.min.js"/>
-<js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.17/plugin/utc.js"/>
+<js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/dayjs.min.js"/>
+<js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/plugin/utc.js"/>
+<js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/plugin/customParseFormat.min.js"/>
 <js lib="jquery datetime">
 <![CDATA[
 
 dayjs.extend(dayjs_plugin_utc);
+dayjs.extend(dayjs_plugin_customParseFormat);
 
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+    window.allan = new DateTime(document.getElementById('test'), {
         format: 'D/M/YYYY'
     });
 });
@@ -23,12 +25,12 @@ $(document).ready(function() {
 
 This example shows the date / time input with [DayJS](https://github.com/iamkun/dayjs) used to provide the date / time formatting.
 
-Please note that you also need the DayJS `UTC` plugin.
+Please note that you also need the DayJS `UTC` and `customParseFormat` plug-ins.
 
 ]]></info>
 
 <custom-table>
-    <input id="test" type="text" value="17/1/2020" />
+    <input id="test" type="text" value="17/1/2022" />
 </custom-table>
 
 </dt-example>
