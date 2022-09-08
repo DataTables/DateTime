@@ -11,29 +11,6 @@
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
  */
-(function( factory ){
-	if ( typeof define === 'function' && define.amd ) {
-		// AMD
-		define( ['jquery'], function ( $ ) {
-			return factory( $, window, document );
-		} );
-	}
-	else if ( typeof exports === 'object' ) {
-		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
-			}
-
-			return factory( $, root, root.document );
-		};
-	}
-	else {
-		// Browser
-		factory( jQuery, window, document );
-	}
-}(function( $, window, document, undefined ) {
-'use strict';
 
 // Supported formatting and parsing libraries:
 // * Moment
@@ -1570,7 +1547,3 @@ if ($.fn.dataTable) {
 		$.fn.dataTable.Editor.DateTime = DateTime;
 	}
 }
-
-return DateTime;
-
-}));

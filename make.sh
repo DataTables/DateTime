@@ -29,7 +29,7 @@ fi
 
 ./node_modules/gulp/bin/gulp.js
 
-js_compress dist/dataTables.dateTime.js
+js_wrap dist/dataTables.dateTime.js "jquery"
 css_compress dist/dataTables.dateTime.css
 
 if [ ! -d $OUT_DIR ]; then
@@ -39,6 +39,7 @@ if [ ! -d $OUT_DIR ]; then
 fi
 
 rsync -r dist/*.js $OUT_DIR/js
+rsync -r dist/*.mjs $OUT_DIR/js
 rsync -r dist/*.css $OUT_DIR/css
 
 # Copy and build examples
