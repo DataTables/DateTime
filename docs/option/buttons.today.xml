@@ -9,7 +9,7 @@
 	</default>
 
 	<description>
-		When enabled, this option will cause DateTime to show a button (text set by `dt-init i18n.today`) which the end user can activate to shift the calendar view to show today's date.
+		When enabled, this option will cause DateTime to show a button (text set by `de-init i18n.today`) which the end user can activate to shift the calendar view to show today's date.
 
 		Note that the value of the field does not change when activating this button.
 	</description>
