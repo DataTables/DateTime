@@ -3,6 +3,7 @@
   "version": "1.1.2",
   "description": "DateTime picker for DataTables.net",
   "main": "dist/dataTables.dateTime.js",
+  "module": "dist/dataTables.dateTime.mjs",
   "style": "dist/dataTables.dateTime.css",
   "types": "js/dataTables.dateTime.d.ts",
   "scripts": {
