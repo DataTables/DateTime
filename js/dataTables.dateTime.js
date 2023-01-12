@@ -250,8 +250,8 @@ $.extend( DateTime.prototype, {
 		else if ( typeof set === 'string' ) {
 			// luxon uses different method names so need to be able to call them
 			if(dateLib && dateLib == window.luxon) {
-				var luxDT = dateLib.DateTime.fromFormat(set, this.c.format)
-				this.s.d = luxDT.isValid ? luxDT.toJSDate() : null;
+				var luxDT = dateLib.DateTime.fromFormat(set, this.c.format);
+				this.s.d = luxDT.isValid ? this._dateToUtc(luxDT.toJSDate()) : null;
 			}
 			else if ( dateLib ) {
 				// Use moment, dayjs or luxon if possible (even for ISO8601 strings, since it
@@ -628,7 +628,7 @@ $.extend( DateTime.prototype, {
 		// Can't use toDateString as that converts to local time
 		// luxon uses different method names so need to be able to call them
 		return dateLib && dateLib == window.luxon
-			? dateLib.DateTime.fromJSDate(a).toISODate() === dateLib.DateTime.fromJSDate(b).toISODate()
+			? dateLib.DateTime.fromJSDate(a).toUTC().toISODate() === dateLib.DateTime.fromJSDate(b).toUTC().toISODate()
 			: this._dateToUtcString(a) === this._dateToUtcString(b);
 	},
 
@@ -694,7 +694,7 @@ $.extend( DateTime.prototype, {
 	_dateToUtcString: function ( d ) {
 		// luxon uses different method names so need to be able to call them
 		return dateLib && dateLib == window.luxon
-			? dateLib.DateTime.fromJSDate(d).toISODate()
+			? dateLib.DateTime.fromJSDate(d).toUTC().toISODate()
 			: d.getUTCFullYear()+'-'+
 				this._pad(d.getUTCMonth()+1)+'-'+
 				this._pad(d.getUTCDate());
@@ -1308,7 +1308,7 @@ $.extend( DateTime.prototype, {
 		// luxon uses different method names so need to be able to call them. This happens a few time later in this method too
 		var luxDT = null
 		if (dateLib && dateLib == window.luxon) {
-			luxDT = dateLib.DateTime.fromJSDate(d);
+			luxDT = dateLib.DateTime.fromJSDate(d).toUTC();
 		}
 
 		var hours = luxDT != null
@@ -1422,7 +1422,7 @@ $.extend( DateTime.prototype, {
 		// luxon uses different method names so need to be able to call them.
 		if (date) {
 			out = dateLib && dateLib == window.luxon
-			? dateLib.DateTime.fromJSDate(this.s.d).toFormat(this.c.format)
+			? dateLib.DateTime.fromJSDate(this.s.d).toUTC().toFormat(this.c.format)
 			: dateLib ?
 				dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
 				date.getUTCFullYear() +'-'+
