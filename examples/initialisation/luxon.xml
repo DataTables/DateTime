@@ -7,7 +7,7 @@
 <![CDATA[
 
 $(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+    window.allan = new DateTime(document.getElementById('test'), {
         format: 'd/M/yyyy, HH:mm'
     });
 });

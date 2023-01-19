@@ -21,7 +21,7 @@ describe('dateTime - api - val()', function () {
 		dt.html('input');
 		it('Ensure its a function', function () {
 			el = new DateTime(document.getElementById('test'));
-			expect(typeof el.min).toBe('function');
+			expect(typeof el.val).toBe('function');
 		});
 		it('Getter returns null if no date set', function () {
 			expect(el.val()).toBe(null);

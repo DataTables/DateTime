@@ -252,25 +252,7 @@ $.extend( DateTime.prototype, {
 			this.s.d = this._dateToUtc(new Date());
 		}
 		else if ( typeof set === 'string' ) {
-			// luxon uses different method names so need to be able to call them
-			if(dateLib && dateLib == window.luxon) {
-				var luxDT = dateLib.DateTime.fromFormat(set, this.c.format);
-				this.s.d = luxDT.isValid ? this._dateToUtc(luxDT.toJSDate()) : null;
-			}
-			else if ( dateLib ) {
-				// Use moment, dayjs or luxon if possible (even for ISO8601 strings, since it
-				// will correctly handle 0000-00-00 and the like)
-				var m = dateLib.utc( set, this.c.format, this.c.locale, this.c.strict );
-				this.s.d = m.isValid() ? m.toDate() : null;
-			}
-			else {
-				// Else must be using ISO8601 without a date library (constructor would
-				// have thrown an error otherwise)
-				var match = set.match(/(\d{4})\-(\d{2})\-(\d{2})/ );
-				this.s.d = match ?
-					new Date( Date.UTC(match[1], match[2]-1, match[3]) ) :
-					null;
-			}
+			this.s.d = this._convert(set, this.c.format, null);
 		}
 
 		if ( write || write === undefined ) {
@@ -300,6 +282,25 @@ $.extend( DateTime.prototype, {
 		return this;
 	},
 
+	/**
+	 * Similar to `val()` but uses a given date / time format
+	 *
+	 * @param format Format to get the data as (getter) or that is input (setter)
+	 * @param val Value to write (if undefined, used as a getter)
+	 * @returns 
+	 */
+	valFormat: function (format, val) {
+		if (! val) {
+			return this._convert(this.val(), null, format);
+		}
+
+		// Convert from the format given here to the instance's configured format
+		this.val(
+			this._convert(val, format, null)
+		);
+
+		return this;
+	},
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 * Constructor
@@ -631,9 +632,73 @@ $.extend( DateTime.prototype, {
 	_compareDates: function( a, b ) {
 		// Can't use toDateString as that converts to local time
 		// luxon uses different method names so need to be able to call them
-		return dateLib && dateLib == window.luxon
+		return this._isLuxon()
 			? dateLib.DateTime.fromJSDate(a).toUTC().toISODate() === dateLib.DateTime.fromJSDate(b).toUTC().toISODate()
 			: this._dateToUtcString(a) === this._dateToUtcString(b);
+	},
+
+	/**
+	 * Convert from one format to another
+	 *
+	 * @param {string|Date} val Value 
+	 * @param {string|null} from Format to convert from. If null a `Date` must be given
+	 * @param {string|null} to Format to convert to. If null a `Date` will be returned
+	 * @returns {string|Date} Converted value
+	 */
+	_convert(val, from, to) {
+		if (! val) {
+			return val;
+		}
+
+		if (! dateLib) {
+			// Note that in here from and to can either be null or YYYY-MM-DD
+			// They cannot be anything else
+			if ((! from && ! to) || (from && to)) {
+				// No conversion
+				return val;
+			}
+			else if (! from) {
+				// Date in, string back
+				return val.getUTCFullYear() +'-'+
+					this._pad(val.getUTCMonth() + 1) +'-'+
+					this._pad(val.getUTCDate());
+			}
+			else { // (! to)
+				// String in, date back
+				var match = val.match(/(\d{4})\-(\d{2})\-(\d{2})/ );
+				return match ?
+					new Date( Date.UTC(match[1], match[2]-1, match[3]) ) :
+					null;
+			}
+		}
+		else if (this._isLuxon()) {
+			// Luxon
+			var dtLux = val instanceof Date
+				? dateLib.DateTime.fromJSDate(val).toUTC()
+				: dateLib.DateTime.fromFormat(val, from);
+
+			if (! dtLux.isValid) {
+				return null;
+			}
+
+			return to
+				? dtLux.toFormat(to)
+				: this._dateToUtc(dtLux.toJSDate());
+		}
+		else {
+			// Moment / DayJS
+			var dtMo = val instanceof Date
+				? dateLib.utc( val, undefined, this.c.locale, this.c.strict )
+				: dateLib.utc( val, from, this.c.locale, this.c.strict );
+			
+			if (! dtMo.isValid()) {
+				return null;
+			}
+
+			return to
+				? dtMo.format(to)
+				: dtMo.toDate();
+		}
 	},
 
 	/**
@@ -697,7 +762,7 @@ $.extend( DateTime.prototype, {
 	 */
 	_dateToUtcString: function ( d ) {
 		// luxon uses different method names so need to be able to call them
-		return dateLib && dateLib == window.luxon
+		return this._isLuxon()
 			? dateLib.DateTime.fromJSDate(d).toUTC().toISODate()
 			: d.getUTCFullYear()+'-'+
 				this._pad(d.getUTCMonth()+1)+'-'+
@@ -955,6 +1020,17 @@ $.extend( DateTime.prototype, {
 		var weekNum = Math.ceil( ( ( (date - oneJan) / 86400000) + 1)/7 );
 
 		return '<td class="'+this.c.classPrefix+'-week">' + weekNum + '</td>';
+	},
+
+	/**
+	 * Determine if Luxon is being used
+	 *
+	 * @returns Flag for Luxon
+	 */
+	_isLuxon: function () {
+		return dateLib && dateLib.DateTime && dateLib.Duration && dateLib.Settings
+			? true
+			: false;
 	},
 
 	/**
@@ -1311,7 +1387,7 @@ $.extend( DateTime.prototype, {
 		
 		// luxon uses different method names so need to be able to call them. This happens a few time later in this method too
 		var luxDT = null
-		if (dateLib && dateLib == window.luxon) {
+		if (this._isLuxon()) {
 			luxDT = dateLib.DateTime.fromJSDate(d).toUTC();
 		}
 
@@ -1421,17 +1497,8 @@ $.extend( DateTime.prototype, {
 		var date = this.s.d;
 		var out = '';
 
-		// Use moment, dayjs or luxon if possible - otherwise it must be ISO8601 (or the
-		// constructor would have thrown an error)
-		// luxon uses different method names so need to be able to call them.
 		if (date) {
-			out = dateLib && dateLib == window.luxon
-			? dateLib.DateTime.fromJSDate(this.s.d).toUTC().toFormat(this.c.format)
-			: dateLib ?
-				dateLib.utc( date, undefined, this.c.locale, this.c.strict ).format( this.c.format ) :
-				date.getUTCFullYear() +'-'+
-					this._pad(date.getUTCMonth() + 1) +'-'+
-					this._pad(date.getUTCDate());
+			out = this._convert(date, null, this.c.format);
 		}
 
 		this.dom.input
