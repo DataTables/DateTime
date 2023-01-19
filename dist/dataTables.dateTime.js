@@ -98,25 +98,16 @@ var DateTime = function ( input, opts ) {
 		this.c.maxDate = new Date(this.c.maxDate);
 	}
 
-	var timeBlock = function ( type ) {
-		return '<div class="'+classPrefix+'-timeblock">'+
-			'</div>';
-	};
-
-	var gap = function () {
-		return '<span>:</span>';
-	};
-
 	// DOM structure
 	var structure = $(
 		'<div class="'+classPrefix+'">'+
 			'<div class="'+classPrefix+'-date">'+
 				'<div class="'+classPrefix+'-title">'+
 					'<div class="'+classPrefix+'-iconLeft">'+
-						'<button type="button" title="'+i18n.previous+'">'+i18n.previous+'</button>'+
+						'<button type="button"></button>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-iconRight">'+
-						'<button type="button" title="'+i18n.next+'">'+i18n.next+'</button>'+
+						'<button type="button"></button>'+
 					'</div>'+
 					'<div class="'+classPrefix+'-label">'+
 						'<span></span>'+
@@ -128,8 +119,8 @@ var DateTime = function ( input, opts ) {
 					'</div>'+
 				'</div>'+
 				'<div class="'+classPrefix+'-buttons">'+
-					'<a class="'+classPrefix+'-clear">'+i18n.clear+'</a>'+
-					'<a class="'+classPrefix+'-today">'+i18n.today+'</a>'+
+					'<a class="'+classPrefix+'-clear"></a>'+
+					'<a class="'+classPrefix+'-today"></a>'+
 				'</div>'+
 				'<div class="'+classPrefix+'-calendar"></div>'+
 			'</div>'+
@@ -149,9 +140,11 @@ var DateTime = function ( input, opts ) {
 		calendar:  structure.find( '.'+classPrefix+'-calendar' ),
 		time:      structure.find( '.'+classPrefix+'-time' ),
 		error:     structure.find( '.'+classPrefix+'-error' ),
-		buttons:     structure.find( '.'+classPrefix+'-buttons' ),
+		buttons:   structure.find( '.'+classPrefix+'-buttons' ),
 		clear:     structure.find( '.'+classPrefix+'-clear' ),
 		today:     structure.find( '.'+classPrefix+'-today' ),
+		previous:  structure.find( '.'+classPrefix+'-iconLeft' ),
+		next:      structure.find( '.'+classPrefix+'-iconRight' ),
 		input:     $(input)
 	};
 
@@ -1281,6 +1274,12 @@ $.extend( DateTime.prototype, {
 
 		this._options( 'month', this._range( 0, 11 ), i18n.months );
 		this._options( 'year', this._range( i, j ) );
+
+		// Set the language strings in case any have changed
+		this.dom.today.text(i18n.today);
+		this.dom.clear.text(i18n.clear);
+		this.dom.previous.attr('title', i18n.previous);
+		this.dom.next.attr('title', i18n.next);
 	},
 
 	/**
