@@ -48,6 +48,8 @@ export class DateTime {
 	owns(el: HTMLElement): boolean;
 	val(): Date;
 	val(set: string | Date): this;
+	valFormat(format: string): string;
+	valFormat(format: string, val: string): this;
 }
 
 export default DateTime;

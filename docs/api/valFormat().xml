@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="DateTime">
+	<name>valFormat()</name>
+	<summary>Get / set a formatted value for the instance.</summary>
+	<since>1.3.0</since>
+
+	<type type="function">
+		<signature>valFormat(format)</signature>
+		<description>Get the value of the DateTime instance.</description>
+		<parameter type="string" name="format">
+			The format that you want the date/time value in.
+		</parameter>
+		<returns type="string">The formatted value.</returns>
+	</type>
+	<type type="function">
+		<signature>valFormat(format, set)</signature>
+		<description>Set the value of the DateTime instance.</description>
+		<parameter type="string" name="format">
+			The format that the date / time value string is currently in.
+		</parameter>
+		<parameter type="string" name="set">
+			The value to be set, in the format given by the first parameter.
+		</parameter>
+		<returns type="DateTime">Self for chaining.</returns>
+	</type>
+
+	<description>
+		This method can be used to get or set the value for the DateTime instance, in a specific format. For example, it can be used to set a value given in a format that is not ISO8601, or you could read back a value in some other format (i.e. a localised human readable format).
+		
+		The formatting options available will depend upon the date / time library being used (e.g. Moment.js or Luxon).
+	</description>
+
+	<example title="Get a value from the input with a specific format"><![CDATA[
+
+let el = document.getElementById('example');
+let dt = new DateTime(el);
+
+el.addEventListener('change', function () {
+	console.log('Selected value is: ', dt.valFormat('MM-DD-YYYY'));
+} );
+
+]]></example>
+
+<example title="Set a value into the input from a formatted string"><![CDATA[
+
+let dt = new DateTime(document.getElementById('example'));
+
+dt.valFormat('MM-DD-YY', '03-02-23");
+
+]]></example>
+
+</dt-api>
