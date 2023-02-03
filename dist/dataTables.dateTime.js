@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.2.0
+/*! DateTime picker for DataTables.net v1.3.0
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -40,7 +40,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.2.0
+ * @version     1.3.0
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -1276,10 +1276,16 @@ $.extend( DateTime.prototype, {
 		this._options( 'year', this._range( i, j ) );
 
 		// Set the language strings in case any have changed
-		this.dom.today.text(i18n.today);
-		this.dom.clear.text(i18n.clear);
-		this.dom.previous.attr('title', i18n.previous);
-		this.dom.next.attr('title', i18n.next);
+		this.dom.today.text(i18n.today).text(i18n.today);
+		this.dom.clear.text(i18n.clear).text(i18n.clear);
+		this.dom.previous
+			.attr('title', i18n.previous)
+			.children('button')
+			.text(i18n.previous);
+		this.dom.next
+			.attr('title', i18n.next)
+			.children('button')
+			.text(i18n.next);
 	},
 
 	/**
@@ -1624,7 +1630,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.2.0';
+DateTime.version = '1.3.0';
 
 // Global export - if no conflicts
 if (! window.DateTime) {
