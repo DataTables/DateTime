@@ -283,7 +283,6 @@ $.extend( DateTime.prototype, {
 			return this._convert(this.val(), null, format);
 		}
 
-		console.log('convert', val, this._convert(val, format, null), format);
 		// Convert from the format given here to the instance's configured format
 		this.val(
 			this._convert(val, format, null)
