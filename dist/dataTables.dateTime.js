@@ -317,6 +317,7 @@ $.extend( DateTime.prototype, {
 			return this._convert(this.val(), null, format);
 		}
 
+		console.log('convert', val, this._convert(val, format, null), format);
 		// Convert from the format given here to the instance's configured format
 		this.val(
 			this._convert(val, format, null)
@@ -706,13 +707,13 @@ $.extend( DateTime.prototype, {
 
 			return to
 				? dtLux.toFormat(to)
-				: this._dateToUtc(dtLux.toJSDate());
+				: this._dateLocalToUtc(dtLux.toJSDate());
 		}
 		else {
 			// Moment / DayJS
 			var dtMo = val instanceof Date
 				? dateLib.utc( val, undefined, this.c.locale, this.c.strict )
-				: dateLib.utc( val, from, this.c.locale, this.c.strict );
+				: dateLib( val, from, this.c.locale, this.c.strict );
 			
 			if (! dtMo.isValid()) {
 				return null;
@@ -720,7 +721,7 @@ $.extend( DateTime.prototype, {
 
 			return to
 				? dtMo.format(to)
-				: dtMo.toDate();
+				: this._dateLocalToUtc(dtMo.toDate());
 		}
 	},
 
@@ -774,6 +775,18 @@ $.extend( DateTime.prototype, {
 		return new Date( Date.UTC(
 			s.getFullYear(), s.getMonth(), s.getDate(),
 			s.getHours(), s.getMinutes(), s.getSeconds()
+		) );
+	},
+
+	/**
+	 * Shift a date from local time
+	 * @param {Date} s Date
+	 * @returns Date
+	 */
+	_dateLocalToUtc: function ( s ) {
+		return new Date( Date.UTC(
+			s.getUTCFullYear(), s.getUTCMonth(), s.getUTCDate(),
+			s.getUTCHours(), s.getUTCMinutes(), s.getSeconds()
 		) );
 	},
 
