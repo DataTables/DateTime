@@ -35,7 +35,7 @@ describe('dateTime - options - disableDays', function () {
 		it('Function', function () {
 			new DateTime(document.getElementById('value'), {
 				disableDays: function (day) {
-					return day.toString().includes('Oct 0')? true : false;
+					return day.toUTCString().match(/0\d Oct/)? true : false;
 				}
 			});
 			$('#value').click();

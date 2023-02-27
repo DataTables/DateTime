@@ -245,7 +245,9 @@ $.extend( DateTime.prototype, {
 			this.s.d = this._dateToUtc(new Date());
 		}
 		else if ( typeof set === 'string' ) {
-			this.s.d = this._convert(set, this.c.format, null);
+			this.s.d = this._dateToUtc(
+				this._convert(set, this.c.format, null)
+			);
 		}
 
 		if ( write || write === undefined ) {
@@ -660,7 +662,7 @@ $.extend( DateTime.prototype, {
 				// String in, date back
 				var match = val.match(/(\d{4})\-(\d{2})\-(\d{2})/ );
 				return match ?
-					new Date( Date.UTC(match[1], match[2]-1, match[3]) ) :
+					new Date( match[1], match[2]-1, match[3] ) :
 					null;
 			}
 		}
@@ -676,7 +678,7 @@ $.extend( DateTime.prototype, {
 
 			return to
 				? dtLux.toFormat(to)
-				: this._dateLocalToUtc(dtLux.toJSDate());
+				: dtLux.toJSDate();
 		}
 		else {
 			// Moment / DayJS
@@ -690,7 +692,7 @@ $.extend( DateTime.prototype, {
 
 			return to
 				? dtMo.format(to)
-				: this._dateLocalToUtc(dtMo.toDate());
+				: dtMo.toDate();
 		}
 	},
 
@@ -741,21 +743,13 @@ $.extend( DateTime.prototype, {
 	 * @return {Date}   Shifted date
 	 */
 	_dateToUtc: function ( s ) {
+		if (! s) {
+			return s;
+		}
+
 		return new Date( Date.UTC(
 			s.getFullYear(), s.getMonth(), s.getDate(),
 			s.getHours(), s.getMinutes(), s.getSeconds()
-		) );
-	},
-
-	/**
-	 * Shift a date from local time
-	 * @param {Date} s Date
-	 * @returns Date
-	 */
-	_dateLocalToUtc: function ( s ) {
-		return new Date( Date.UTC(
-			s.getUTCFullYear(), s.getUTCMonth(), s.getUTCDate(),
-			s.getUTCHours(), s.getUTCMinutes(), s.getSeconds()
 		) );
 	},
 

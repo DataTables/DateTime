@@ -11,8 +11,8 @@ describe('dateTime - options - format', function () {
 	function getToday(rev = false) {
 		let d = new Date();
 		return rev
-			? pad(d.getDate()) + '-' + pad(1 + d.getMonth()) + '-' + d.getFullYear()
-			: d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + pad(d.getDate());
+			? pad(d.getUTCDate()) + '-' + pad(1 + d.getUTCMonth()) + '-' + d.getUTCFullYear()
+			: d.getUTCFullYear() + '-' + pad(1 + d.getUTCMonth()) + '-' + pad(d.getUTCDate());
 	}
 
 	function getNow() {
@@ -24,11 +24,11 @@ describe('dateTime - options - format', function () {
 			'-' +
 			pad(d.getDate()) +
 			' ' +
-			pad(d.getUTCHours()) +
+			pad(d.getHours()) +
 			':' +
-			pad(d.getUTCMinutes()) +
+			pad(d.getMinutes()) +
 			':' +
-			pad(d.getUTCSeconds())
+			pad(d.getSeconds())
 		);
 	}
 
@@ -74,10 +74,6 @@ describe('dateTime - options - format', function () {
 			$('.now button span').click();
 			time2 = getNow();
 			let val = $('#test').val();
-
-			console.log(time1);
-			console.log(time2);
-			console.log(val);
 
 			expect(val == time1 || val == time2).toBe(true);
 		});

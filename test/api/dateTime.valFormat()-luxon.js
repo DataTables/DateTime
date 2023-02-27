@@ -12,7 +12,7 @@ describe('dateTime - api - valFormat() Luxon', function () {
 
 	// TK COLIN make this a generic function somewhere as repeated
 	function format(d) {
-		return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + pad(d.getDate());
+		return d.getUTCFullYear() + '-' + pad(1 + d.getUTCMonth()) + '-' + pad(d.getUTCDate());
 	}
 
 	let today = format(new Date());

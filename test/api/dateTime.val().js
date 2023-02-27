@@ -12,7 +12,7 @@ describe('dateTime - api - val()', function () {
 
 	// TK COLIN make this a generic function somewhere as repeated
 	function format(d) {
-		return d.getFullYear() + '-' + pad(1 + d.getMonth()) + '-' + pad(d.getDate());
+		return d.getUTCFullYear() + '-' + pad(1 + d.getUTCMonth()) + '-' + pad(d.getUTCDate());
 	}
 
 	let today = format(new Date());
@@ -53,14 +53,14 @@ describe('dateTime - api - val()', function () {
 		it('Set time element', function () {
 			el = new DateTime(document.getElementById('test'), {format: 'HH:mm'});
 			el.val('11:22');
-			expect(el.val().getHours()).toBe(11);
-			expect(el.val().getMinutes()).toBe(22);
+			expect(el.val().getUTCHours()).toBe(11);
+			expect(el.val().getUTCMinutes()).toBe(22);
 		});
 		it('... set when opened', function () {
 			$('#test').click();
 			el.val('10:33');
-			expect(el.val().getHours()).toBe(10);
-			expect(el.val().getMinutes()).toBe(33);
+			expect(el.val().getUTCHours()).toBe(10);
+			expect(el.val().getUTCMinutes()).toBe(33);
 		});
 		it('... updates display', function () {
 			expect($('.dt-datetime-hours .selected').text()).toBe('10');
