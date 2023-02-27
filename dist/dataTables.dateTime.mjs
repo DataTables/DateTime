@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.3.0
+/*! DateTime picker for DataTables.net v1.3.1
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -10,7 +10,7 @@ import $ from 'jquery';
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.3.0
+ * @version     1.3.1
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -1606,11 +1606,16 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.3.0';
+DateTime.version = '1.3.1';
 
 // Global export - if no conflicts
 if (! window.DateTime) {
 	window.DateTime = DateTime;
+}
+
+// Global DataTable
+if (window.DataTable) {
+	window.DataTable.DateTime = DateTime;
 }
 
 // Make available via jQuery
