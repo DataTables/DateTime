@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.3.1
+/*! DateTime picker for DataTables.net v1.3.2-dev
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -13,21 +13,29 @@
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				// CommonJS environments without a window global must pass a
-				// root. This will give an error otherwise
-				root = window;
-			}
+		var jq = require('jquery');
+		var cjsRequires = function (root, $) {		};
 
-			if ( ! $ ) {
-				$ = typeof window !== 'undefined' ? // jQuery's factory checks for a global window
-					require('jquery') :
-					require('jquery')( root );
-			}
+		if (typeof window !== 'undefined') {
+			module.exports = function (root, $) {
+				if ( ! root ) {
+					// CommonJS environments without a window global must pass a
+					// root. This will give an error otherwise
+					root = window;
+				}
 
-			return factory( $, root, root.document );
-		};
+				if ( ! $ ) {
+					$ = jq( root );
+				}
+
+				cjsRequires( root, $ );
+				return factory( $, root, root.document );
+			};
+		}
+		else {
+			cjsRequires( window, jq );
+			module.exports = factory( jq, window, window.document );
+		}
 	}
 	else {
 		// Browser
@@ -40,7 +48,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.3.1
+ * @version     1.3.2-dev
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -69,6 +77,12 @@ var dateLib;
  * options based on the `DateTime.defaults` object.
  */
 var DateTime = function ( input, opts ) {
+	// Check if called with a window or jQuery object for DOM less applications
+	// This is for backwards compatibility with CommonJS loader
+	if (DateTime.factory(input, opts)) {
+		return DateTime;
+	}
+
 	// Attempt to auto detect the formatting library (if there is one). Having it in
 	// the constructor allows load order independence.
 	if (typeof dateLib === 'undefined') {
@@ -1636,7 +1650,31 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.3.1';
+DateTime.version = '1.3.2-dev';
+
+/**
+ * CommonJS factory function pass through. Matches DataTables.
+ * @param {*} root Window
+ * @param {*} jq jQUery
+ * @returns {boolean} Indicator
+ */
+DateTime.factory = function (root, jq) {
+	var is = false;
+
+	// Test if the first parameter is a window object
+	if (root && root.document) {
+		window = root;
+		document = root.document;
+	}
+
+	// Test if the second parameter is a jQuery object
+	if (jq && jq.fn && jq.fn.jquery) {
+		$ = jq;
+		is = true;
+	}
+
+	return is;
+}
 
 // Global export - if no conflicts
 if (! window.DateTime) {

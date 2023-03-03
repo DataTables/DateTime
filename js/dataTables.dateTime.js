@@ -37,7 +37,7 @@ var dateLib;
 var DateTime = function ( input, opts ) {
 	// Check if called with a window or jQuery object for DOM less applications
 	// This is for backwards compatibility with CommonJS loader
-	if (DateTime.factory(selector, options)) {
+	if (DateTime.factory(input, opts)) {
 		return DateTime;
 	}
 
