@@ -642,7 +642,7 @@ $.extend( DateTime.prototype, {
 	 * @param {string|null} to Format to convert to. If null a `Date` will be returned
 	 * @returns {string|Date} Converted value
 	 */
-	_convert(val, from, to) {
+	_convert: function(val, from, to) {
 		if (! val) {
 			return val;
 		}
