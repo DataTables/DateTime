@@ -1,0 +1,36 @@
+{
+    "name": "datatables.net-datetime",
+    "description": "DateTime picker for DataTables.net",
+    "main": [
+        "dist/dataTables.dateTime.js"
+    ],
+    "keywords": [
+        "DataTables",
+        "Date",
+        "Time"
+    ],
+    "dependencies": {
+        "jquery": ">=1.7"
+    },
+    "moduleType": [
+        "globals",
+        "amd",
+        "node"
+    ],
+    "ignore": [
+        "composer.json",
+        "datatables.json",
+        "package.json",
+        "package-lock.json",
+        "gulpfile.js",
+        "make.sh"
+    ],
+    "authors": [
+        {
+            "name": "SpryMedia Ltd",
+            "homepage": "https://datatables.net"
+        }
+    ],
+    "homepage": "https://datatables.net",
+    "license": "MIT"
+}
