@@ -645,7 +645,7 @@ $.extend( DateTime.prototype, {
 	 * @param {string|null} to Format to convert to. If null a `Date` will be returned
 	 * @returns {string|Date} Converted value
 	 */
-	_convert(val, from, to) {
+	_convert: function(val, from, to) {
 		if (! val) {
 			return val;
 		}
@@ -1545,6 +1545,11 @@ DateTime.use = function (lib) {
  * @private
  */
 DateTime._instance = 0;
+
+/**
+ * To indicate to DataTables what type of library this is
+ */
+DateTime.type = 'DateTime';
 
 /**
  * Defaults for the date time picker

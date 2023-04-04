@@ -1544,6 +1544,11 @@ DateTime.use = function (lib) {
 DateTime._instance = 0;
 
 /**
+ * To indicate to DataTables what type of library this is
+ */
+DateTime.type = 'DateTime';
+
+/**
  * Defaults for the date time picker
  *
  * @type {Object}
