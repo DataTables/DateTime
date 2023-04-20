@@ -4,7 +4,10 @@
  * License: MIT datatables.net/license/mit
  */
 
-import $ from 'jquery';
+import jQuery from 'jquery';
+
+// Allow reassignment of the $ variable
+let $ = jQuery;
 
 
 /**
