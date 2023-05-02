@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.4.1
+/*! DateTime picker for DataTables.net v1.5.0-dev
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -6,7 +6,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.4.1
+ * @version     1.5.0-dev
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -172,6 +172,28 @@ $.extend( DateTime.prototype, {
 		this.dom.input
 			.removeAttr('autocomplete')
 			.off('.datetime');
+	},
+
+	display: function (year, month) {
+		if (year !== undefined) {
+			this.s.display.setUTCFullYear(year);
+		}
+
+		if (month !== undefined) {
+			this.s.display.setUTCMonth(month - 1);
+		}
+
+		if (year !== undefined || month !== undefined) {
+			this._setTitle();
+			this._setCalander();
+
+			return this;
+		}
+
+		return {
+			month: this.s.display.getUTCMonth() + 1,
+			year: this.s.display.getUTCFullYear()
+		};
 	},
 
 	errorMsg: function ( msg ) {
@@ -1613,7 +1635,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.4.1';
+DateTime.version = '1.5.0-dev';
 
 /**
  * CommonJS factory function pass through. Matches DataTables.

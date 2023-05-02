@@ -216,6 +216,28 @@ $.extend( DateTime.prototype, {
 			.off('.datetime');
 	},
 
+	display: function (year, month) {
+		if (year !== undefined) {
+			this.s.display.setUTCFullYear(year);
+		}
+
+		if (month !== undefined) {
+			this.s.display.setUTCMonth(month - 1);
+		}
+
+		if (year !== undefined || month !== undefined) {
+			this._setTitle();
+			this._setCalander();
+
+			return this;
+		}
+
+		return {
+			month: this.s.display.getUTCMonth() + 1,
+			year: this.s.display.getUTCFullYear()
+		};
+	},
+
 	errorMsg: function ( msg ) {
 		var error = this.dom.error;
 
