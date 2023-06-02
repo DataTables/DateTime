@@ -6,18 +6,24 @@
 <js lib="jquery datetime">
 <![CDATA[
 
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'));
-});
+$('#test').dtDateTime();
 
 ]]>
 </js>
+
+<js-vanilla>
+<![CDATA[
+
+new DateTime(document.getElementById('test'));
+
+]]>
+</js-vanilla>
 
 <title lib="DateTime">Basic initialisation</title>
 
 <info><![CDATA[
 
-This is the `de-init dateTime` extension for DataTables. It is used to select dates throughtout DataTables and it's extensions.
+This is the `de-init dateTime` extension for DataTables. It is used to select dates throughout DataTables and it's extensions.
 
 See other examples for more detail.
 

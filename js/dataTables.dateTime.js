@@ -1531,21 +1531,25 @@ $.extend( DateTime.prototype, {
 	_writeOutput: function ( focus ) {
 		var date = this.s.d;
 		var out = '';
+		var input = this.dom.input;
 
 		if (date) {
 			out = this._convert(date, null, this.c.format);
 		}
 
-		this.dom.input
-			.val( out )
-			.trigger('change', {write: date});
+		input.val( out );
+
+		// Create a DOM synthetic event. Can't use $().trigger() as
+		// that doesn't actually trigger non-jQuery event listeners
+		var event = new Event('change', {bubbles: true});
+		input[0].dispatchEvent(event);
 		
-		if ( this.dom.input.attr('type') === 'hidden' ) {
+		if ( input.attr('type') === 'hidden' ) {
 			this.val(out, false);
 		}
 
 		if ( focus ) {
-			this.dom.input.focus();
+			input.focus();
 		}
 	}
 } );

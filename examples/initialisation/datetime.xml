@@ -6,14 +6,22 @@
 <js lib="jquery datetime">
 <![CDATA[
 
-$(document).ready(function() {
-    window.d = new DateTime(document.getElementById('test'), {
-        format: 'D MMM YYYY HH:mm'
-    });
+$('#test').dtDateTime({
+    format: 'D MMM YYYY HH:mm'
 });
 
 ]]>
 </js>
+
+<js-vanilla>
+<![CDATA[
+
+new DateTime(document.getElementById('test'), {
+    format: 'D MMM YYYY HH:mm'
+});
+
+]]>
+</js-vanilla>
 
 <title lib="DateTime">Date and time</title>
 

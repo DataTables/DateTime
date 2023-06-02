@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-api library="DateTime">
+	<name>display()</name>
+	<summary>Get / set the month and year for the current display.</summary>
+	<since>1.5.0</since>
+
+	<type type="function">
+		<signature>display()</signature>
+		<description>Get the month and year of the calendar that is currently shown to the end user.</description>
+		<returns type="object">Object containing `month` and `year` properties. Note that `month` starts at 1 for January.</returns>
+	</type>
+	<type type="function">
+		<signature>display(year, month)</signature>
+		<description>Set the month / year calender to be shown to the end user.</description>
+		<parameter type="number" name="year">
+			The year to show a calendar for.
+		</parameter>
+		<parameter type="number" name="month">
+			The month to show a calendar for. Note that the range is 1-12 - i.e. January is 1, December is 12.
+		</parameter>
+		<returns type="DateTime">Self for chaining.</returns>
+	</type>
+
+	<description>
+		This method is used to programmatically control the calendar month that is shown to the end user. That can be useful for jumping around long time periods, or encouraging users to enter data in a specific month.
+
+		It might typically be used with a `change` or `focus` event listener. The get value should only relied upon when the calendar display is shown (field has focus), and the setter will only have an affect under the same condition.
+	</description>
+</dt-api>

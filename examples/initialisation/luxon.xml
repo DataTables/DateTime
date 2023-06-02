@@ -6,13 +6,22 @@
 <js lib="jquery datetime">
 <![CDATA[
 
-$(document).ready(function() {
-    window.allan = new DateTime(document.getElementById('test'), {
-        format: 'd/M/yyyy, HH:mm'
-    });
+new DateTime(document.getElementById('test'), {
+	format: 'd/M/yyyy, HH:mm'
 });
+
 ]]>
 </js>
+
+<js-vanilla>
+<![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	format: 'd/M/yyyy, HH:mm'
+});
+
+]]>
+</js-vanilla>
 
 <title lib="DateTime">Luxon formatting</title>
 

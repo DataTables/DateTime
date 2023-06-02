@@ -6,18 +6,24 @@
 <js lib="jquery datetime">
 <![CDATA[
 
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'));
-});
+$('#test').dtDateTime();
 
 ]]>
 </js>
+
+<js-vanilla>
+<![CDATA[
+
+new DateTime(document.getElementById('test'));
+
+]]>
+</js-vanilla>
 
 <title lib="DateTime">Hidden input</title>
 
 <info><![CDATA[
 
-This is the `-init dateTime`extension for DataTables. It is used to select dates throughtout DataTables and it's extensions.
+This example demonstrates DateTime being used with a hidden `-tag input`. The picker is shown on the page rather than being toggled by the click on an `-tag input` element.
 
 ]]></info>
 

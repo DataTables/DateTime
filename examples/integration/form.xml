@@ -5,30 +5,49 @@
 
 <js lib="jquery moment datetime">
 <![CDATA[
+new DateTime('#inputDate', {
+	format: 'MMMM Do YYYY'
+});
+new DateTime('#inputTime', {
+	format: 'h:mm a'
+});
 
-$(document).ready(function() {
-	new DateTime($('#inputDate'), {
-		format: 'MMMM Do YYYY'
-	});
-	new DateTime($('#inputTime'), {
-		format: 'h:mm a'
-	});
+$('#appointment').on('submit', function (e) {
+	e.preventDefault();
 
-	$('#appointment').on('submit', function (e) {
-		e.preventDefault();
+	var name = $('#inputName').val();
+	var phone = $('#inputPhone').val();
+	var date = $('#inputDate').val();
+	var time = $('#inputTime').val();
 
-		alert(
-			'Making an appointment for ' +
-			$('#inputName').val() +
-			' (' + $('#inputPhone').val() + ') on ' +
-			$('#inputDate').val() + ' at ' +
-			$('#inputTime').val()
-		);
-	});
+	alert('Making an appointment for ' + name + ' (' + phone + ') on ' + date + ' at ' + time);
 });
 
 ]]>
 </js>
+
+<js-vanilla>
+<![CDATA[
+new DateTime('#inputDate', {
+	format: 'MMMM Do YYYY'
+});
+new DateTime('#inputTime', {
+	format: 'h:mm a'
+});
+
+document.querySelector('#appointment').addEventListener('submit', function (e) {
+	e.preventDefault();
+
+	let name = document.querySelector('#inputName').value;
+	let phone = document.querySelector('#inputPhone').value;
+	let date = document.querySelector('#inputDate').value;
+	let time = document.querySelector('#inputTime').value;
+
+	alert('Making an appointment for ' + name + ' (' + phone + ') on ' + date + ' at ' + time);
+});
+
+]]>
+</js-vanilla>
 
 <title lib="DateTime">Use in a form</title>
 

@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.4.1
+/*! DateTime picker for DataTables.net v1.5.0-dev
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -48,7 +48,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.4.1
+ * @version     1.5.0-dev
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -1573,21 +1573,25 @@ $.extend( DateTime.prototype, {
 	_writeOutput: function ( focus ) {
 		var date = this.s.d;
 		var out = '';
+		var input = this.dom.input;
 
 		if (date) {
 			out = this._convert(date, null, this.c.format);
 		}
 
-		this.dom.input
-			.val( out )
-			.trigger('change', {write: date});
+		input.val( out );
+
+		// Create a DOM synthetic event. Can't use $().trigger() as
+		// that doesn't actually trigger non-jQuery event listeners
+		var event = new Event('change', {bubbles: true});
+		input[0].dispatchEvent(event);
 		
-		if ( this.dom.input.attr('type') === 'hidden' ) {
+		if ( input.attr('type') === 'hidden' ) {
 			this.val(out, false);
 		}
 
 		if ( focus ) {
-			this.dom.input.focus();
+			input.focus();
 		}
 	}
 } );
@@ -1677,7 +1681,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.4.1';
+DateTime.version = '1.5.0-dev';
 
 /**
  * CommonJS factory function pass through. Matches DataTables.

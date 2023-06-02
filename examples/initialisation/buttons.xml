@@ -6,17 +6,28 @@
 <js lib="jquery datetime">
 <![CDATA[
 
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
-		buttons: {
-			today: true,
-			clear: true
-		}
-	});
+$('#test').dtDateTime({
+	buttons: {
+		today: true,
+		clear: true
+	}
 });
 
 ]]>
 </js>
+
+<js-vanilla>
+<![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	buttons: {
+		today: true,
+		clear: true
+	}
+});
+
+]]>
+</js-vanilla>
 
 <title lib="DateTime">Action buttons (today and clear)</title>
 

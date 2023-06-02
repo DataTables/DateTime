@@ -6,19 +6,58 @@
 <js lib="jquery datetime">
 <![CDATA[
 
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
-		i18n: {
-			previous: 'Précédent',
-			next:     'Premier',
-			months:   [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
-			weekdays: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ]
-		}
-	});
+$('#test').dtDateTime({
+	i18n: {
+		previous: 'Précédent',
+		next: 'Premier',
+		months: [
+			'Janvier',
+			'Février',
+			'Mars',
+			'Avril',
+			'Mai',
+			'Juin',
+			'Juillet',
+			'Août',
+			'Septembre',
+			'Octobre',
+			'Novembre',
+			'Décembre'
+		],
+		weekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
+	}
 });
 
 ]]>
 </js>
+
+<js-vanilla>
+<![CDATA[
+
+new DateTime(document.getElementById('test'), {
+	i18n: {
+		previous: 'Précédent',
+		next: 'Premier',
+		months: [
+			'Janvier',
+			'Février',
+			'Mars',
+			'Avril',
+			'Mai',
+			'Juin',
+			'Juillet',
+			'Août',
+			'Septembre',
+			'Octobre',
+			'Novembre',
+			'Décembre'
+		],
+		weekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
+	}
+});
+
+]]>
+</js-vanilla>
 
 <title lib="DateTime">Internationalisation</title>
 

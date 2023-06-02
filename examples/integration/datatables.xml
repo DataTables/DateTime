@@ -5,48 +5,83 @@
 
 <js lib="jquery datatables moment datetime">
 <![CDATA[
-
 var minDate, maxDate;
 
 // Custom filtering function which will search data in column four between two values
-$.fn.dataTable.ext.search.push(
-	function( settings, data, dataIndex ) {
-		var min = minDate.val();
-		var max = maxDate.val();
-		var date = new Date( data[4] );
+DataTable.ext.search.push(function (settings, data, dataIndex) {
+	var min = minDate.val();
+	var max = maxDate.val();
+	var date = new Date(data[4]);
 
-		if (
-			( min === null && max === null ) ||
-			( min === null && date <= max ) ||
-			( min <= date   && max === null ) ||
-			( min <= date   && date <= max )
-		) {
-			return true;
-		}
-		return false;
+	if (
+		(min === null && max === null) ||
+		(min === null && date <= max) ||
+		(min <= date && max === null) ||
+		(min <= date && date <= max)
+	) {
+		return true;
 	}
-);
+	return false;
+});
 
-$(document).ready(function() {
-	// Create date inputs
-	minDate = new DateTime($('#min'), {
-		format: 'MMMM Do YYYY'
-	});
-	maxDate = new DateTime($('#max'), {
-		format: 'MMMM Do YYYY'
-	});
+// Create date inputs
+minDate = new DateTime('#min', {
+	format: 'MMMM Do YYYY'
+});
+maxDate = new DateTime('#max', {
+	format: 'MMMM Do YYYY'
+});
 
-	// DataTables initialisation
-	var table = $('#example').DataTable();
+// DataTables initialisation
+var table = $('#example').DataTable();
 
-	// Refilter the table
-	$('#min, #max').on('change', function () {
-		table.draw();
-	});
+// Refilter the table
+$('#min, #max').on('change', function () {
+	table.draw();
 });
 
 ]]>
 </js>
+
+<js-vanilla>
+<![CDATA[
+let minDate, maxDate;
+
+// Custom filtering function which will search data in column four between two values
+DataTable.ext.search.push(function (settings, data, dataIndex) {
+	let min = minDate.val();
+	let max = maxDate.val();
+	let date = new Date(data[4]);
+
+	if (
+		(min === null && max === null) ||
+		(min === null && date <= max) ||
+		(min <= date && max === null) ||
+		(min <= date && date <= max)
+	) {
+		return true;
+	}
+	return false;
+});
+
+// Create date inputs
+minDate = new DateTime('#min', {
+	format: 'MMMM Do YYYY'
+});
+maxDate = new DateTime('#max', {
+	format: 'MMMM Do YYYY'
+});
+
+// DataTables initialisation
+let table = new DataTable('#example');
+
+// Refilter the table
+document.querySelectorAll('#min, #max').forEach((el) => {
+	el.addEventListener('change', () => table.draw());
+});
+
+]]>
+</js-vanilla>
 
 <title lib="DateTime">DataTables date range filter</title>
 

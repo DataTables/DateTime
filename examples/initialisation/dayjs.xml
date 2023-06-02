@@ -11,13 +11,25 @@
 dayjs.extend(dayjs_plugin_utc);
 dayjs.extend(dayjs_plugin_customParseFormat);
 
-$(document).ready(function() {
-    window.allan = new DateTime(document.getElementById('test'), {
-        format: 'D/M/YYYY'
-    });
+$('#test').dtDateTime({
+	format: 'D/M/YYYY'
 });
+
 ]]>
 </js>
+
+<js-vanilla>
+<![CDATA[
+
+dayjs.extend(dayjs_plugin_utc);
+dayjs.extend(dayjs_plugin_customParseFormat);
+
+new DateTime(document.getElementById('test'), {
+	format: 'D/M/YYYY'
+});
+
+]]>
+</js-vanilla>
 
 <title lib="DateTime">DayJS formatting</title>
 
