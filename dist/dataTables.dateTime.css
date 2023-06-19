@@ -254,7 +254,7 @@ html.dark div.dt-datetime table td.selectable.disabled button:hover {
   background: #171b1f;
 }
 html.dark div.dt-datetime table td.selectable.now {
-  background-color: #ddd;
+  background: #4b5055;
 }
 html.dark div.dt-datetime table td.selectable.selected button {
   background: #6ea8fe;
