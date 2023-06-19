@@ -161,6 +161,8 @@ var DateTime = function ( input, opts ) {
 		.append( this.dom.buttons )
 		.append( this.dom.calendar );
 
+	this.dom.input.addClass('dt-datetime');
+
 	this._constructor();
 };
 

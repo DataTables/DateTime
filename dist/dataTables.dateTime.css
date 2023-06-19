@@ -231,6 +231,9 @@ div.dt-datetime-error {
   color: #b11f1f;
 }
 
+html.dark input.dt-datetime {
+  color-scheme: dark;
+}
 html.dark div.dt-datetime {
   border: 1px solid #595b5e;
   background-color: #212529;
@@ -280,6 +283,9 @@ html.dark div.dt-datetime div.dt-datetime-iconLeft:after {
 }
 html.dark div.dt-datetime div.dt-datetime-iconRight:after {
   border-left-color: white;
+}
+html.dark div.dt-datetime select {
+  color-scheme: dark;
 }
 html.dark div.dt-datetime-error {
   color: #b11f1f;

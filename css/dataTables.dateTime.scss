@@ -280,6 +280,10 @@ div.dt-datetime-error {
 
 
 html.dark {
+	input.dt-datetime {
+		color-scheme: dark;
+	}
+
 	div.dt-datetime {
 		border: 1px solid rgb(89, 91, 94);
 		background-color: rgb(33, 37, 41);
@@ -350,6 +354,10 @@ html.dark {
 			&:after {
 				border-left-color: white;
 			}
+		}
+
+		select {
+			color-scheme: dark;
 		}
 	}
 	
