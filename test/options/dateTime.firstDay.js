@@ -16,7 +16,7 @@ describe('dateTime - options - firstDay', function () {
 		it('Mid-week', function () {
 			new DateTime(document.getElementById('test'), {firstDay: 3});
 
-			expect($('.dt-datetime').length).toBe(0);
+			expect($('div.dt-datetime').length).toBe(0);
 			$('#test').click();
 			expect($('.dt-datetime-date thead th').text()).toBe('WedThuFriSatSunMonTue');
 		});
@@ -25,7 +25,7 @@ describe('dateTime - options - firstDay', function () {
 		it('end of week', function () {
 			new DateTime(document.getElementById('test'), {firstDay: 6});
 
-			expect($('.dt-datetime').length).toBe(0);
+			expect($('div.dt-datetime').length).toBe(0);
 			$('#test').click();
 			expect($('.dt-datetime-date thead th').text()).toBe('SatSunMonTueWedThuFri');
 		});

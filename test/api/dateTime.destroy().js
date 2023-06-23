@@ -27,7 +27,7 @@ describe('dateTime - api - destroy()', function () {
 		});
 		it('... date picker cant be opened', function () {
 			$('#test').click();
-			expect($('.dt-datetime').length).toBe(0);
+			expect($('div.dt-datetime').length).toBe(0);
 		});
 
 		dt.html('input');
@@ -35,15 +35,15 @@ describe('dateTime - api - destroy()', function () {
 			el = new DateTime(document.getElementById('test'), {});
 			$('#test').click();
 
-			expect($('.dt-datetime').length).toBe(1);
+			expect($('div.dt-datetime').length).toBe(1);
 
 			el.destroy();
 
-			expect($('.dt-datetime').length).toBe(0);
+			expect($('div.dt-datetime').length).toBe(0);
 		});
 		it('... date picker cant be opened', function () {
 			$('#test').click();
-			expect($('.dt-datetime').length).toBe(0);
+			expect($('div.dt-datetime').length).toBe(0);
 		});
 	});
 });

@@ -23,11 +23,11 @@ describe('dateTime - api - hide()', function () {
 			el = new DateTime(document.getElementById('test'), {});
 			el.hide();
 
-			expect($('.dt-datetime').length).toBe(0);
+			expect($('div.dt-datetime').length).toBe(0);
 		});
 		it('... date picker can be opened', function () {
 			$('#test').click();
-			expect($('.dt-datetime').length).toBe(1);
+			expect($('div.dt-datetime').length).toBe(1);
 		});
 
 		dt.html('input');
@@ -35,15 +35,15 @@ describe('dateTime - api - hide()', function () {
 			el = new DateTime(document.getElementById('test'), {});
 			$('#test').click();
 
-			expect($('.dt-datetime').length).toBe(1);
+			expect($('div.dt-datetime').length).toBe(1);
 
 			el.hide();
 
-			expect($('.dt-datetime').length).toBe(0);
+			expect($('div.dt-datetime').length).toBe(0);
 		});
 		it('... date picker can be opened', function () {
 			$('#test').click();
-			expect($('.dt-datetime').length).toBe(1);
+			expect($('div.dt-datetime').length).toBe(1);
 		});
 	});
 });

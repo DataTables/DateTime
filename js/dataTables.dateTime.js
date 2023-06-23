@@ -172,6 +172,7 @@ $.extend( DateTime.prototype, {
 		this._hide(true);
 		this.dom.container.off().empty();
 		this.dom.input
+			.removeClass('dt-datetime')
 			.removeAttr('autocomplete')
 			.off('.datetime');
 	},

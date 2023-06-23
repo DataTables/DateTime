@@ -9,9 +9,9 @@ describe('dateTime - basic initialisation', function () {
 		it('Standard initialsiation', function () {
 			new DateTime(document.getElementById('test'), {});
 
-			expect($('.dt-datetime').length).toBe(0);
+			expect($('div.dt-datetime').length).toBe(0);
 			$('#test').click();
-			expect($('.dt-datetime').length).toBe(1);
+			expect($('div.dt-datetime').length).toBe(1);
 		});
 
 		dt.html('input');
@@ -38,9 +38,9 @@ describe('dateTime - basic initialisation', function () {
 		dt.html('input');
 		it('jQuery initialsiation', function () {
 			$('#test').dtDateTime();
-			expect($('.dt-datetime').length).toBe(0);
+			expect($('div.dt-datetime').length).toBe(0);
 			$('#test').click();
-			expect($('.dt-datetime').length).toBe(1);
+			expect($('div.dt-datetime').length).toBe(1);
 		});
 
 		dt.html('input');
