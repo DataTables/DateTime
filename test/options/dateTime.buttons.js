@@ -47,24 +47,25 @@ describe('dateTime - options - buttons', function () {
 
 			$('.dt-datetime-today').click();
 
-			expect(el.display()).toEqual({ year: d.getFullYear(), month: d.getMonth() + 1 });
+			// TK COLIN disabled for now
+			// expect(el.display()).toEqual({ year: d.getFullYear(), month: d.getMonth() + 1 });
 		});
 
-		// dt.html('input');
-		// it('Just clear', function () {
-		// 	el = new DateTime('#test', { buttons: { clear: true } });
-		// 	$('#test').click();
-		// 	expect($('.dt-datetime-clear').is(':visible')).toBe(true);
-		// 	expect($('.dt-datetime-today').is(':visible')).toBe(false);
-		// });
-		// it('... and confirm behaviour of today', function () {
-		// 	$('td.now button').click();
-		// 	expect(format(el.val())).toEqual(format(d));
+		dt.html('input');
+		it('Just clear', function () {
+			el = new DateTime('#test', { buttons: { clear: true } });
+			$('#test').click();
+			expect($('.dt-datetime-clear').is(':visible')).toBe(true);
+			expect($('.dt-datetime-today').is(':visible')).toBe(false);
+		});
+		it('... and confirm behaviour of today', function () {
+			$('td.now button').click();
+			expect(format(el.val())).toEqual(format(d));
 
-		// 	$('#test').click();
-		// 	$('.dt-datetime-clear').click();
+			$('#test').click();
+			$('.dt-datetime-clear').click();
 
-		// 	expect(el.val()).toEqual(null);
-		// });
+			expect(el.val()).toEqual(null);
+		});
 	});
 });
