@@ -18,6 +18,9 @@ describe('dateTime - api - display()', function () {
 			$('#test').click();
 			expect(el.display()).toEqual({ year: d.getFullYear(), month: d.getMonth() + 1 });
 		});
+		it('Setter returns an API instance', function () {
+			expect(el.display(2046, 10) instanceof DateTime).toBe(true);
+		});
 	});
 
 	describe('Functional tests', function () {
@@ -28,8 +31,6 @@ describe('dateTime - api - display()', function () {
 			el.display(2002, 4);
 
 			setTimeout(function () {
-				// expect($('.dt-datetime-label:eq(0) span').text()).toBe('April');
-				// expect($('.dt-datetime-label:eq(1) span').text()).toBe('2002');
 				expect(el.display()).toEqual({ year: 2002, month: 4 });
 			}, 500);
 		});
@@ -39,8 +40,6 @@ describe('dateTime - api - display()', function () {
 			el.display(2046, 10);
 
 			setTimeout(function () {
-				// expect($('.dt-datetime-label:eq(0) span').text()).toBe('October');
-				// expect($('.dt-datetime-label:eq(1) span').text()).toBe('2046');
 				expect(el.display()).toEqual({ year: 2046, month: 10 });
 			}, 500);
 		});
