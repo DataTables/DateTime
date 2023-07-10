@@ -415,6 +415,16 @@ $.extend( DateTime.prototype, {
 				}
 			} );
 
+		// Want to prevent the focus bubbling up the document to account for
+		// focus capture in modals (e.g. Editor and Bootstrap). They can see
+		// the focus as outside the modal and thus immediately blur focus on
+		// the picker. Need to use a native addEL since jQuery changes the
+		// focusin to focus for some reason! focusin bubbles, focus does not.
+		this.dom.container[0].addEventListener('focusin', function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+		});
+
 		// Main event handlers for input in the widget
 		this.dom.container
 			.on( 'change', 'select', function () {
