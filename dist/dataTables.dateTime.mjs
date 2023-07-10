@@ -427,7 +427,6 @@ $.extend( DateTime.prototype, {
 		// the picker. Need to use a native addEL since jQuery changes the
 		// focusin to focus for some reason! focusin bubbles, focus does not.
 		this.dom.container[0].addEventListener('focusin', function (e) {
-			e.preventDefault();
 			e.stopPropagation();
 		});
 
