@@ -21,12 +21,10 @@
 	</description>
 
 	<example title="Use Moment"><![CDATA[
-
 DateTime.use(moment);
 
 let el = document.getElementById('example');
 let dt = new DateTime(el);
-
 ]]></example>
 
 </dt-api>

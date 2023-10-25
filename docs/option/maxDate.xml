@@ -30,19 +30,15 @@
 	</description>
 
 	<example title="Set maxDate to the end of 2029 using a RFC 2822 string"><![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	maxDate: 'December 31, 2029 23:59:59'
 });
-
 ]]></example>
 
 <example title="Set maxDate to the end of 2029 using a Date (from ISO8601 format)"><![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	maxDate: new Date('2029-12-31 23:59:59')
 });
-
 ]]></example>
 
 <related>de-init minDate</related>

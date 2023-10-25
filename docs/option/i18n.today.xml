@@ -11,16 +11,14 @@
 	</description>
 
 	<example title="Set today button text"><![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	buttons: {
 		today: true
 	},
 	i18n: {
-		today: "Jump to today"
+		today: 'Jump to today'
 	}
 });
-
 ]]></example>
 
 <related>de-init buttons.today</related>

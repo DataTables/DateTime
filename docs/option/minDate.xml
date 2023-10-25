@@ -31,19 +31,15 @@
 	</description>
 
 	<example title="Set minDate to the start of 2000 using a RFC 2822 string"><![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	minDate: 'January 1, 2000 00:00:00'
 });
-
 ]]></example>
 
 <example title="Set minDate to the start of 2000 using a Date (from ISO8601 format)"><![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	minDate: new Date('2000-01-01 00:00:00')
 });
-
 ]]></example>
 
 <related>de-init maxDate</related>

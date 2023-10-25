@@ -35,9 +35,9 @@
 	</description>
 
 	<example title="Disable selection of Saturdays and Sundays"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
-		disableDays: [5,6]
+$(document).ready(function () {
+	new DateTime(document.getElementById('test'), {
+		disableDays: [5, 6]
 	});
 });
 ]]></example>

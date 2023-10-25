@@ -20,8 +20,8 @@
 	</description>
 
 	<example title="Change the value for `i18n.next`"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+$(document).ready(function () {
+	new DateTime(document.getElementById('test'), {
 		i18n: {
 			next: '&gt;'
 		}

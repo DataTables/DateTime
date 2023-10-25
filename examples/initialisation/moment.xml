@@ -6,7 +6,7 @@
 <![CDATA[
 
 new DateTime(document.getElementById('test'), {
-    format: 'D/M/YYYY'
+	format: 'D/M/YYYY'
 });
 
 ]]>
@@ -16,7 +16,7 @@ new DateTime(document.getElementById('test'), {
 <![CDATA[
 
 new DateTime(document.getElementById('test'), {
-    format: 'D/M/YYYY'
+	format: 'D/M/YYYY'
 });
 
 ]]>

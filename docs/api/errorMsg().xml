@@ -25,15 +25,12 @@
 	</description>
 
 	<example title="Set Error Message"><![CDATA[
-
 var dt = new DateTime(document.getElementById('example'));
 
 dt.errMsg('Oops an error occurred!');
-
 ]]></example>
 
 <example title="Basic validation - set and clear an error message"><![CDATA[
-
 var dt = new DateTime(document.getElementById('example'));
 
 el.addEventListener('change', function () {
@@ -43,10 +40,9 @@ el.addEventListener('change', function () {
 	}
 	else {
 		// No value - error
-		dt.errMsg('oops an error occurred!);
+		dt.errMsg('oops an error occurred!');
 	}
-} );
-
+});
 ]]></example>
 
 </dt-api>

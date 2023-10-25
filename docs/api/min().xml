@@ -26,10 +26,8 @@
 	</description>
 
 	<example title="Set the min date for DateTime"><![CDATA[
-
 var dt = new DateTime(document.getElementById('example'));
-dt.min("2015-12-31");
-
+dt.min('2015-12-31');
 ]]></example>
 
 </dt-api>

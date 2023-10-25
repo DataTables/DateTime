@@ -17,20 +17,16 @@
 	</description>
 
 	<example title="Hide an instance of DateTime"><![CDATA[
-
 var dt = new DateTime(document.getElementById('#dtInput'));
 dt.hide();
-
 ]]></example>
 
 <example title="Ensure the date picker is hidden when closing a Bootstrap 4 modal"><![CDATA[
-	
 var dt = new DateTime($('#dtInput'));
 
 $('#myModal').on('hide.bs.modal', function (event) {
 	dt.hide();
 });
-
 ]]></example>
 
 </dt-api>

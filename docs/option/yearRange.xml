@@ -22,8 +22,8 @@
 	</description>
 
 	<example title="Set the year range to 50"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+$(document).ready(function () {
+	new DateTime(document.getElementById('test'), {
 		yearRange: 50
 	});
 });

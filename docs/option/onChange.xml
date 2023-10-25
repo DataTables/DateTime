@@ -26,13 +26,11 @@
 	</description>
 
 	<example title="Alert the user that they have made a change"><![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	onChange: function (value, date, input) {
 		alert('Your new value is ' + value);
 	}
 });
-
 ]]></example>
 
 </dt-option>

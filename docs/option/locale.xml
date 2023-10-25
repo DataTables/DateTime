@@ -21,11 +21,9 @@
 	</description>
 
 	<example title="Change the locale to French"><![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	locale: 'fr'
 });
-
 ]]></example>
 
 </dt-option>

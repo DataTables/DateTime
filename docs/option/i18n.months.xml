@@ -20,10 +20,23 @@
 	</description>
 
 	<example title="Abbreviated values for days Months"><![CDATA[
-$(document).ready(function() {
+$(document).ready(function () {
 	new DateTime(document.getElementById('test'), {
 		i18n: {
-			months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+			months: [
+				'Jan',
+				'Feb',
+				'Mar',
+				'Apr',
+				'May',
+				'Jun',
+				'Jul',
+				'Aug',
+				'Sep',
+				'Oct',
+				'Nov',
+				'Dec'
+			]
 		}
 	});
 });

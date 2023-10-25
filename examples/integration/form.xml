@@ -20,7 +20,16 @@ $('#appointment').on('submit', function (e) {
 	var date = $('#inputDate').val();
 	var time = $('#inputTime').val();
 
-	alert('Making an appointment for ' + name + ' (' + phone + ') on ' + date + ' at ' + time);
+	alert(
+		'Making an appointment for ' +
+			name +
+			' (' +
+			phone +
+			') on ' +
+			date +
+			' at ' +
+			time
+	);
 });
 
 ]]>
@@ -43,7 +52,16 @@ document.querySelector('#appointment').addEventListener('submit', function (e) {
 	let date = document.querySelector('#inputDate').value;
 	let time = document.querySelector('#inputTime').value;
 
-	alert('Making an appointment for ' + name + ' (' + phone + ') on ' + date + ' at ' + time);
+	alert(
+		'Making an appointment for ' +
+			name +
+			' (' +
+			phone +
+			') on ' +
+			date +
+			' at ' +
+			time
+	);
 });
 
 ]]>

@@ -31,22 +31,18 @@
 	</description>
 
 	<example title="Get a value from the input with a specific format"><![CDATA[
-
 let el = document.getElementById('example');
 let dt = new DateTime(el);
 
 el.addEventListener('change', function () {
 	console.log('Selected value is: ', dt.valFormat('MM-DD-YYYY'));
-} );
-
+});
 ]]></example>
 
 <example title="Set a value into the input from a formatted string"><![CDATA[
-
 let dt = new DateTime(document.getElementById('example'));
 
-dt.valFormat('MM-DD-YY', '03-02-23");
-
+dt.valFormat('MM-DD-YY', '03-02-23');
 ]]></example>
 
 </dt-api>

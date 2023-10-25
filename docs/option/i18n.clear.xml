@@ -11,16 +11,14 @@
 	</description>
 
 	<example title="Set clear button text"><![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	buttons: {
 		clear: true
 	},
 	i18n: {
-		clear: "Empty"
+		clear: 'Empty'
 	}
 });
-
 ]]></example>
 
 <related>de-init buttons.clear</related>

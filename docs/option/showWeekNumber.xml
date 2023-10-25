@@ -20,8 +20,8 @@
 	</description>
 
 	<example title="Show the ISO week number"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+$(document).ready(function () {
+	new DateTime(document.getElementById('test'), {
 		showWeekNumber: true
 	});
 });

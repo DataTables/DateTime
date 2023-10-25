@@ -19,7 +19,7 @@
 	</description>
 
 	<example title="Change the strings for am and pm"><![CDATA[
-$(document).ready(function() {
+$(document).ready(function () {
 	new DateTime(document.getElementById('test'), {
 		format: 'HH:mm A',
 		i18n: {

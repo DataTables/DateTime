@@ -22,16 +22,14 @@
 	</description>
 
 	<example title="Alter previous and next buttons"><![CDATA[
-
-$(document).ready(function() {
+$(document).ready(function () {
 	var dt = new DateTime(document.getElementById('example'), {
 		i18n: {
-			previous: '&lt;'
+			previous: '&lt;',
 			next: '&gt;'
 		}
-    });
+	});
 });
-
 ]]></example>
 
 </dt-option>

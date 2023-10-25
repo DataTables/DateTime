@@ -26,8 +26,8 @@
 	</description>
 
 	<example title="Restrict the user to select either 00, 15, 30 or 45"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+$(document).ready(function () {
+	new DateTime(document.getElementById('test'), {
 		minutesAvailable: [00, 15, 30, 45]
 	});
 });

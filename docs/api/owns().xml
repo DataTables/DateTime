@@ -18,13 +18,11 @@
 	</description>
 
 	<example title=""><![CDATA[
-
 var dt = new DateTime(document.getElementById('example'));
 
-if(dt.owns(document.getElementByClassName('dt-datetime-date'))) {
-	console.log("It is owned");
+if (dt.owns(document.getElementByClassName('dt-datetime-date'))) {
+	console.log('It is owned');
 }
-
 ]]></example>
 
 </dt-api>

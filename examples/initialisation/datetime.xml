@@ -7,7 +7,7 @@
 <![CDATA[
 
 $('#test').dtDateTime({
-    format: 'D MMM YYYY HH:mm'
+	format: 'D MMM YYYY HH:mm'
 });
 
 ]]>
@@ -17,7 +17,7 @@ $('#test').dtDateTime({
 <![CDATA[
 
 new DateTime(document.getElementById('test'), {
-    format: 'D MMM YYYY HH:mm'
+	format: 'D MMM YYYY HH:mm'
 });
 
 ]]>

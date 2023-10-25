@@ -12,14 +12,12 @@
 	</description>
 
 	<example title="Enable clear and today buttons"><![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	buttons: {
 		today: true,
 		clear: true
 	}
 });
-
 ]]></example>
 
 <related>de-init buttons.clear</related>

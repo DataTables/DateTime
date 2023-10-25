@@ -23,22 +23,18 @@
 	</description>
 
 	<example title="Get a value from the input"><![CDATA[
-
 let el = document.getElementById('example');
 let dt = new DateTime(el);
 
 el.addEventListener('change', function () {
 	console.log('Selected value is: ', dt.val());
-} );
-
+});
 ]]></example>
 
 <example title="Set a value into the input"><![CDATA[
-
 let dt = new DateTime(document.getElementById('example'));
 
-dt.val("2021-12-31");
-
+dt.val('2021-12-31');
 ]]></example>
 
 </dt-api>

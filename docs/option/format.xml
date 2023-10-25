@@ -21,11 +21,9 @@
 	</description>
 
 	<example title="Change format to use '/' instead of '-'."><![CDATA[
-
 new DateTime(document.getElementById('test'), {
-	format: 'YYYY/MM/DD
+	format: 'YYYY/MM/DD'
 });
-
 ]]></example>
 
 </dt-option>

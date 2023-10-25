@@ -26,8 +26,8 @@
 	</description>
 
 	<example title="Restrict the user to select either 8, 9 or 10"><![CDATA[
-$(document).ready(function() {
-    new DateTime(document.getElementById('test'), {
+$(document).ready(function () {
+	new DateTime(document.getElementById('test'), {
 		hoursAvailable: [8, 9, 10]
 	});
 });
