@@ -34,7 +34,7 @@ var dateLib;
  * where `input` is the HTML input element to use and `opts` is an object of
  * options based on the `DateTime.defaults` object.
  */
-var DateTime = function ( input, opts ) {
+var DateTime = function (input, opts) {
 	// Check if called with a window or jQuery object for DOM less applications
 	// This is for backwards compatibility with CommonJS loader
 	if (DateTime.factory(input, opts)) {
@@ -53,12 +53,11 @@ var DateTime = function ( input, opts ) {
 					: null;
 	}
 
-	this.c = $.extend( true, {}, DateTime.defaults, opts );
+	this.c = $.extend(true, {}, DateTime.defaults, opts);
 	var classPrefix = this.c.classPrefix;
-	var i18n = this.c.i18n;
 
 	// Only IS8601 dates are supported without moment, dayjs or luxon
-	if ( ! dateLib && this.c.format !== 'YYYY-MM-DD' ) {
+	if (!dateLib && this.c.format !== 'YYYY-MM-DD') {
 		throw "DateTime: Without momentjs, dayjs or luxon only the format 'YYYY-MM-DD' can be used";
 	}
 
@@ -72,52 +71,52 @@ var DateTime = function ( input, opts ) {
 
 	// DOM structure
 	var structure = $(
-		'<div class="'+classPrefix+'">'+
-			'<div class="'+classPrefix+'-date">'+
-				'<div class="'+classPrefix+'-title">'+
-					'<div class="'+classPrefix+'-iconLeft">'+
-						'<button type="button"></button>'+
-					'</div>'+
-					'<div class="'+classPrefix+'-iconRight">'+
-						'<button type="button"></button>'+
-					'</div>'+
-					'<div class="'+classPrefix+'-label">'+
-						'<span></span>'+
-						'<select class="'+classPrefix+'-month"></select>'+
-					'</div>'+
-					'<div class="'+classPrefix+'-label">'+
-						'<span></span>'+
-						'<select class="'+classPrefix+'-year"></select>'+
-					'</div>'+
-				'</div>'+
-				'<div class="'+classPrefix+'-buttons">'+
-					'<a class="'+classPrefix+'-clear"></a>'+
-					'<a class="'+classPrefix+'-today"></a>'+
-				'</div>'+
-				'<div class="'+classPrefix+'-calendar"></div>'+
-			'</div>'+
-			'<div class="'+classPrefix+'-time">'+
-				'<div class="'+classPrefix+'-hours"></div>'+
-				'<div class="'+classPrefix+'-minutes"></div>'+
-				'<div class="'+classPrefix+'-seconds"></div>'+
-			'</div>'+
-			'<div class="'+classPrefix+'-error"></div>'+
+		'<div class="' + classPrefix + '">' +
+		'<div class="' + classPrefix + '-date">' +
+		'<div class="' + classPrefix + '-title">' +
+		'<div class="' + classPrefix + '-iconLeft">' +
+		'<button type="button"></button>' +
+		'</div>' +
+		'<div class="' + classPrefix + '-iconRight">' +
+		'<button type="button"></button>' +
+		'</div>' +
+		'<div class="' + classPrefix + '-label">' +
+		'<span></span>' +
+		'<select class="' + classPrefix + '-month"></select>' +
+		'</div>' +
+		'<div class="' + classPrefix + '-label">' +
+		'<span></span>' +
+		'<select class="' + classPrefix + '-year"></select>' +
+		'</div>' +
+		'</div>' +
+		'<div class="' + classPrefix + '-buttons">' +
+		'<a class="' + classPrefix + '-clear"></a>' +
+		'<a class="' + classPrefix + '-today"></a>' +
+		'</div>' +
+		'<div class="' + classPrefix + '-calendar"></div>' +
+		'</div>' +
+		'<div class="' + classPrefix + '-time">' +
+		'<div class="' + classPrefix + '-hours"></div>' +
+		'<div class="' + classPrefix + '-minutes"></div>' +
+		'<div class="' + classPrefix + '-seconds"></div>' +
+		'</div>' +
+		'<div class="' + classPrefix + '-error"></div>' +
 		'</div>'
 	);
 
 	this.dom = {
 		container: structure,
-		date:      structure.find( '.'+classPrefix+'-date' ),
-		title:     structure.find( '.'+classPrefix+'-title' ),
-		calendar:  structure.find( '.'+classPrefix+'-calendar' ),
-		time:      structure.find( '.'+classPrefix+'-time' ),
-		error:     structure.find( '.'+classPrefix+'-error' ),
-		buttons:   structure.find( '.'+classPrefix+'-buttons' ),
-		clear:     structure.find( '.'+classPrefix+'-clear' ),
-		today:     structure.find( '.'+classPrefix+'-today' ),
-		previous:  structure.find( '.'+classPrefix+'-iconLeft' ),
-		next:      structure.find( '.'+classPrefix+'-iconRight' ),
-		input:     $(input)
+		date: structure.find('.' + classPrefix + '-date'),
+		title: structure.find('.' + classPrefix + '-title'),
+		calendar: structure.find('.' + classPrefix + '-calendar'),
+		time: structure.find('.' + classPrefix + '-time'),
+		error: structure.find('.' + classPrefix + '-error'),
+		buttons: structure.find('.' + classPrefix + '-buttons'),
+		clear: structure.find('.' + classPrefix + '-clear'),
+		today: structure.find('.' + classPrefix + '-today'),
+		previous: structure.find('.' + classPrefix + '-iconLeft'),
+		next: structure.find('.' + classPrefix + '-iconRight'),
+		input: $(input)
 	};
 
 	this.s = {
@@ -134,37 +133,37 @@ var DateTime = function ( input, opts ) {
 		secondsRange: null,
 
 		/** @type {String} Unique namespace string for this instance */
-		namespace: 'dateime-'+(DateTime._instance++),
+		namespace: 'dateime-' + (DateTime._instance++),
 
 		/** @type {Object} Parts of the picker that should be shown */
 		parts: {
-			date:    this.c.format.match( /[YMD]|L(?!T)|l/ ) !== null,
-			time:    this.c.format.match( /[Hhm]|LT|LTS/ ) !== null,
-			seconds: this.c.format.indexOf( 's' )   !== -1,
-			hours12: this.c.format.match( /[haA]/ ) !== null
+			date: this.c.format.match(/[YMD]|L(?!T)|l/) !== null,
+			time: this.c.format.match(/[Hhm]|LT|LTS/) !== null,
+			seconds: this.c.format.indexOf('s') !== -1,
+			hours12: this.c.format.match(/[haA]/) !== null
 		}
 	};
 
 	this.dom.container
-		.append( this.dom.date )
-		.append( this.dom.time )
-		.append( this.dom.error );
+		.append(this.dom.date)
+		.append(this.dom.time)
+		.append(this.dom.error);
 
 	this.dom.date
-		.append( this.dom.title )
-		.append( this.dom.buttons )
-		.append( this.dom.calendar );
+		.append(this.dom.title)
+		.append(this.dom.buttons)
+		.append(this.dom.calendar);
 
 	this.dom.input.addClass('dt-datetime');
 
 	this._constructor();
 };
 
-$.extend( DateTime.prototype, {
+$.extend(DateTime.prototype, {
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 * Public
 	 */
-	
+
 	/**
 	 * Destroy the control
 	 */
@@ -199,11 +198,11 @@ $.extend( DateTime.prototype, {
 		};
 	},
 
-	errorMsg: function ( msg ) {
+	errorMsg: function (msg) {
 		var error = this.dom.error;
 
-		if ( msg ) {
-			error.html( msg );
+		if (msg) {
+			error.html(msg);
 		}
 		else {
 			error.empty();
@@ -218,7 +217,7 @@ $.extend( DateTime.prototype, {
 		return this;
 	},
 
-	max: function ( date ) {
+	max: function (date) {
 		this.c.maxDate = typeof date === 'string'
 			? new Date(date)
 			: date;
@@ -229,7 +228,7 @@ $.extend( DateTime.prototype, {
 		return this;
 	},
 
-	min: function ( date ) {
+	min: function (date) {
 		this.c.minDate = typeof date === 'string'
 			? new Date(date)
 			: date;
@@ -246,8 +245,8 @@ $.extend( DateTime.prototype, {
 	 * @param  {node} node Element to check
 	 * @return {boolean}   true if owned by this control, false otherwise
 	 */
-	owns: function ( node ) {
-		return $(node).parents().filter( this.dom.container ).length > 0;
+	owns: function (node) {
+		return $(node).parents().filter(this.dom.container).length > 0;
 	},
 
 	/**
@@ -257,44 +256,44 @@ $.extend( DateTime.prototype, {
 	 * @param  {boolean} [write=true] Flag to indicate if the formatted value
 	 *   should be written into the input element
 	 */
-	val: function ( set, write ) {
-		if ( set === undefined ) {
+	val: function (set, write) {
+		if (set === undefined) {
 			return this.s.d;
 		}
 
-		if ( set instanceof Date ) {
-			this.s.d = this._dateToUtc( set );
+		if (set instanceof Date) {
+			this.s.d = this._dateToUtc(set);
 		}
-		else if ( set === null || set === '' ) {
+		else if (set === null || set === '') {
 			this.s.d = null;
 		}
-		else if ( set === '--now' ) {
+		else if (set === '--now') {
 			this.s.d = this._dateToUtc(new Date());
 		}
-		else if ( typeof set === 'string' ) {
+		else if (typeof set === 'string') {
 			this.s.d = this._dateToUtc(
 				this._convert(set, this.c.format, null)
 			);
 		}
 
-		if ( write || write === undefined ) {
-			if ( this.s.d ) {
+		if (write || write === undefined) {
+			if (this.s.d) {
 				this._writeOutput();
 			}
 			else {
 				// The input value was not valid...
-				this.dom.input.val( set );
+				this.dom.input.val(set);
 			}
 		}
 
 		// Need something to display
 		this.s.display = this.s.d
-			? new Date( this.s.d.toString() )
+			? new Date(this.s.d.toString())
 			: new Date();
 
 		// Set the day of the month to be 1 so changing between months doesn't
-        // run into issues when going from day 31 to 28 (for example)
-		this.s.display.setUTCDate( 1 );
+		// run into issues when going from day 31 to 28 (for example)
+		this.s.display.setUTCDate(1);
 
 		// Update the display elements for the new value
 		this._setTitle();
@@ -312,7 +311,7 @@ $.extend( DateTime.prototype, {
 	 * @returns 
 	 */
 	valFormat: function (format, val) {
-		if (! val) {
+		if (!val) {
 			return this._convert(this.val(), null, format);
 		}
 
@@ -327,7 +326,7 @@ $.extend( DateTime.prototype, {
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 * Constructor
 	 */
-	
+
 	/**
 	 * Build the control and assign initial event handlers
 	 *
@@ -342,30 +341,30 @@ $.extend( DateTime.prototype, {
 			var curr = that.dom.input.val();
 
 			if (curr !== last) {
-				that.c.onChange.call( that, curr, that.s.d, that.dom.input );
+				that.c.onChange.call(that, curr, that.s.d, that.dom.input);
 				last = curr;
 			}
 		};
 
-		if ( ! this.s.parts.date ) {
-			this.dom.date.css( 'display', 'none' );
+		if (!this.s.parts.date) {
+			this.dom.date.css('display', 'none');
 		}
 
-		if ( ! this.s.parts.time ) {
-			this.dom.time.css( 'display', 'none' );
+		if (!this.s.parts.time) {
+			this.dom.time.css('display', 'none');
 		}
 
-		if ( ! this.s.parts.seconds ) {
-			this.dom.time.children('div.'+classPrefix+'-seconds').remove();
+		if (!this.s.parts.seconds) {
+			this.dom.time.children('div.' + classPrefix + '-seconds').remove();
 			this.dom.time.children('span').eq(1).remove();
 		}
 
-		if ( ! this.c.buttons.clear ) {
-			this.dom.clear.css( 'display', 'none' );
+		if (!this.c.buttons.clear) {
+			this.dom.clear.css('display', 'none');
 		}
 
-		if ( ! this.c.buttons.today ) {
-			this.dom.today.css( 'display', 'none' );
+		if (!this.c.buttons.today) {
+			this.dom.today.css('display', 'none');
 		}
 
 		// Render the options
@@ -384,13 +383,13 @@ $.extend( DateTime.prototype, {
 			this.dom.container.addClass('inline');
 			this.c.attachTo = 'input';
 
-			this.val( this.dom.input.val(), false );
+			this.val(this.dom.input.val(), false);
 			this._show();
 		}
 
 		// Set the initial value
 		if (last) {
-			this.val( last, false );
+			this.val(last, false);
 		}
 
 		// Trigger the display of the widget when clicking or focusing on the
@@ -399,21 +398,21 @@ $.extend( DateTime.prototype, {
 			.attr('autocomplete', 'off')
 			.on('focus.datetime click.datetime', function () {
 				// If already visible - don't do anything
-				if ( that.dom.container.is(':visible') || that.dom.input.is(':disabled') ) {
+				if (that.dom.container.is(':visible') || that.dom.input.is(':disabled')) {
 					return;
 				}
 
 				// In case the value has changed by text
-				that.val( that.dom.input.val(), false );
+				that.val(that.dom.input.val(), false);
 
 				that._show();
-			} )
+			})
 			.on('keyup.datetime', function () {
 				// Update the calendar's displayed value as the user types
-				if ( that.dom.container.is(':visible') ) {
-					that.val( that.dom.input.val(), false );
+				if (that.dom.container.is(':visible')) {
+					that.val(that.dom.input.val(), false);
 				}
-			} );
+			});
 
 		// Want to prevent the focus bubbling up the document to account for
 		// focus capture in modals (e.g. Editor and Bootstrap). They can see
@@ -426,29 +425,29 @@ $.extend( DateTime.prototype, {
 
 		// Main event handlers for input in the widget
 		this.dom.container
-			.on( 'change', 'select', function () {
+			.on('change', 'select', function () {
 				var select = $(this);
 				var val = select.val();
 
-				if ( select.hasClass(classPrefix+'-month') ) {
+				if (select.hasClass(classPrefix + '-month')) {
 					// Month select
-					that._correctMonth( that.s.display, val );
+					that._correctMonth(that.s.display, val);
 					that._setTitle();
 					that._setCalander();
 				}
-				else if ( select.hasClass(classPrefix+'-year') ) {
+				else if (select.hasClass(classPrefix + '-year')) {
 					// Year select
-					that.s.display.setUTCFullYear( val );
+					that.s.display.setUTCFullYear(val);
 					that._setTitle();
 					that._setCalander();
 				}
-				else if ( select.hasClass(classPrefix+'-hours') || select.hasClass(classPrefix+'-ampm') ) {
+				else if (select.hasClass(classPrefix + '-hours') || select.hasClass(classPrefix + '-ampm')) {
 					// Hours - need to take account of AM/PM input if present
-					if ( that.s.parts.hours12 ) {
-						var hours = $(that.dom.container).find('.'+classPrefix+'-hours').val() * 1;
-						var pm = $(that.dom.container).find('.'+classPrefix+'-ampm').val() === 'pm';
+					if (that.s.parts.hours12) {
+						var hours = $(that.dom.container).find('.' + classPrefix + '-hours').val() * 1;
+						var pm = $(that.dom.container).find('.' + classPrefix + '-ampm').val() === 'pm';
 
-						that.s.d.setUTCHours( hours === 12 && !pm ?
+						that.s.d.setUTCHours(hours === 12 && !pm ?
 							0 :
 							pm && hours !== 12 ?
 								hours + 12 :
@@ -456,35 +455,35 @@ $.extend( DateTime.prototype, {
 						);
 					}
 					else {
-						that.s.d.setUTCHours( val );
+						that.s.d.setUTCHours(val);
 					}
 
 					that._setTime();
-					that._writeOutput( true );
+					that._writeOutput(true);
 
 					onChange();
 				}
-				else if ( select.hasClass(classPrefix+'-minutes') ) {
+				else if (select.hasClass(classPrefix + '-minutes')) {
 					// Minutes select
-					that.s.d.setUTCMinutes( val );
+					that.s.d.setUTCMinutes(val);
 					that._setTime();
-					that._writeOutput( true );
+					that._writeOutput(true);
 
 					onChange();
 				}
-				else if ( select.hasClass(classPrefix+'-seconds') ) {
+				else if (select.hasClass(classPrefix + '-seconds')) {
 					// Seconds select
-					that.s.d.setSeconds( val );
+					that.s.d.setSeconds(val);
 					that._setTime();
-					that._writeOutput( true );
+					that._writeOutput(true);
 
 					onChange();
 				}
 
 				that.dom.input.focus();
 				that._position();
-			} )
-			.on( 'click', function (e) {
+			})
+			.on('click', function (e) {
 				var d = that.s.d;
 				var nodeName = e.target.nodeName.toLowerCase();
 				var target = nodeName === 'span' ?
@@ -493,16 +492,16 @@ $.extend( DateTime.prototype, {
 
 				nodeName = target.nodeName.toLowerCase();
 
-				if ( nodeName === 'select' ) {
+				if (nodeName === 'select') {
 					return;
 				}
 
 				e.stopPropagation();
 
-				if ( nodeName === 'a' ) {
+				if (nodeName === 'a') {
 					e.preventDefault();
 
-					if ($(target).hasClass(classPrefix+'-clear')) {
+					if ($(target).hasClass(classPrefix + '-clear')) {
 						// Clear the value and don't change the display
 						that.s.d = null;
 						that.dom.input.val('');
@@ -512,7 +511,7 @@ $.extend( DateTime.prototype, {
 
 						onChange();
 					}
-					else if ($(target).hasClass(classPrefix+'-today')) {
+					else if ($(target).hasClass(classPrefix + '-today')) {
 						// Don't change the value, but jump to the month
 						// containing today
 						that.s.display = new Date();
@@ -521,39 +520,39 @@ $.extend( DateTime.prototype, {
 						that._setCalander();
 					}
 				}
-				if ( nodeName === 'button' ) {
+				if (nodeName === 'button') {
 					var button = $(target);
 					var parent = button.parent();
 
-					if ( parent.hasClass('disabled') && ! parent.hasClass('range') ) {
+					if (parent.hasClass('disabled') && !parent.hasClass('range')) {
 						button.blur();
 						return;
 					}
 
-					if ( parent.hasClass(classPrefix+'-iconLeft') ) {
+					if (parent.hasClass(classPrefix + '-iconLeft')) {
 						// Previous month
-						that.s.display.setUTCMonth( that.s.display.getUTCMonth()-1 );
+						that.s.display.setUTCMonth(that.s.display.getUTCMonth() - 1);
 						that._setTitle();
 						that._setCalander();
 
 						that.dom.input.focus();
 					}
-					else if ( parent.hasClass(classPrefix+'-iconRight') ) {
+					else if (parent.hasClass(classPrefix + '-iconRight')) {
 						// Next month
-						that._correctMonth( that.s.display, that.s.display.getUTCMonth()+1 );
+						that._correctMonth(that.s.display, that.s.display.getUTCMonth() + 1);
 						that._setTitle();
 						that._setCalander();
 
 						that.dom.input.focus();
 					}
-					else if ( button.parents('.'+classPrefix+'-time').length ) {
+					else if (button.parents('.' + classPrefix + '-time').length) {
 						var val = button.data('value');
 						var unit = button.data('unit');
 
 						d = that._needValue();
 
-						if ( unit === 'minutes' ) {
-							if ( parent.hasClass('disabled') && parent.hasClass('range') ) {
+						if (unit === 'minutes') {
+							if (parent.hasClass('disabled') && parent.hasClass('range')) {
 								that.s.minutesRange = val;
 								that._setTime();
 								return;
@@ -563,8 +562,8 @@ $.extend( DateTime.prototype, {
 							}
 						}
 
-						if ( unit === 'seconds' ) {
-							if ( parent.hasClass('disabled') && parent.hasClass('range') ) {
+						if (unit === 'seconds') {
+							if (parent.hasClass('disabled') && parent.hasClass('range')) {
 								that.s.secondsRange = val;
 								that._setTime();
 								return;
@@ -575,16 +574,16 @@ $.extend( DateTime.prototype, {
 						}
 
 						// Specific to hours for 12h clock
-						if ( val === 'am' ) {
-							if ( d.getUTCHours() >= 12 ) {
+						if (val === 'am') {
+							if (d.getUTCHours() >= 12) {
 								val = d.getUTCHours() - 12;
 							}
 							else {
 								return;
 							}
 						}
-						else if ( val === 'pm' ) {
-							if ( d.getUTCHours() < 12 ) {
+						else if (val === 'pm') {
+							if (d.getUTCHours() < 12) {
 								val = d.getUTCHours() + 12;
 							}
 							else {
@@ -598,10 +597,10 @@ $.extend( DateTime.prototype, {
 								'setUTCMinutes' :
 								'setSeconds';
 
-						d[set]( val );
+						d[set](val);
 						that._setCalander();
 						that._setTime();
-						that._writeOutput( true );
+						that._writeOutput(true);
 						onChange();
 					}
 					else {
@@ -613,23 +612,23 @@ $.extend( DateTime.prototype, {
 						// new day will exist in the old month, But 1 always
 						// does, so we can change the month without worry of a
 						// recalculation being done automatically by `Date`
-						d.setUTCDate( 1 );
-						d.setUTCFullYear( button.data('year') );
-						d.setUTCMonth( button.data('month') );
-						d.setUTCDate( button.data('day') );
+						d.setUTCDate(1);
+						d.setUTCFullYear(button.data('year'));
+						d.setUTCMonth(button.data('month'));
+						d.setUTCDate(button.data('day'));
 
-						that._writeOutput( true );
+						that._writeOutput(true);
 
 						// Don't hide if there is a time picker, since we want to
 						// be able to select a time as well.
-						if ( ! that.s.parts.time ) {
+						if (!that.s.parts.time) {
 							// This is annoying but IE has some kind of async
 							// behaviour with focus and the focus from the above
 							// write would occur after this hide - resulting in the
 							// calendar opening immediately
-							setTimeout( function () {
+							setTimeout(function () {
 								that._hide();
-							}, 10 );
+							}, 10);
 						}
 						else {
 							that._setCalander();
@@ -644,7 +643,7 @@ $.extend( DateTime.prototype, {
 					// input element
 					that.dom.input.focus();
 				}
-			} );
+			});
 	},
 
 
@@ -660,7 +659,7 @@ $.extend( DateTime.prototype, {
 	 * @param  {Date} b Date 2
 	 * @private
 	 */
-	_compareDates: function( a, b ) {
+	_compareDates: function (a, b) {
 		// Can't use toDateString as that converts to local time
 		// luxon uses different method names so need to be able to call them
 		return this._isLuxon()
@@ -676,29 +675,29 @@ $.extend( DateTime.prototype, {
 	 * @param {string|null} to Format to convert to. If null a `Date` will be returned
 	 * @returns {string|Date} Converted value
 	 */
-	_convert: function(val, from, to) {
-		if (! val) {
+	_convert: function (val, from, to) {
+		if (!val) {
 			return val;
 		}
 
-		if (! dateLib) {
+		if (!dateLib) {
 			// Note that in here from and to can either be null or YYYY-MM-DD
 			// They cannot be anything else
-			if ((! from && ! to) || (from && to)) {
+			if ((!from && !to) || (from && to)) {
 				// No conversion
 				return val;
 			}
-			else if (! from) {
+			else if (!from) {
 				// Date in, string back
-				return val.getUTCFullYear() +'-'+
-					this._pad(val.getUTCMonth() + 1) +'-'+
+				return val.getUTCFullYear() + '-' +
+					this._pad(val.getUTCMonth() + 1) + '-' +
 					this._pad(val.getUTCDate());
 			}
 			else { // (! to)
 				// String in, date back
-				var match = val.match(/(\d{4})\-(\d{2})\-(\d{2})/ );
+				var match = val.match(/(\d{4})\-(\d{2})\-(\d{2})/);
 				return match ?
-					new Date( match[1], match[2]-1, match[3] ) :
+					new Date(match[1], match[2] - 1, match[3]) :
 					null;
 			}
 		}
@@ -708,7 +707,7 @@ $.extend( DateTime.prototype, {
 				? dateLib.DateTime.fromJSDate(val).toUTC()
 				: dateLib.DateTime.fromFormat(val, from);
 
-			if (! dtLux.isValid) {
+			if (!dtLux.isValid) {
 				return null;
 			}
 
@@ -719,10 +718,10 @@ $.extend( DateTime.prototype, {
 		else {
 			// Moment / DayJS
 			var dtMo = val instanceof Date
-				? dateLib.utc( val, undefined, this.c.locale, this.c.strict )
-				: dateLib( val, from, this.c.locale, this.c.strict );
-			
-			if (! dtMo.isValid()) {
+				? dateLib.utc(val, undefined, this.c.locale, this.c.strict)
+				: dateLib(val, from, this.c.locale, this.c.strict);
+
+			if (!dtMo.isValid()) {
 				return null;
 			}
 
@@ -742,15 +741,15 @@ $.extend( DateTime.prototype, {
 	 * @param  {integer} month Month to set
 	 * @private
 	 */
-	_correctMonth: function ( date, month ) {
-		var days = this._daysInMonth( date.getUTCFullYear(), month );
+	_correctMonth: function (date, month) {
+		var days = this._daysInMonth(date.getUTCFullYear(), month);
 		var correctDays = date.getUTCDate() > days;
 
-		date.setUTCMonth( month );
+		date.setUTCMonth(month);
 
-		if ( correctDays ) {
-			date.setUTCDate( days );
-			date.setUTCMonth( month );
+		if (correctDays) {
+			date.setUTCDate(days);
+			date.setUTCMonth(month);
 		}
 	},
 
@@ -762,7 +761,7 @@ $.extend( DateTime.prototype, {
 	 * @param  {integer} month Month (starting at 0)
 	 * @private
 	 */
-	_daysInMonth: function ( year, month ) {
+	_daysInMonth: function (year, month) {
 		// 
 		var isLeap = ((year % 4) === 0 && ((year % 100) !== 0 || (year % 400) === 0));
 		var months = [31, (isLeap ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -778,15 +777,15 @@ $.extend( DateTime.prototype, {
 	 * @param  {Date} s Date to "convert"
 	 * @return {Date}   Shifted date
 	 */
-	_dateToUtc: function ( s ) {
-		if (! s) {
+	_dateToUtc: function (s) {
+		if (!s) {
 			return s;
 		}
 
-		return new Date( Date.UTC(
+		return new Date(Date.UTC(
 			s.getFullYear(), s.getMonth(), s.getDate(),
 			s.getHours(), s.getMinutes(), s.getSeconds()
-		) );
+		));
 	},
 
 	/**
@@ -795,13 +794,13 @@ $.extend( DateTime.prototype, {
 	 * @param  {Date} d Date to "convert"
 	 * @return {string} ISO formatted date
 	 */
-	_dateToUtcString: function ( d ) {
+	_dateToUtcString: function (d) {
 		// luxon uses different method names so need to be able to call them
 		return this._isLuxon()
 			? dateLib.DateTime.fromJSDate(d).toUTC().toISODate()
-			: d.getUTCFullYear()+'-'+
-				this._pad(d.getUTCMonth()+1)+'-'+
-				this._pad(d.getUTCDate());
+			: d.getUTCFullYear() + '-' +
+			this._pad(d.getUTCMonth() + 1) + '-' +
+			this._pad(d.getUTCDate());
 	},
 
 	/**
@@ -810,7 +809,7 @@ $.extend( DateTime.prototype, {
 	 * @private
 	 */
 	_hide: function (destroy) {
-		if (! destroy && this.dom.input.attr('type') === 'hidden') {
+		if (!destroy && this.dom.input.attr('type') === 'hidden') {
 			return;
 		}
 
@@ -818,12 +817,12 @@ $.extend( DateTime.prototype, {
 
 		this.dom.container.detach();
 
-		$(window).off( '.'+namespace );
-		$(document).off( 'keydown.'+namespace );
-		$('div.dataTables_scrollBody').off( 'scroll.'+namespace );
-		$('div.DTE_Body_Content').off( 'scroll.'+namespace );
-		$('body').off( 'click.'+namespace );
-		$(this.dom.input[0].offsetParent).off('.'+namespace);
+		$(window).off('.' + namespace);
+		$(document).off('keydown.' + namespace);
+		$('div.dataTables_scrollBody').off('scroll.' + namespace);
+		$('div.DTE_Body_Content').off('scroll.' + namespace);
+		$('body').off('click.' + namespace);
+		$(this.dom.input[0].offsetParent).off('.' + namespace);
 	},
 
 	/**
@@ -833,7 +832,7 @@ $.extend( DateTime.prototype, {
 	 * @return {integer}     12 hour value
 	 * @private
 	 */
-	_hours24To12: function ( val ) {
+	_hours24To12: function (val) {
 		return val === 0 ?
 			12 :
 			val > 12 ?
@@ -849,31 +848,30 @@ $.extend( DateTime.prototype, {
 	 * @param  {object} day Day object from the `_htmlMonth` method
 	 * @return {string}     HTML cell
 	 */
-	_htmlDay: function( day )
-	{
-		if ( day.empty ) {
+	_htmlDay: function (day) {
+		if (day.empty) {
 			return '<td class="empty"></td>';
 		}
 
-		var classes = [ 'selectable' ];
+		var classes = ['selectable'];
 		var classPrefix = this.c.classPrefix;
 
-		if ( day.disabled ) {
-			classes.push( 'disabled' );
+		if (day.disabled) {
+			classes.push('disabled');
 		}
 
-		if ( day.today ) {
-			classes.push( 'now' );
+		if (day.today) {
+			classes.push('now');
 		}
 
-		if ( day.selected ) {
-			classes.push( 'selected' );
+		if (day.selected) {
+			classes.push('selected');
 		}
 
 		return '<td data-day="' + day.day + '" class="' + classes.join(' ') + '">' +
-				'<button class="'+classPrefix+'-button '+classPrefix+'-day" type="button" ' +'data-year="' + day.year + '" data-month="' + day.month + '" data-day="' + day.day + '">' +
-					'<span>'+day.day+'</span>'+
-				'</button>' +
+			'<button class="' + classPrefix + '-button ' + classPrefix + '-day" type="button" ' + 'data-year="' + day.year + '" data-month="' + day.month + '" data-day="' + day.day + '">' +
+			'<span>' + day.day + '</span>' +
+			'</button>' +
 			'</td>';
 	},
 
@@ -890,14 +888,14 @@ $.extend( DateTime.prototype, {
 	 * @return {string} Calendar month HTML
 	 * @private
 	 */
-	_htmlMonth: function ( year, month ) {
-		var now    = this._dateToUtc( new Date() ),
-			days   = this._daysInMonth( year, month ),
-			before = new Date( Date.UTC(year, month, 1) ).getUTCDay(),
-			data   = [],
-			row    = [];
+	_htmlMonth: function (year, month) {
+		var now = this._dateToUtc(new Date()),
+			days = this._daysInMonth(year, month),
+			before = new Date(Date.UTC(year, month, 1)).getUTCDay(),
+			data = [],
+			row = [];
 
-		if ( this.c.firstDay > 0 ) {
+		if (this.c.firstDay > 0) {
 			before -= this.c.firstDay;
 
 			if (before < 0) {
@@ -908,7 +906,7 @@ $.extend( DateTime.prototype, {
 		var cells = days + before,
 			after = cells;
 
-		while ( after > 7 ) {
+		while (after > 7) {
 			after -= 7;
 		}
 
@@ -917,85 +915,85 @@ $.extend( DateTime.prototype, {
 		var minDate = this.c.minDate;
 		var maxDate = this.c.maxDate;
 
-		if ( minDate ) {
+		if (minDate) {
 			minDate.setUTCHours(0);
 			minDate.setUTCMinutes(0);
 			minDate.setSeconds(0);
 		}
 
-		if ( maxDate ) {
+		if (maxDate) {
 			maxDate.setUTCHours(23);
 			maxDate.setUTCMinutes(59);
 			maxDate.setSeconds(59);
 		}
 
-		for ( var i=0, r=0 ; i<cells ; i++ ) {
-			var day      = new Date( Date.UTC(year, month, 1 + (i - before)) ),
+		for (var i = 0, r = 0; i < cells; i++) {
+			var day = new Date(Date.UTC(year, month, 1 + (i - before))),
 				selected = this.s.d ? this._compareDates(day, this.s.d) : false,
-				today    = this._compareDates(day, now),
-				empty    = i < before || i >= (days + before),
+				today = this._compareDates(day, now),
+				empty = i < before || i >= (days + before),
 				disabled = (minDate && day < minDate) ||
-				           (maxDate && day > maxDate);
+					(maxDate && day > maxDate);
 
 			var disableDays = this.c.disableDays;
-			if ( Array.isArray( disableDays ) && $.inArray( day.getUTCDay(), disableDays ) !== -1 ) {
+			if (Array.isArray(disableDays) && $.inArray(day.getUTCDay(), disableDays) !== -1) {
 				disabled = true;
 			}
-			else if ( typeof disableDays === 'function' && disableDays( day ) === true ) {
+			else if (typeof disableDays === 'function' && disableDays(day) === true) {
 				disabled = true;
 			}
 
 			var dayConfig = {
-				day:      1 + (i - before),
-				month:    month,
-				year:     year,
+				day: 1 + (i - before),
+				month: month,
+				year: year,
 				selected: selected,
-				today:    today,
+				today: today,
 				disabled: disabled,
-				empty:    empty
+				empty: empty
 			};
 
-			row.push( this._htmlDay(dayConfig) );
+			row.push(this._htmlDay(dayConfig));
 
-			if ( ++r === 7 ) {
-				if ( this.c.showWeekNumber ) {
-					row.unshift( this._htmlWeekOfYear(i - before, month, year) );
+			if (++r === 7) {
+				if (this.c.showWeekNumber) {
+					row.unshift(this._htmlWeekOfYear(i - before, month, year));
 				}
 
-				data.push( '<tr>'+row.join('')+'</tr>' );
+				data.push('<tr>' + row.join('') + '</tr>');
 				row = [];
 				r = 0;
 			}
 		}
 
 		var classPrefix = this.c.classPrefix;
-		var className = classPrefix+'-table';
-		if ( this.c.showWeekNumber ) {
+		var className = classPrefix + '-table';
+		if (this.c.showWeekNumber) {
 			className += ' weekNumber';
 		}
 
 		// Show / hide month icons based on min/max
-		if ( minDate ) {
-			var underMin = minDate >= new Date( Date.UTC(year, month, 1, 0, 0, 0 ) );
+		if (minDate) {
+			var underMin = minDate >= new Date(Date.UTC(year, month, 1, 0, 0, 0));
 
-			this.dom.title.find('div.'+classPrefix+'-iconLeft')
-				.css( 'display', underMin ? 'none' : 'block' );
+			this.dom.title.find('div.' + classPrefix + '-iconLeft')
+				.css('display', underMin ? 'none' : 'block');
 		}
 
-		if ( maxDate ) {
-			var overMax = maxDate < new Date( Date.UTC(year, month+1, 1, 0, 0, 0 ) );
+		if (maxDate) {
+			var overMax = maxDate < new Date(Date.UTC(year, month + 1, 1, 0, 0, 0));
 
-			this.dom.title.find('div.'+classPrefix+'-iconRight')
-				.css( 'display', overMax ? 'none' : 'block' );
+			this.dom.title.find('div.' + classPrefix + '-iconRight')
+				.css('display', overMax ? 'none' : 'block');
 		}
 
-		return '<table class="'+className+'">' +
-				'<thead>'+
-					this._htmlMonthHead() +
-				'</thead>'+
-				'<tbody>'+
-					data.join('') +
-				'</tbody>'+
+		return '<table class="' + className + '">' +
+			'<thead>' +
+			this._htmlMonthHead() +
+			'</thead>' +
+			'<tbody>' +
+			data.join('') +
+			'</tbody>' +
 			'</table>';
 	},
 
@@ -1011,7 +1009,7 @@ $.extend( DateTime.prototype, {
 		var i18n = this.c.i18n;
 
 		// Take account of the first day shift
-		var dayName = function ( day ) {
+		var dayName = function (day) {
 			day += firstDay;
 
 			while (day >= 7) {
@@ -1020,14 +1018,14 @@ $.extend( DateTime.prototype, {
 
 			return i18n.weekdays[day];
 		};
-		
+
 		// Empty cell in the header
-		if ( this.c.showWeekNumber ) {
-			a.push( '<th></th>' );
+		if (this.c.showWeekNumber) {
+			a.push('<th></th>');
 		}
 
-		for ( var i=0 ; i<7 ; i++ ) {
-			a.push( '<th>'+dayName( i )+'</th>' );
+		for (var i = 0; i < 7; i++) {
+			a.push('<th>' + dayName(i) + '</th>');
 		}
 
 		return a.join('');
@@ -1045,16 +1043,16 @@ $.extend( DateTime.prototype, {
 	 * @return {string}   
 	 * @private
 	 */
-	_htmlWeekOfYear: function ( d, m, y ) {
-		var date = new Date( y, m, d, 0, 0, 0, 0 );
+	_htmlWeekOfYear: function (d, m, y) {
+		var date = new Date(y, m, d, 0, 0, 0, 0);
 
 		// First week of the year always has 4th January in it
-		date.setDate( date.getDate() + 4 - (date.getDay() || 7) );
+		date.setDate(date.getDate() + 4 - (date.getDay() || 7));
 
-		var oneJan = new Date( y, 0, 1 );
-		var weekNum = Math.ceil( ( ( (date - oneJan) / 86400000) + 1)/7 );
+		var oneJan = new Date(y, 0, 1);
+		var weekNum = Math.ceil((((date - oneJan) / 86400000) + 1) / 7);
 
-		return '<td class="'+this.c.classPrefix+'-week">' + weekNum + '</td>';
+		return '<td class="' + this.c.classPrefix + '-week">' + weekNum + '</td>';
 	},
 
 	/**
@@ -1075,10 +1073,10 @@ $.extend( DateTime.prototype, {
 	 * @private
 	 */
 	_needValue: function () {
-		if ( ! this.s.d ) {
-			this.s.d = this._dateToUtc( new Date() );
+		if (!this.s.d) {
+			this.s.d = this._dateToUtc(new Date());
 
-			if (! this.s.parts.time) {
+			if (!this.s.parts.time) {
 				this.s.d.setUTCHours(0);
 				this.s.d.setUTCMinutes(0);
 				this.s.d.setSeconds(0);
@@ -1098,16 +1096,16 @@ $.extend( DateTime.prototype, {
 	 *   length as the values parameter.
 	 * @private
 	 */
-	_options: function ( selector, values, labels ) {
-		if ( ! labels ) {
+	_options: function (selector, values, labels) {
+		if (!labels) {
 			labels = values;
 		}
 
-		var select = this.dom.container.find('select.'+this.c.classPrefix+'-'+selector);
+		var select = this.dom.container.find('select.' + this.c.classPrefix + '-' + selector);
 		select.empty();
 
-		for ( var i=0, ien=values.length ; i<ien ; i++ ) {
-			select.append( '<option value="'+values[i]+'">'+labels[i]+'</option>' );
+		for (var i = 0, ien = values.length; i < ien; i++) {
+			select.append('<option value="' + values[i] + '">' + labels[i] + '</option>');
 		}
 	},
 
@@ -1119,14 +1117,14 @@ $.extend( DateTime.prototype, {
 	 * @param  {*}      val      Value to set
 	 * @private
 	 */
-	_optionSet: function ( selector, val ) {
-		var select = this.dom.container.find('select.'+this.c.classPrefix+'-'+selector);
+	_optionSet: function (selector, val) {
+		var select = this.dom.container.find('select.' + this.c.classPrefix + '-' + selector);
 		var span = select.parent().children('span');
 
-		select.val( val );
+		select.val(val);
 
 		var selected = select.find('option:selected');
-		span.html( selected.length !== 0 ?
+		span.html(selected.length !== 0 ?
 			selected.text() :
 			this.c.i18n.unknown
 		);
@@ -1142,18 +1140,17 @@ $.extend( DateTime.prototype, {
 	 * @param  {integer} range Override range
 	 * @private
 	 */
-	_optionsTime: function ( unit, count, val, allowed, range ) {
+	_optionsTime: function (unit, count, val, allowed, range) {
 		var classPrefix = this.c.classPrefix;
-		var container = this.dom.container.find('div.'+classPrefix+'-'+unit);
+		var container = this.dom.container.find('div.' + classPrefix + '-' + unit);
 		var i, j;
 		var render = count === 12 ?
 			function (i) { return i; } :
 			this._pad;
-		var classPrefix = this.c.classPrefix;
-		var className = classPrefix+'-table';
+		var className = classPrefix + '-table';
 		var i18n = this.c.i18n;
 
-		if ( ! container.length ) {
+		if (!container.length) {
 			return;
 		}
 
@@ -1161,8 +1158,8 @@ $.extend( DateTime.prototype, {
 		var span = 10;
 		var button = function (value, label, className) {
 			// Shift the value for PM
-			if ( count === 12 && typeof value === 'number' ) {
-				if (val >= 12 ) {
+			if (count === 12 && typeof value === 'number') {
+				if (val >= 12) {
 					value += 12;
 				}
 
@@ -1177,27 +1174,27 @@ $.extend( DateTime.prototype, {
 			var selected = val === value || (value === 'am' && val < 12) || (value === 'pm' && val >= 12) ?
 				'selected' :
 				'';
-			
+
 			if (typeof value === 'number' && allowed && $.inArray(value, allowed) === -1) {
 				selected += ' disabled';
 			}
 
-			if ( className ) {
-				selected += ' '+className;
+			if (className) {
+				selected += ' ' + className;
 			}
 
-			return '<td class="selectable '+selected+'">' +
-				'<button class="'+classPrefix+'-button '+classPrefix+'-day" type="button" data-unit="'+unit+'" data-value="'+value+ '">' +
-					'<span>'+label+'</span>'+
+			return '<td class="selectable ' + selected + '">' +
+				'<button class="' + classPrefix + '-button ' + classPrefix + '-day" type="button" data-unit="' + unit + '" data-value="' + value + '">' +
+				'<span>' + label + '</span>' +
 				'</button>' +
-			'</td>';
+				'</td>';
 		}
 
-		if ( count === 12 ) {
+		if (count === 12) {
 			// Hours with AM/PM
 			a += '<tr>';
-			
-			for ( i=1 ; i<=6 ; i++ ) {
+
+			for (i = 1; i <= 6; i++) {
 				a += button(i, render(i));
 			}
 			a += button('am', i18n.amPm[0]);
@@ -1205,7 +1202,7 @@ $.extend( DateTime.prototype, {
 			a += '</tr>';
 			a += '<tr>';
 
-			for ( i=7 ; i<=12 ; i++ ) {
+			for (i = 7; i <= 12; i++) {
 				a += button(i, render(i));
 			}
 			a += button('pm', i18n.amPm[1]);
@@ -1213,12 +1210,12 @@ $.extend( DateTime.prototype, {
 
 			span = 7;
 		}
-		else if ( count === 24 ) {
+		else if (count === 24) {
 			// Hours - 24
 			var c = 0;
-			for (j=0 ; j<4 ; j++ ) {
+			for (j = 0; j < 4; j++) {
 				a += '<tr>';
-				for ( i=0 ; i<6 ; i++ ) {
+				for (i = 0; i < 6; i++) {
 					a += button(c, render(c));
 					c++;
 				}
@@ -1230,22 +1227,22 @@ $.extend( DateTime.prototype, {
 		else {
 			// Minutes and seconds
 			a += '<tr>';
-			for (j=0 ; j<60 ; j+=10 ) {
+			for (j = 0; j < 60; j += 10) {
 				a += button(j, render(j), 'range');
 			}
 			a += '</tr>';
-			
+
 			// Slight hack to allow for the different number of columns
-			a += '</tbody></thead><table class="'+className+' '+className+'-nospace"><tbody>';
+			a += '</tbody></thead><table class="' + className + ' ' + className + '-nospace"><tbody>';
 
 			var start = range !== null
 				? range
 				: val === -1
 					? 0
-					: Math.floor( val / 10 )*10;
+					: Math.floor(val / 10) * 10;
 
 			a += '<tr>';
-			for (j=start+1 ; j<start+10 ; j++ ) {
+			for (j = start + 1; j < start + 10; j++) {
 				a += button(j, render(j));
 			}
 			a += '</tr>';
@@ -1256,13 +1253,13 @@ $.extend( DateTime.prototype, {
 		container
 			.empty()
 			.append(
-				'<table class="'+className+'">'+
-					'<thead><tr><th colspan="'+span+'">'+
-						i18n[unit] +
-					'</th></tr></thead>'+
-					'<tbody>'+
-						a+
-					'</tbody>'+
+				'<table class="' + className + '">' +
+				'<thead><tr><th colspan="' + span + '">' +
+				i18n[unit] +
+				'</th></tr></thead>' +
+				'<tbody>' +
+				a +
+				'</tbody>' +
 				'</table>'
 			);
 	},
@@ -1284,8 +1281,8 @@ $.extend( DateTime.prototype, {
 		var i = minYear !== null ? minYear : new Date().getFullYear() - this.c.yearRange;
 		var j = maxYear !== null ? maxYear : new Date().getFullYear() + this.c.yearRange;
 
-		this._options( 'month', this._range( 0, 11 ), i18n.months );
-		this._options( 'year', this._range( i, j ) );
+		this._options('month', this._range(0, 11), i18n.months);
+		this._options('year', this._range(i, j));
 
 		// Set the language strings in case any have changed
 		this.dom.today.text(i18n.today).text(i18n.today);
@@ -1307,8 +1304,8 @@ $.extend( DateTime.prototype, {
 	 * @return {string|integer} Padded value
 	 * @private
 	 */
-	_pad: function ( i ) {
-		return i<10 ? '0'+i : i;
+	_pad: function (i) {
+		return i < 10 ? '0' + i : i;
 	},
 
 	/**
@@ -1321,32 +1318,32 @@ $.extend( DateTime.prototype, {
 		var inputHeight = this.dom.input.outerHeight();
 
 		if (container.hasClass('inline')) {
-			container.insertAfter( this.dom.input );
+			container.insertAfter(this.dom.input);
 			return;
 		}
 
-		if ( this.s.parts.date && this.s.parts.time && $(window).width() > 550 ) {
+		if (this.s.parts.date && this.s.parts.time && $(window).width() > 550) {
 			container.addClass('horizontal');
 		}
 		else {
 			container.removeClass('horizontal');
 		}
 
-		if(this.c.attachTo === 'input') {
+		if (this.c.attachTo === 'input') {
 			container
-				.css( {
+				.css({
 					top: offset.top + inputHeight,
 					left: offset.left
-				} )
-				.insertAfter( this.dom.input );
+				})
+				.insertAfter(this.dom.input);
 		}
 		else {
 			container
-				.css( {
+				.css({
 					top: offset.top + inputHeight,
 					left: offset.left
-				} )
-				.appendTo( 'body' );
+				})
+				.appendTo('body');
 		}
 
 		var calHeight = container.outerHeight();
@@ -1354,14 +1351,14 @@ $.extend( DateTime.prototype, {
 		var scrollTop = $(window).scrollTop();
 
 		// Correct to the bottom
-		if ( offset.top + inputHeight + calHeight - scrollTop > $(window).height() ) {
+		if (offset.top + inputHeight + calHeight - scrollTop > $(window).height()) {
 			var newTop = offset.top - calHeight;
 
-			container.css( 'top', newTop < 0 ? 0 : newTop );
+			container.css('top', newTop < 0 ? 0 : newTop);
 		}
 
 		// Correct to the right
-		if ( calWidth + offset.left > $(window).width() ) {
+		if (calWidth + offset.left > $(window).width()) {
 			var newLeft = $(window).width() - calWidth;
 
 			// Account for elements which are inside a position absolute element
@@ -1369,7 +1366,7 @@ $.extend( DateTime.prototype, {
 				newLeft -= $(container).offsetParent().offset().left;
 			}
 
-			container.css( 'left', newLeft < 0 ? 0 : newLeft );
+			container.css('left', newLeft < 0 ? 0 : newLeft);
 		}
 	},
 
@@ -1382,15 +1379,15 @@ $.extend( DateTime.prototype, {
 	 * @return {array}           Created array
 	 * @private
 	 */
-	_range: function ( start, end, inc ) {
+	_range: function (start, end, inc) {
 		var a = [];
 
-		if ( ! inc ) {
+		if (!inc) {
 			inc = 1;
 		}
 
-		for ( var i=start ; i<=end ; i+=inc ) {
-			a.push( i );
+		for (var i = start; i <= end; i += inc) {
+			a.push(i);
 		}
 
 		return a;
@@ -1403,13 +1400,13 @@ $.extend( DateTime.prototype, {
 	 * @private
 	 */
 	_setCalander: function () {
-		if ( this.s.display ) {
+		if (this.s.display) {
 			this.dom.calendar
 				.empty()
-				.append( this._htmlMonth(
+				.append(this._htmlMonth(
 					this.s.display.getUTCFullYear(),
 					this.s.display.getUTCMonth()
-				) );
+				));
 		}
 	},
 
@@ -1419,8 +1416,8 @@ $.extend( DateTime.prototype, {
 	 * @private
 	 */
 	_setTitle: function () {
-		this._optionSet( 'month', this.s.display.getUTCMonth() );
-		this._optionSet( 'year', this.s.display.getUTCFullYear() );
+		this._optionSet('month', this.s.display.getUTCMonth());
+		this._optionSet('year', this.s.display.getUTCFullYear());
 	},
 
 	/**
@@ -1431,7 +1428,7 @@ $.extend( DateTime.prototype, {
 	_setTime: function () {
 		var that = this;
 		var d = this.s.d;
-		
+
 		// luxon uses different method names so need to be able to call them. This happens a few time later in this method too
 		var luxDT = null
 		if (this._isLuxon()) {
@@ -1444,13 +1441,13 @@ $.extend( DateTime.prototype, {
 				? d.getUTCHours()
 				: -1;
 
-		var allowed = function ( prop ) { // Backwards compt with `Increment` option
-			return that.c[prop+'Available'] ?
-				that.c[prop+'Available'] :
-				that._range( 0, 59, that.c[prop+'Increment'] );
+		var allowed = function (prop) { // Backwards compt with `Increment` option
+			return that.c[prop + 'Available'] ?
+				that.c[prop + 'Available'] :
+				that._range(0, 59, that.c[prop + 'Increment']);
 		}
 
-		this._optionsTime( 'hours', this.s.parts.hours12 ? 12 : 24, hours, this.c.hoursAvailable )
+		this._optionsTime('hours', this.s.parts.hours12 ? 12 : 24, hours, this.c.hoursAvailable)
 		this._optionsTime(
 			'minutes',
 			60,
@@ -1488,50 +1485,50 @@ $.extend( DateTime.prototype, {
 		this._position();
 
 		// Need to reposition on scroll
-		$(window).on( 'scroll.'+namespace+' resize.'+namespace, function () {
+		$(window).on('scroll.' + namespace + ' resize.' + namespace, function () {
 			that._position();
-		} );
+		});
 
-		$('div.DTE_Body_Content').on( 'scroll.'+namespace, function () {
+		$('div.DTE_Body_Content').on('scroll.' + namespace, function () {
 			that._position();
-		} );
+		});
 
-		$('div.dataTables_scrollBody').on( 'scroll.'+namespace, function () {
+		$('div.dataTables_scrollBody').on('scroll.' + namespace, function () {
 			that._position();
-		} );
+		});
 
 		var offsetParent = this.dom.input[0].offsetParent;
 
-		if ( offsetParent !== document.body ) {
-			$(offsetParent).on( 'scroll.'+namespace, function () {
+		if (offsetParent !== document.body) {
+			$(offsetParent).on('scroll.' + namespace, function () {
 				that._position();
-			} );
+			});
 		}
 
 		// On tab focus will move to a different field (no keyboard navigation
 		// in the date picker - this might need to be changed).
-		$(document).on( 'keydown.'+namespace, function (e) {
+		$(document).on('keydown.' + namespace, function (e) {
 			if (
-				e.keyCode === 9  || // tab
+				e.keyCode === 9 || // tab
 				e.keyCode === 27 || // esc
 				e.keyCode === 13    // return
 			) {
 				that._hide();
 			}
-		} );
+		});
 
 		// Hide if clicking outside of the widget - but in a different click
 		// event from the one that was used to trigger the show (bubble and
 		// inline)
-		setTimeout( function () {
-			$('body').on( 'click.'+namespace, function (e) {
+		setTimeout(function () {
+			$('body').on('click.' + namespace, function (e) {
 				var parents = $(e.target).parents();
 
-				if ( ! parents.filter( that.dom.container ).length && e.target !== that.dom.input[0] ) {
+				if (!parents.filter(that.dom.container).length && e.target !== that.dom.input[0]) {
 					that._hide();
 				}
-			} );
-		}, 10 );
+			});
+		}, 10);
 	},
 
 	/**
@@ -1540,7 +1537,7 @@ $.extend( DateTime.prototype, {
 	 *
 	 * @private
 	 */
-	_writeOutput: function ( focus ) {
+	_writeOutput: function (focus) {
 		var date = this.s.d;
 		var out = '';
 		var input = this.dom.input;
@@ -1549,22 +1546,22 @@ $.extend( DateTime.prototype, {
 			out = this._convert(date, null, this.c.format);
 		}
 
-		input.val( out );
+		input.val(out);
 
 		// Create a DOM synthetic event. Can't use $().trigger() as
 		// that doesn't actually trigger non-jQuery event listeners
-		var event = new Event('change', {bubbles: true});
+		var event = new Event('change', { bubbles: true });
 		input[0].dispatchEvent(event);
-		
-		if ( input.attr('type') === 'hidden' ) {
+
+		if (input.attr('type') === 'hidden') {
 			this.val(out, false);
 		}
 
-		if ( focus ) {
+		if (focus) {
 			input.focus();
 		}
 	}
-} );
+});
 
 /**
  * Use a specificmoment compatible date library
@@ -1613,17 +1610,17 @@ DateTime.defaults = {
 	hoursAvailable: null,
 
 	i18n: {
-		clear:    'Clear',
+		clear: 'Clear',
 		previous: 'Previous',
-		next:     'Next',
-		months:   [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
-		weekdays: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
-		amPm:     [ 'am', 'pm' ],
-		hours:    'Hour',
-		minutes:  'Minute',
-		seconds:  'Second',
-		unknown:  '-',
-		today:    'Today'
+		next: 'Next',
+		months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+		weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+		amPm: ['am', 'pm'],
+		hours: 'Hour',
+		minutes: 'Minute',
+		seconds: 'Second',
+		unknown: '-',
+		today: 'Today'
 	},
 
 	maxDate: null,
@@ -1638,7 +1635,7 @@ DateTime.defaults = {
 
 	locale: 'en',
 
-	onChange: function () {},
+	onChange: function () { },
 
 	secondsAvailable: null,
 
@@ -1678,7 +1675,7 @@ DateTime.factory = function (root, jq) {
 }
 
 // Global export - if no conflicts
-if (! window.DateTime) {
+if (!window.DateTime) {
 	window.DateTime = DateTime;
 }
 
@@ -1689,7 +1686,7 @@ if (window.DataTable) {
 
 // Make available via jQuery
 $.fn.dtDateTime = function (options) {
-	return this.each(function() {
+	return this.each(function () {
 		new DateTime(this, options);
 	});
 }
