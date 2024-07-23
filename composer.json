@@ -1,0 +1,26 @@
+{
+    "name": "datatables.net/datatables.net-datetime",
+    "description": "DateTime picker for DataTables.net",
+    "support": {
+        "forum": "https://datatables.net/forums",
+        "source": "https://github.com/DataTables/DateTime"
+    },
+    "homepage": "http://www.datatables.net/extensions/datetime",
+    "authors": [
+        {
+            "name": "SpryMedia",
+            "homepage": "https://datatables.net"
+        }
+    ],
+    "license": [
+        "MIT"
+    ],
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "keywords": [
+        "Datatables",
+        "Date",
+        "Time"
+    ],
+    "require": {}
+}
