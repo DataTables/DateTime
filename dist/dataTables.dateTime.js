@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.5.3
+/*! DateTime picker for DataTables.net v1.5.4
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -48,7 +48,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.5.3
+ * @version     1.5.4
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -863,7 +863,7 @@ $.extend(DateTime.prototype, {
 		$(document).off('keydown.' + namespace);
 		$('div.dataTables_scrollBody').off('scroll.' + namespace);
 		$('div.DTE_Body_Content').off('scroll.' + namespace);
-		$('body').off('click.' + namespace);
+		$(document).off('click.' + namespace);
 		$(this.dom.input[0].offsetParent).off('.' + namespace);
 	},
 
@@ -1401,7 +1401,7 @@ $.extend(DateTime.prototype, {
 
 		// Correct to the right
 		if (calWidth + offset.left > $(window).width()) {
-			var newLeft = $(window).width() - calWidth;
+			var newLeft = $(window).width() - calWidth - 5;
 
 			// Account for elements which are inside a position absolute element
 			if (this.c.attachTo === 'input') {
@@ -1563,7 +1563,7 @@ $.extend(DateTime.prototype, {
 		// event from the one that was used to trigger the show (bubble and
 		// inline)
 		setTimeout(function () {
-			$('body').on('click.' + namespace, function (e) {
+			$(document).on('click.' + namespace, function (e) {
 				var parents = $(e.target).parents();
 
 				if (!parents.filter(that.dom.container).length && e.target !== that.dom.input[0]) {
@@ -1690,7 +1690,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.5.3';
+DateTime.version = '1.5.4';
 
 /**
  * CommonJS factory function pass through. Matches DataTables.
