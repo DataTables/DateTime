@@ -1359,7 +1359,7 @@ $.extend(DateTime.prototype, {
 
 		// Correct to the right
 		if (calWidth + offset.left > $(window).width()) {
-			var newLeft = $(window).width() - calWidth;
+			var newLeft = $(window).width() - calWidth - 5;
 
 			// Account for elements which are inside a position absolute element
 			if (this.c.attachTo === 'input') {
