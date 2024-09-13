@@ -821,7 +821,7 @@ $.extend(DateTime.prototype, {
 		$(document).off('keydown.' + namespace);
 		$('div.dataTables_scrollBody').off('scroll.' + namespace);
 		$('div.DTE_Body_Content').off('scroll.' + namespace);
-		$('body').off('click.' + namespace);
+		$(document).off('click.' + namespace);
 		$(this.dom.input[0].offsetParent).off('.' + namespace);
 	},
 
@@ -1521,7 +1521,7 @@ $.extend(DateTime.prototype, {
 		// event from the one that was used to trigger the show (bubble and
 		// inline)
 		setTimeout(function () {
-			$('body').on('click.' + namespace, function (e) {
+			$(document).on('click.' + namespace, function (e) {
 				var parents = $(e.target).parents();
 
 				if (!parents.filter(that.dom.container).length && e.target !== that.dom.input[0]) {
