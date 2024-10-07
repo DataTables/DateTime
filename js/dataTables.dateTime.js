@@ -261,6 +261,8 @@ $.extend(DateTime.prototype, {
 			return this.s.d;
 		}
 
+		var oldVal = this.s.d;
+
 		if (set instanceof Date) {
 			this.s.d = this._dateToUtc(set);
 		}
@@ -278,7 +280,12 @@ $.extend(DateTime.prototype, {
 
 		if (write || write === undefined) {
 			if (this.s.d) {
-				this._writeOutput();
+				this._writeOutput(
+					false,
+					(oldVal === null && this.s.d !== null) ||
+						(oldVal !== null && this.s.d === null) ||
+						oldVal.toString() !== this.s.d.toString()
+				);
 			}
 			else {
 				// The input value was not valid...
@@ -1537,7 +1544,7 @@ $.extend(DateTime.prototype, {
 	 *
 	 * @private
 	 */
-	_writeOutput: function (focus) {
+	_writeOutput: function (focus, change) {
 		var date = this.s.d;
 		var out = '';
 		var input = this.dom.input;
@@ -1548,10 +1555,12 @@ $.extend(DateTime.prototype, {
 
 		input.val(out);
 
-		// Create a DOM synthetic event. Can't use $().trigger() as
-		// that doesn't actually trigger non-jQuery event listeners
-		var event = new Event('change', { bubbles: true });
-		input[0].dispatchEvent(event);
+		if (change === undefined || change) {
+			// Create a DOM synthetic event. Can't use $().trigger() as
+			// that doesn't actually trigger non-jQuery event listeners
+			var event = new Event('change', { bubbles: true });
+			input[0].dispatchEvent(event);
+		}
 
 		if (input.attr('type') === 'hidden') {
 			this.val(out, false);
