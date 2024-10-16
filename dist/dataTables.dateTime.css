@@ -231,62 +231,100 @@ div.dt-datetime-error {
   color: #b11f1f;
 }
 
-html.dark input.dt-datetime {
+html.dark input.dt-datetime,
+:root[data-theme=dark] input.dt-datetime,
+:root[data-bs-theme=dark] input.dt-datetime {
   color-scheme: dark;
 }
-html.dark div.dt-datetime {
+html.dark div.dt-datetime,
+:root[data-theme=dark] div.dt-datetime,
+:root[data-bs-theme=dark] div.dt-datetime {
   border: 1px solid #595b5e;
   background-color: #212529;
   box-shadow: 3px 4px 10px 1px rgba(0, 0, 0, 0.8);
 }
-html.dark div.dt-datetime table th {
+html.dark div.dt-datetime table th,
+:root[data-theme=dark] div.dt-datetime table th,
+:root[data-bs-theme=dark] div.dt-datetime table th {
   color: #ccc;
 }
-html.dark div.dt-datetime table td {
+html.dark div.dt-datetime table td,
+:root[data-theme=dark] div.dt-datetime table td,
+:root[data-bs-theme=dark] div.dt-datetime table td {
   color: #eee;
 }
-html.dark div.dt-datetime table td.selectable {
+html.dark div.dt-datetime table td.selectable,
+:root[data-theme=dark] div.dt-datetime table td.selectable,
+:root[data-bs-theme=dark] div.dt-datetime table td.selectable {
   background: #373c41;
 }
-html.dark div.dt-datetime table td.selectable.disabled {
+html.dark div.dt-datetime table td.selectable.disabled,
+:root[data-theme=dark] div.dt-datetime table td.selectable.disabled,
+:root[data-bs-theme=dark] div.dt-datetime table td.selectable.disabled {
   color: #aaa;
   background: #171b1f;
 }
-html.dark div.dt-datetime table td.selectable.disabled button:hover {
+html.dark div.dt-datetime table td.selectable.disabled button:hover,
+:root[data-theme=dark] div.dt-datetime table td.selectable.disabled button:hover,
+:root[data-bs-theme=dark] div.dt-datetime table td.selectable.disabled button:hover {
   color: #aaa;
   background: #171b1f;
 }
-html.dark div.dt-datetime table td.selectable.now {
+html.dark div.dt-datetime table td.selectable.now,
+:root[data-theme=dark] div.dt-datetime table td.selectable.now,
+:root[data-bs-theme=dark] div.dt-datetime table td.selectable.now {
   background: #4b5055;
 }
-html.dark div.dt-datetime table td.selectable.selected button {
+html.dark div.dt-datetime table td.selectable.selected button,
+:root[data-theme=dark] div.dt-datetime table td.selectable.selected button,
+:root[data-bs-theme=dark] div.dt-datetime table td.selectable.selected button {
   background: #6ea8fe;
   color: black;
 }
-html.dark div.dt-datetime table td.selectable button:hover {
+html.dark div.dt-datetime table td.selectable button:hover,
+:root[data-theme=dark] div.dt-datetime table td.selectable button:hover,
+:root[data-bs-theme=dark] div.dt-datetime table td.selectable button:hover {
   background: #ff8000;
   color: black;
 }
-html.dark div.dt-datetime div.dt-datetime-label:hover {
+html.dark div.dt-datetime div.dt-datetime-label:hover,
+:root[data-theme=dark] div.dt-datetime div.dt-datetime-label:hover,
+:root[data-bs-theme=dark] div.dt-datetime div.dt-datetime-label:hover {
   border: 1px solid transparent;
   background-color: rgba(255, 255, 255, 0.1);
 }
 html.dark div.dt-datetime div.dt-datetime-iconLeft:hover,
 html.dark div.dt-datetime div.dt-datetime-iconRight:hover,
 html.dark div.dt-datetime div.dt-datetime-iconUp:hover,
-html.dark div.dt-datetime div.dt-datetime-iconDown:hover {
+html.dark div.dt-datetime div.dt-datetime-iconDown:hover,
+:root[data-theme=dark] div.dt-datetime div.dt-datetime-iconLeft:hover,
+:root[data-theme=dark] div.dt-datetime div.dt-datetime-iconRight:hover,
+:root[data-theme=dark] div.dt-datetime div.dt-datetime-iconUp:hover,
+:root[data-theme=dark] div.dt-datetime div.dt-datetime-iconDown:hover,
+:root[data-bs-theme=dark] div.dt-datetime div.dt-datetime-iconLeft:hover,
+:root[data-bs-theme=dark] div.dt-datetime div.dt-datetime-iconRight:hover,
+:root[data-bs-theme=dark] div.dt-datetime div.dt-datetime-iconUp:hover,
+:root[data-bs-theme=dark] div.dt-datetime div.dt-datetime-iconDown:hover {
   border: 1px solid transparent;
   background-color: rgba(255, 255, 255, 0.1);
 }
-html.dark div.dt-datetime div.dt-datetime-iconLeft:after {
+html.dark div.dt-datetime div.dt-datetime-iconLeft:after,
+:root[data-theme=dark] div.dt-datetime div.dt-datetime-iconLeft:after,
+:root[data-bs-theme=dark] div.dt-datetime div.dt-datetime-iconLeft:after {
   border-right-color: white;
 }
-html.dark div.dt-datetime div.dt-datetime-iconRight:after {
+html.dark div.dt-datetime div.dt-datetime-iconRight:after,
+:root[data-theme=dark] div.dt-datetime div.dt-datetime-iconRight:after,
+:root[data-bs-theme=dark] div.dt-datetime div.dt-datetime-iconRight:after {
   border-left-color: white;
 }
-html.dark div.dt-datetime select {
+html.dark div.dt-datetime select,
+:root[data-theme=dark] div.dt-datetime select,
+:root[data-bs-theme=dark] div.dt-datetime select {
   color-scheme: dark;
 }
-html.dark div.dt-datetime-error {
+html.dark div.dt-datetime-error,
+:root[data-theme=dark] div.dt-datetime-error,
+:root[data-bs-theme=dark] div.dt-datetime-error {
   color: #b11f1f;
 }
