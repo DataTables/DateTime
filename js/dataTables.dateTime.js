@@ -1524,6 +1524,23 @@ $.extend(DateTime.prototype, {
 			}
 		});
 
+		// We can't use blur to hide, as we want to keep the picker open while
+		// to let the user select from it. But if focus is moved outside of of
+		// the picker, then we auto hide.
+		this.dom.input.on('blur', function (e) {
+			setTimeout(function () {
+				let name = document.activeElement.tagName.toLowerCase();
+
+				if (that.dom.container.find(document.activeElement).length) {
+					return;
+				}
+
+				if (['input', 'select', 'button'].includes(name)) {
+					that.hide();
+				}
+			}, 10);
+		});
+
 		// Hide if clicking outside of the widget - but in a different click
 		// event from the one that was used to trigger the show (bubble and
 		// inline)
