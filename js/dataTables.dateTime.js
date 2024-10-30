@@ -141,7 +141,10 @@ var DateTime = function (input, opts) {
 			time: this.c.format.match(/[Hhm]|LT|LTS/) !== null,
 			seconds: this.c.format.indexOf('s') !== -1,
 			hours12: this.c.format.match(/[haA]/) !== null
-		}
+		},
+
+		/** Timeout when showing the control to listen for a blur */
+		showTo: null
 	};
 
 	this.dom.container
@@ -168,6 +171,7 @@ $.extend(DateTime.prototype, {
 	 * Destroy the control
 	 */
 	destroy: function () {
+		clearTimeout(this.s.showTo);
 		this._hide(true);
 		this.dom.container.off().empty();
 		this.dom.input
@@ -1524,12 +1528,18 @@ $.extend(DateTime.prototype, {
 			}
 		});
 
+		clearTimeout(this.s.showTo);
+
 		// We can't use blur to hide, as we want to keep the picker open while
 		// to let the user select from it. But if focus is moved outside of of
 		// the picker, then we auto hide.
 		this.dom.input.on('blur', function (e) {
-			setTimeout(function () {
+			that.s.showTo = setTimeout(function () {
 				let name = document.activeElement.tagName.toLowerCase();
+
+				if (document.activeElement === that.dom.input[0]) {
+					return;
+				}
 
 				if (that.dom.container.find(document.activeElement).length) {
 					return;
