@@ -35,7 +35,7 @@ interface IDateTimeOptions {
 }
 
 export class DateTime {
-	static use(moment: any); // Moment library
+	static use(moment: any): void; // Moment library
 
 	constructor(el: HTMLElement, opts?: IDateTimeOptions);
 	
