@@ -860,12 +860,12 @@ $.extend(DateTime.prototype, {
 	 * @return {string}     HTML cell
 	 */
 	_htmlDay: function (day) {
+		var classPrefix = this.c.classPrefix;
 		if (day.empty) {
-			return '<td class="empty"></td>';
+			return '<td class="' + classPrefix + '-empty"></td>';
 		}
 
 		var classes = ['selectable'];
-		var classPrefix = this.c.classPrefix;
 
 		if (day.disabled) {
 			classes.push('disabled');
