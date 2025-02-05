@@ -67,8 +67,8 @@ var DateTime = function (input, opts) {
 		throw "DateTime: Without momentjs, dayjs or luxon only the format 'YYYY-MM-DD' can be used";
 	}
 
-        if (this._isLuxon() && this.c.format == 'YYYY-MM-DD') {
-	   this.c.format =  'yyyy-MM-dd'
+	if (this._isLuxon() && this.c.format == 'YYYY-MM-DD') {
+		this.c.format =  'yyyy-MM-dd'
 	}
 
 	// Min and max need to be `Date` objects in the config
