@@ -424,9 +424,7 @@ $.extend(DateTime.prototype, {
 			})
 			.on('keyup.datetime', function () {
 				// Update the calendar's displayed value as the user types
-				if (that.dom.container.is(':visible')) {
-					that.val(that.dom.input.val(), false);
-				}
+				that.val(that.dom.input.val(), false);
 			});
 
 		// Want to prevent the focus bubbling up the document to account for
