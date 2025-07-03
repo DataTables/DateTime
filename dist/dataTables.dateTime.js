@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.5.6
+/*! DateTime picker for DataTables.net v1.5.5
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -48,7 +48,7 @@
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.5.6
+ * @version     1.5.5
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -875,10 +875,12 @@ $.extend(DateTime.prototype, {
 		this.dom.container.detach();
 
 		$(window).off('.' + namespace);
-		$(document).off('keydown.' + namespace);
+		$(document)
+			.off('keydown.' + namespace)
+			.off('keyup.' + namespace)
+			.off('click.' + namespace);
 		$('div.dataTables_scrollBody').off('scroll.' + namespace);
 		$('div.DTE_Body_Content').off('scroll.' + namespace);
-		$(document).off('click.' + namespace);
 		$(this.dom.input[0].offsetParent).off('.' + namespace);
 	},
 
@@ -1566,10 +1568,20 @@ $.extend(DateTime.prototype, {
 		// in the date picker - this might need to be changed).
 		$(document).on('keydown.' + namespace, function (e) {
 			if (
-				e.keyCode === 9 || // tab
-				e.keyCode === 27 || // esc
-				e.keyCode === 13    // return
+				that.dom.container.is(':visible') && (
+					e.keyCode === 9 || // tab
+					e.keyCode === 13    // return
+				)
 			) {
+				that._hide();
+			}
+		});
+
+		// Esc is on keyup to allow Editor to know that the container was hidden and thus
+		// not act on the esc itself.
+		$(document).on('keyup.' + namespace, function (e) {
+			if (that.dom.container.is(':visible') && e.keyCode === 27 ) { // esc
+				e.preventDefault();
 				that._hide();
 			}
 		});
@@ -1730,7 +1742,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.5.6';
+DateTime.version = '1.5.5';
 
 /**
  * CommonJS factory function pass through. Matches DataTables.
