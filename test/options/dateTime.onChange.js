@@ -63,30 +63,30 @@ describe('dateTime - options - onChange', function () {
 			$('#test').click();
 			expect(count).toBe(0);
 		});
-		it('... triggers on date', function () {
+		it('... does not trigger on selected date', function () {
 			$('#test').click();
 			$('.dt-datetime-calendar .selected button span').click();
-			expect(count).toBe(1);
+			expect(count).toBe(0);
 		});
 		it('... does not trigger again if no change', function () {
 			$('#test').click();
 			$('.dt-datetime-calendar .selected button span').click();
-			expect(count).toBe(1);
+			expect(count).toBe(0);
 		});
 		it('... triggers on hours', function () {
 			$('#test').click();
 			$('.dt-datetime-hours tbody tr:eq(0) td:eq(0) button span').click();
-			expect(count).toBe(2);
+			expect(count).toBe(1);
 		});
 		it('... triggers on minutes', function () {
 			$('#test').click();
 			$('.dt-datetime-minutes tbody tr:eq(0) td:eq(0) button span').click();
-			expect(count).toBe(3);
+			expect(count).toBe(2);
 		});
 		it('... triggers on seconds', function () {
 			$('#test').click();
 			$('.dt-datetime-seconds tbody tr:eq(0) td:eq(0) button span').click();
-			expect(count).toBe(4);
+			expect(count).toBe(3);
 		});
 
 		dt.html('input');

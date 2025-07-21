@@ -424,7 +424,8 @@ $.extend(DateTime.prototype, {
 				}
 
 				// In case the value has changed by text
-				that.val(that.dom.input.val(), false);
+				last = that.dom.input.val();
+				that.val(last, false);
 
 				that._show();
 			})
