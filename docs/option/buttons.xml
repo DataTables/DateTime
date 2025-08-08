@@ -9,18 +9,21 @@
 
 		* `de-init buttons.clear`
 		* `de-init buttons.today`
+		* `de-init buttons.selected` (since 1.6.0).
 	</description>
 
 	<example title="Enable clear and today buttons"><![CDATA[
 new DateTime(document.getElementById('test'), {
 	buttons: {
-		today: true,
-		clear: true
+		clear: true,
+		selected: true,
+		today: true
 	}
 });
 ]]></example>
 
 <related>de-init buttons.clear</related>
 <related>de-init buttons.today</related>
+<related>de-init buttons.selected</related>
 
 </dt-option>

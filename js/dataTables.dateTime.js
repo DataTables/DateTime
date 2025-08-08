@@ -96,6 +96,7 @@ var DateTime = function (input, opts) {
 		'<div class="' + classPrefix + '-buttons">' +
 		'<a class="' + classPrefix + '-clear"></a>' +
 		'<a class="' + classPrefix + '-today"></a>' +
+		'<a class="' + classPrefix + '-selected"></a>' +
 		'</div>' +
 		'<div class="' + classPrefix + '-calendar"></div>' +
 		'</div>' +
@@ -118,6 +119,7 @@ var DateTime = function (input, opts) {
 		buttons: structure.find('.' + classPrefix + '-buttons'),
 		clear: structure.find('.' + classPrefix + '-clear'),
 		today: structure.find('.' + classPrefix + '-today'),
+		selected: structure.find('.' + classPrefix + '-selected'),
 		previous: structure.find('.' + classPrefix + '-iconLeft'),
 		next: structure.find('.' + classPrefix + '-iconRight'),
 		input: $(input)
@@ -382,6 +384,10 @@ $.extend(DateTime.prototype, {
 			this.dom.today.css('display', 'none');
 		}
 
+		if (!this.c.buttons.selected) {
+			this.dom.selected.css('display', 'none');
+		}
+
 		// Render the options
 		this._optionsTitle();
 
@@ -529,6 +535,13 @@ $.extend(DateTime.prototype, {
 						// Don't change the value, but jump to the month
 						// containing today
 						that.s.display = new Date();
+
+						that._setTitle();
+						that._setCalander();
+					}
+					else if ($(target).hasClass(classPrefix + '-selected')) {
+						// Don't change the value, but jump to where the selected value is
+						that.s.display = new Date(that.s.d.getTime());
 
 						that._setTitle();
 						that._setCalander();
@@ -1302,6 +1315,7 @@ $.extend(DateTime.prototype, {
 
 		// Set the language strings in case any have changed
 		this.dom.today.text(i18n.today).text(i18n.today);
+		this.dom.selected.text(i18n.selected).text(i18n.selected);
 		this.dom.clear.text(i18n.clear).text(i18n.clear);
 		this.dom.previous
 			.attr('title', i18n.previous)
@@ -1646,6 +1660,7 @@ DateTime.defaults = {
 
 	buttons: {
 		clear: false,
+		selected: false,
 		today: false
 	},
 
@@ -1673,7 +1688,8 @@ DateTime.defaults = {
 		minutes: 'Minute',
 		seconds: 'Second',
 		unknown: '-',
-		today: 'Today'
+		today: 'Today',
+		selected: 'Selected'
 	},
 
 	maxDate: null,

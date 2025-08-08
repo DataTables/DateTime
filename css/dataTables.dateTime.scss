@@ -8,6 +8,7 @@
 	--dt-datetime_width: 275px;
 	--dt-datetime_border-radius: 5px;
 	--dt-datetime-inline_padding: 6px 0;
+	--dt-datetime-inline_background: transparent;
 
 	--dt-datetime-title_padding: 5px 0px 3px;
 
@@ -106,6 +107,7 @@ div.dt-datetime {
 		border: none;
 		z-index: inherit;
 		padding: var(--dt-datetime-inline_padding);
+		background-color: var(--dt-datetime-inline_background);
 	}
 
 	div.dt-datetime-title {

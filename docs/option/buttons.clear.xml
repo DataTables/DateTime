@@ -21,5 +21,6 @@ new DateTime(document.getElementById('test'), {
 ]]></example>
 
 <related>de-init buttons.today</related>
+<related>de-init buttons.selected</related>
 
 </dt-option>

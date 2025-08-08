@@ -8,8 +8,9 @@
 
 $('#test').dtDateTime({
 	buttons: {
+		clear: true,
 		today: true,
-		clear: true
+		selected: true
 	}
 });
 
@@ -21,22 +22,24 @@ $('#test').dtDateTime({
 
 new DateTime(document.getElementById('test'), {
 	buttons: {
+		clear: true,
 		today: true,
-		clear: true
+		selected: true
 	}
 });
 
 ]]>
 </js-vanilla>
 
-<title lib="DateTime">Action buttons (today and clear)</title>
+<title lib="DateTime">Action buttons (clear, today and selected)</title>
 
 <info><![CDATA[
 
 DateTable offers two built in buttons which can help make it easier for the end user to navigate around the calendar:
 
-* `de-init buttons.today` - change the display to show today's date (but without changing the value)
 * `de-init buttons.clear` - clear the current value.
+* `de-init buttons.selected` - change the display to show the month for the selected date.
+* `de-init buttons.today` - change the display to show today's date (but without changing the value)
 
 This example shows both buttons enabled.
 

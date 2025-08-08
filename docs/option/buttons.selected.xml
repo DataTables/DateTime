@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dt-option library="DateTime">
-	<name>buttons.today</name>
-	<summary>Enable button move "today" into view</summary>
-	<since>DateTime 1.1.0</since>
+	<name>buttons.selected</name>
+	<summary>Enable button move the current value into view</summary>
+	<since>DateTime 1.6.0</since>
 
 	<default value="false">
 		Button will not be shown.
 	</default>
 
 	<description>
-		When enabled, this option will cause DateTime to show a button (text set by `de-init i18n.today`) which the end user can activate to shift the calendar view to show today's date.
+		When enabled, this option will cause DateTime to show a button that will shift the calendar display to the currently selected date when activated.
+		
+		The text for the button can be set using `de-init i18n.selected`.
 
 		Note that the value of the field does not change when activating this button.
 	</description>
@@ -17,12 +19,12 @@
 	<example title="Enable today button"><![CDATA[
 new DateTime(document.getElementById('test'), {
 	buttons: {
-		today: true
+		selected: true
 	}
 });
 ]]></example>
 
 <related>de-init buttons.clear</related>
-<related>de-init buttons.selected</related>
+<related>de-init buttons.today</related>
 
 </dt-option>
