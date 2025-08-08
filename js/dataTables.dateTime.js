@@ -394,7 +394,7 @@ $.extend(DateTime.prototype, {
 
 		// When attached to a hidden input, we always show the input picker, and
 		// do so inline
-		if (this.dom.input.attr('type') === 'hidden') {
+		if (this.dom.input.attr('type') === 'hidden' || this.c.alwaysVisible) {
 			this.dom.container.addClass('inline');
 			this.c.attachTo = 'input';
 
@@ -823,7 +823,7 @@ $.extend(DateTime.prototype, {
 	 * @private
 	 */
 	_hide: function (destroy) {
-		if (!destroy && this.dom.input.attr('type') === 'hidden') {
+		if (!destroy && (this.dom.input.attr('type') === 'hidden' || this.c.alwaysVisible)) {
 			return;
 		}
 
@@ -1640,6 +1640,8 @@ DateTime.type = 'DateTime';
  * @type {Object}
  */
 DateTime.defaults = {
+	alwaysVisible: false,
+
 	attachTo: 'body',
 
 	buttons: {

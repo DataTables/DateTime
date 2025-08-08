@@ -11,6 +11,9 @@ div.dt-datetime {
 div.dt-datetime.inline {
   position: relative;
   box-shadow: none;
+  border: none;
+  z-index: inherit;
+  padding: 6px 0;
 }
 div.dt-datetime div.dt-datetime-title {
   text-align: center;
@@ -242,6 +245,12 @@ html.dark div.dt-datetime,
   border: 1px solid #595b5e;
   background-color: #212529;
   box-shadow: 3px 4px 10px 1px rgba(0, 0, 0, 0.8);
+}
+html.dark div.dt-datetime.inline,
+:root[data-theme=dark] div.dt-datetime.inline,
+:root[data-bs-theme=dark] div.dt-datetime.inline {
+  box-shadow: none;
+  border: none;
 }
 html.dark div.dt-datetime table th,
 :root[data-theme=dark] div.dt-datetime table th,

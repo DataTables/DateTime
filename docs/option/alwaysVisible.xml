@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-option library="DateTime">
+	<name>alwaysVisible</name>
+	<summary>Makes the date picker always display.</summary>
+	<since>DateTime 1.6.0</since>
+
+	<type type="boolean">
+		<description>
+			When this option is `false`, the standard behaviour of the date picker displaying only when the `-tag input` element gains focus applies. If set to `true`, the date picker will immediately be inserted into the DOM (after the `-tag input`) on initialisation, and continue to be displayed, even once a date has been selected.
+	    </description>
+	</type>
+
+	<default value="false">
+		The date picker will show as a popover when the `-tag input` gains focus.
+	</default>
+
+	<description>
+		This option provides the ability to have the date picker always displayed in the document, rather than as a popover only when the host `-tag input` element gains focus. This can be useful for some forms where you want the picker to be immediately available for use. It will display "inline" (i.e. with relative positioning, rather than absolute positioning), thus taking up more space, but allowing it to be part of the flow of the elements around it.
+
+		If you don't wish to have a text input at all, and just show the picker, you can use `type="hidden"` for the host `-tag input`.
+	</description>
+
+	<example title="Display the date picker inline, always"><![CDATA[
+$(document).ready(function () {
+	new DateTime(document.getElementById('test'), {
+		alwaysVisible: true
+	});
+});
+]]></example>
+
+</dt-option>

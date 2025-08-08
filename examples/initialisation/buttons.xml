@@ -35,8 +35,8 @@ new DateTime(document.getElementById('test'), {
 
 DateTable offers two built in buttons which can help make it easier for the end user to navigate around the calendar:
 
-* `dt-init buttons.today` - change the display to show today's date (but without changing the value)
-* `dt-init buttons.clear` - clear the current value.
+* `de-init buttons.today` - change the display to show today's date (but without changing the value)
+* `de-init buttons.clear` - clear the current value.
 
 This example shows both buttons enabled.
 
