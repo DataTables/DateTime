@@ -139,7 +139,7 @@ var DateTime = function (input, opts) {
 		secondsRange: null,
 
 		/** @type {String} Unique namespace string for this instance */
-		namespace: 'dateime-' + (DateTime._instance++),
+		namespace: 'datetime-' + (DateTime._instance++),
 
 		/** @type {Object} Parts of the picker that should be shown */
 		parts: {
