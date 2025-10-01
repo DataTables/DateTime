@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.5.5
+/*! DateTime picker for DataTables.net v1.6.0
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -12,7 +12,7 @@ let $ = jQuery;
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.5.5
+ * @version     1.6.0
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -145,7 +145,7 @@ var DateTime = function (input, opts) {
 		secondsRange: null,
 
 		/** @type {String} Unique namespace string for this instance */
-		namespace: 'dateime-' + (DateTime._instance++),
+		namespace: 'datetime-' + (DateTime._instance++),
 
 		/** @type {Object} Parts of the picker that should be shown */
 		parts: {
@@ -843,6 +843,12 @@ $.extend(DateTime.prototype, {
 	 */
 	_hide: function (destroy) {
 		if (!destroy && (this.dom.input.attr('type') === 'hidden' || this.c.alwaysVisible)) {
+			// Normally we wouldn't need to redraw the calander if it changes
+			// and then hides, but if it is hidden, then we do need to make sure
+			// that it is correctly up to date.
+			this._setCalander();
+			this._setTime();
+
 			return;
 		}
 
@@ -1723,7 +1729,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.5.5';
+DateTime.version = '1.6.0';
 
 /**
  * CommonJS factory function pass through. Matches DataTables.

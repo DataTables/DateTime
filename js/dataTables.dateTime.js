@@ -837,6 +837,12 @@ $.extend(DateTime.prototype, {
 	 */
 	_hide: function (destroy) {
 		if (!destroy && (this.dom.input.attr('type') === 'hidden' || this.c.alwaysVisible)) {
+			// Normally we wouldn't need to redraw the calander if it changes
+			// and then hides, but if it is hidden, then we do need to make sure
+			// that it is correctly up to date.
+			this._setCalander();
+			this._setTime();
+
 			return;
 		}
 
