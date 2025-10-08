@@ -1799,6 +1799,7 @@ if (!window.DateTime) {
 // Global DataTable
 if (window.DataTable) {
 	window.DataTable.DateTime = DateTime;
+	DataTable.use('datetime', DateTime);
 }
 
 // Make available via jQuery
