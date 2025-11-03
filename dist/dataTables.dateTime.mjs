@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.5.5
+/*! DateTime picker for DataTables.net v1.6.0
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -12,7 +12,7 @@ let $ = jQuery;
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.5.5
+ * @version     1.6.0
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -145,7 +145,7 @@ var DateTime = function (input, opts) {
 		secondsRange: null,
 
 		/** @type {String} Unique namespace string for this instance */
-		namespace: 'dateime-' + (DateTime._instance++),
+		namespace: 'datetime-' + (DateTime._instance++),
 
 		/** @type {Object} Parts of the picker that should be shown */
 		parts: {
@@ -208,10 +208,14 @@ $.extend(DateTime.prototype, {
 			return this;
 		}
 
-		return {
-			month: this.s.display.getUTCMonth() + 1,
-			year: this.s.display.getUTCFullYear()
-		};
+		return this.s.display ?
+			{
+				month: this.s.display.getUTCMonth() + 1,
+				year: this.s.display.getUTCFullYear()
+			} : {
+				month: null,
+				year: null
+			};
 	},
 
 	errorMsg: function (msg) {
@@ -310,9 +314,19 @@ $.extend(DateTime.prototype, {
 		}
 
 		// Need something to display
-		this.s.display = this.s.d
-			? new Date(this.s.d.toString())
-			: new Date();
+		if (this.s.d) {
+			this.s.display = new Date(this.s.d.toString());
+		}
+		else if (this.c.display) {
+			this.s.display = new Date();
+			this.s.display.setUTCDate(1);
+			this.display(this.c.display.year, this.c.display.month);
+		}
+		else {
+			this.s.display = new Date();
+		}
+
+		console.log('display', this.s.display);
 
 		// Set the day of the month to be 1 so changing between months doesn't
 		// run into issues when going from day 31 to 28 (for example)
@@ -1723,7 +1737,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.5.5';
+DateTime.version = '1.6.0';
 
 /**
  * CommonJS factory function pass through. Matches DataTables.
