@@ -320,8 +320,6 @@ $.extend(DateTime.prototype, {
 			this.s.display = new Date();
 		}
 
-		console.log('display', this.s.display);
-
 		// Set the day of the month to be 1 so changing between months doesn't
 		// run into issues when going from day 31 to 28 (for example)
 		this.s.display.setUTCDate(1);
