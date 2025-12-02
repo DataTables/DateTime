@@ -202,10 +202,14 @@ $.extend(DateTime.prototype, {
 			return this;
 		}
 
-		return {
-			month: this.s.display.getUTCMonth() + 1,
-			year: this.s.display.getUTCFullYear()
-		};
+		return this.s.display ?
+			{
+				month: this.s.display.getUTCMonth() + 1,
+				year: this.s.display.getUTCFullYear()
+			} : {
+				month: null,
+				year: null
+			};
 	},
 
 	errorMsg: function (msg) {
@@ -304,9 +308,17 @@ $.extend(DateTime.prototype, {
 		}
 
 		// Need something to display
-		this.s.display = this.s.d
-			? new Date(this.s.d.toString())
-			: new Date();
+		if (this.s.d) {
+			this.s.display = new Date(this.s.d.toString());
+		}
+		else if (this.c.display) {
+			this.s.display = new Date();
+			this.s.display.setUTCDate(1);
+			this.display(this.c.display.year, this.c.display.month);
+		}
+		else {
+			this.s.display = new Date();
+		}
 
 		// Set the day of the month to be 1 so changing between months doesn't
 		// run into issues when going from day 31 to 28 (for example)
