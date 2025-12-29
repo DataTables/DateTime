@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.6.2
+/*! DateTime picker for DataTables.net v1.6.3
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -7,13 +7,14 @@
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
-		define( ['jquery'], function () {
-			return factory( window, document );
+		define( ['jquery'], function ( $ ) {
+			return factory( $, window, document );
 		} );
 	}
 	else if ( typeof exports === 'object' ) {
 		// CommonJS
-		var cjsRequires = function (root) {		};
+		var jq = require('jquery');
+		var cjsRequires = function (root, $) {		};
 
 		if (typeof window === 'undefined') {
 			module.exports = function (root, $) {
@@ -23,27 +24,31 @@
 					root = window;
 				}
 
-				cjsRequires( root );
-				return factory( root, root.document );
+				if ( ! $ ) {
+					$ = jq( root );
+				}
+
+				cjsRequires( root, $ );
+				return factory( $, root, root.document );
 			};
 		}
 		else {
-			cjsRequires( window );
-			module.exports = factory( window, window.document );
+			cjsRequires( window, jq );
+			module.exports = factory( jq, window, window.document );
 		}
 	}
 	else {
 		// Browser
-		factory( window, document );
+		factory( jQuery, window, document );
 	}
-}(function( window, document ) {
+}(function( $, window, document ) {
 'use strict';
 
 
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.6.2
+ * @version     1.6.3
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -1772,7 +1777,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.6.2';
+DateTime.version = '1.6.3';
 
 /**
  * CommonJS factory function pass through. Matches DataTables.

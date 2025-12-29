@@ -1,4 +1,4 @@
-/*! DateTime picker for DataTables.net v1.6.2
+/*! DateTime picker for DataTables.net v1.6.3
  *
  * © SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
@@ -6,10 +6,13 @@
 
 import jQuery from 'jquery';
 
+// Allow reassignment of the $ variable
+let $ = jQuery;
+
 
 /**
  * @summary     DateTime picker for DataTables.net
- * @version     1.6.2
+ * @version     1.6.3
  * @file        dataTables.dateTime.js
  * @author      SpryMedia Ltd
  * @contact     www.datatables.net/contact
@@ -1738,7 +1741,7 @@ DateTime.defaults = {
 	yearRange: 25
 };
 
-DateTime.version = '1.6.2';
+DateTime.version = '1.6.3';
 
 /**
  * CommonJS factory function pass through. Matches DataTables.
