@@ -18,7 +18,7 @@
 
 	<type type="function">
 		<signature>disableDays(day)</signature>
-		<parameter type="number" name="day">The index of the day to check if it is disabled or not.</parameter>
+		<parameter type="Date" name="day">The index of the day to check if it is disabled or not.</parameter>
 		<returns type="boolean"/>
 		<description>
 			If this option is a function it should take one parameter, a number representing the index of the day being checked (again, 0 indexed starting from Sunday) if that day should be selectable it returns `true`, otherwise `false`.
