@@ -17,7 +17,7 @@ const util = DataTable.util;
 // * DayJS
 var dateLib;
 
-export default class DateTime {
+export class DateTime {
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 * Statics
 	 */
@@ -31,10 +31,8 @@ export default class DateTime {
 
 	/**
 	 * For generating unique namespaces
-	 *
-	 * @private
 	 */
-	public static _instance = 0;
+	private static _instance = 0;
 
 	/**
 	 * To indicate to DataTables what type of library this is

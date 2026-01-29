@@ -1,9 +1,11 @@
-import { Dom } from "datatables.net";
-import DateTime from "./dataTables.dateTime";
+import { Dom } from 'datatables.net';
+import { DateTime } from './dataTables.dateTime';
 
-type DeepPartial<T> = T extends object ? {
-    [P in keyof T]?: DeepPartial<T[P]>;
-} : T;
+type DeepPartial<T> = T extends object
+	? {
+			[P in keyof T]?: DeepPartial<T[P]>;
+	  }
+	: T;
 
 export interface Defaults {
 	alwaysVisible: boolean;
@@ -12,7 +14,7 @@ export interface Defaults {
 		clear: boolean;
 		selected: boolean;
 		today: boolean;
-	}
+	};
 	classPrefix: string;
 	disableDays: number[] | null | ((day: Date) => boolean);
 	display: {
@@ -41,7 +43,7 @@ export interface Defaults {
 	secondsIncrement: number;
 }
 
-export interface Options extends DeepPartial<Defaults> {};
+export interface Options extends DeepPartial<Defaults> {}
 
 export default DateTime;
 

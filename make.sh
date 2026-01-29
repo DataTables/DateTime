@@ -23,13 +23,15 @@ DT_SRC=$(dirname $(dirname $(pwd)))
 DT_BUILT="${DT_SRC}/built/DataTables"
 . $DT_SRC/build/include.sh
 
-if [ ! -d node_modules -o ! -d node_modules/node-sass ]; then
-	npm install
-fi
+$DT_SRC/node_modules/typescript/bin/tsc -p ./tsconfig.json
 
-./node_modules/gulp/bin/gulp.js
+sed -i "s#import DataTable from 'datatables.net';##" dist/dataTables.dateTime.js
 
-js_wrap dist/dataTables.dateTime.js "jquery"
+$DT_SRC/node_modules/rollup/dist/bin/rollup \
+	--config rollup.config.mjs
+
+js_wrap dist/dataTables.dateTime.js "datatables.net"
+
 css_compress dist/dataTables.dateTime.css
 
 if [ ! -d $OUT_DIR ]; then
