@@ -291,7 +291,8 @@ export default class DateTime {
 	/**
 	 * Similar to `val()` but uses a given date / time format
 	 *
-	 * @param format Format to get the data as (getter) or that is input (setter)
+	 * @param format Format to get the data as (getter) or that is input
+	 *   (setter)
 	 * @param val Value to write (if undefined, used as a getter)
 	 * @returns
 	 */
@@ -300,7 +301,8 @@ export default class DateTime {
 			return this._convert(this.val(), null, format);
 		}
 
-		// Convert from the format given here to the instance's configured format
+		// Convert from the format given here to the instance's configured
+		// format
 		this.val(this._convert(val, format, null));
 
 		return this;
@@ -319,8 +321,8 @@ export default class DateTime {
 	 */
 
 	constructor(input, opts) {
-		// Attempt to auto detect the formatting library (if there is one). Having it in
-		// the constructor allows load order independence.
+		// Attempt to auto detect the formatting library (if there is one).
+		// Having it in the constructor allows load order independence.
 		let win = window as any;
 
 		if (typeof dateLib === 'undefined') {
@@ -564,10 +566,10 @@ export default class DateTime {
 			});
 
 		// Want to prevent the focus bubbling up the document to account for
-		// focus capture in modals (e.g. Editor and Bootstrap). They can see
-		// the focus as outside the modal and thus immediately blur focus on
-		// the picker. Need to use a native addEL since jQuery changes the
-		// focusin to focus for some reason! focusin bubbles, focus does not.
+		// focus capture in modals (e.g. Editor and Bootstrap). They can see the
+		// focus as outside the modal and thus immediately blur focus on the
+		// picker. Need to use a native addEL since jQuery changes the focusin
+		// to focus for some reason! focusin bubbles, focus does not.
 		this.dom.container[0].addEventListener('focusin', function (e) {
 			e.stopPropagation();
 		});
@@ -682,7 +684,8 @@ export default class DateTime {
 					else if (
 						dom.s(target).classHas(classPrefix + '-selected')
 					) {
-						// Don't change the value, but jump to where the selected value is
+						// Don't change the value, but jump to where the
+						// selected value is
 						that.s.display = new Date(that.s.d.getTime());
 
 						that._setTitle();
@@ -810,8 +813,8 @@ export default class DateTime {
 						if (!that.s.parts.time) {
 							// This is annoying but IE has some kind of async
 							// behaviour with focus and the focus from the above
-							// write would occur after this hide - resulting in the
-							// calendar opening immediately
+							// write would occur after this hide - resulting in
+							// the calendar opening immediately
 							setTimeout(function () {
 								that._hide();
 							}, 10);
@@ -1726,7 +1729,8 @@ export default class DateTime {
 		var that = this;
 		var d = this.s.d;
 
-		// luxon uses different method names so need to be able to call them. This happens a few time later in this method too
+		// luxon uses different method names so need to be able to call them.
+		// This happens a few time later in this method too
 		var luxDT = null;
 		if (this._isLuxon()) {
 			luxDT = dateLib.DateTime.fromJSDate(d).toUTC();
@@ -1807,8 +1811,8 @@ export default class DateTime {
 			}
 		});
 
-		// Esc is on keyup to allow Editor to know that the container was hidden and thus
-		// not act on the esc itself.
+		// Esc is on keyup to allow Editor to know that the container was hidden
+		// and thus not act on the esc itself.
 		dom.s(document).on('keyup.' + namespace, function (e) {
 			if (that.dom.container.is(':visible') && e.keyCode === 27) {
 				// esc
