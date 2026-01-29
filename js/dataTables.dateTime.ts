@@ -25,9 +25,9 @@ export default class DateTime {
 	/**
 	 * Use a specific compatible date library
 	 */
-	public static use (lib) {
+	public static use(lib) {
 		dateLib = lib;
-	};
+	}
 
 	/**
 	 * For generating unique namespaces
@@ -74,7 +74,20 @@ export default class DateTime {
 			clear: 'Clear',
 			previous: 'Previous',
 			next: 'Next',
-			months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+			months: [
+				'January',
+				'February',
+				'March',
+				'April',
+				'May',
+				'June',
+				'July',
+				'August',
+				'September',
+				'October',
+				'November',
+				'December'
+			],
 			weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 			amPm: ['am', 'pm'],
 			hours: 'Hour',
@@ -97,7 +110,7 @@ export default class DateTime {
 
 		locale: 'en',
 
-		onChange: () => { },
+		onChange: () => {},
 
 		secondsAvailable: null,
 
@@ -119,7 +132,7 @@ export default class DateTime {
 	/**
 	 * Destroy the control
 	 */
-	public destroy () {
+	public destroy() {
 		clearTimeout(this.s.showTo);
 		this._hide(true);
 		this.dom.container.off().empty();
@@ -129,7 +142,7 @@ export default class DateTime {
 			.off('.datetime');
 	}
 
-	public display (year, month) {
+	public display(year, month) {
 		if (year !== undefined) {
 			this.s.display.setUTCFullYear(year);
 		}
@@ -145,17 +158,18 @@ export default class DateTime {
 			return this;
 		}
 
-		return this.s.display ?
-			{
-				month: this.s.display.getUTCMonth() + 1,
-				year: this.s.display.getUTCFullYear()
-			} : {
-				month: null,
-				year: null
-			};
+		return this.s.display
+			? {
+					month: this.s.display.getUTCMonth() + 1,
+					year: this.s.display.getUTCFullYear()
+			  }
+			: {
+					month: null,
+					year: null
+			  };
 	}
 
-	public errorMsg (msg) {
+	public errorMsg(msg) {
 		var error = this.dom.error;
 
 		if (msg) {
@@ -168,16 +182,14 @@ export default class DateTime {
 		return this;
 	}
 
-	public hide () {
+	public hide() {
 		this._hide();
 
 		return this;
 	}
 
-	public max (date) {
-		this.c.maxDate = typeof date === 'string'
-			? new Date(date)
-			: date;
+	public max(date) {
+		this.c.maxDate = typeof date === 'string' ? new Date(date) : date;
 
 		this._optionsTitle();
 		this._setCalander();
@@ -185,10 +197,8 @@ export default class DateTime {
 		return this;
 	}
 
-	public min (date) {
-		this.c.minDate = typeof date === 'string'
-			? new Date(date)
-			: date;
+	public min(date) {
+		this.c.minDate = typeof date === 'string' ? new Date(date) : date;
 
 		this._optionsTitle();
 		this._setCalander();
@@ -202,7 +212,7 @@ export default class DateTime {
 	 * @param  {node} node Element to check
 	 * @return {boolean}   true if owned by this control, false otherwise
 	 */
-	public owns (node) {
+	public owns(node) {
 		return dom.s(node).closest(this.dom.container.get(0)).count() > 0;
 	}
 
@@ -217,8 +227,8 @@ export default class DateTime {
 	 * @param write Flag to indicate if the formatted value
 	 *   should be written into the input element
 	 */
-	public val (set: string | Date, write?: boolean);
-	public val (set?: string | Date, write: boolean = true) {
+	public val(set: string | Date, write?: boolean);
+	public val(set?: string | Date, write: boolean = true) {
 		if (set === undefined) {
 			return this.s.d;
 		}
@@ -235,9 +245,7 @@ export default class DateTime {
 			this.s.d = this._dateToUtc(new Date());
 		}
 		else if (typeof set === 'string') {
-			this.s.d = this._dateToUtc(
-				this._convert(set, this.c.format, null)
-			);
+			this.s.d = this._dateToUtc(this._convert(set, this.c.format, null));
 		}
 
 		if (write || write === undefined) {
@@ -285,17 +293,15 @@ export default class DateTime {
 	 *
 	 * @param format Format to get the data as (getter) or that is input (setter)
 	 * @param val Value to write (if undefined, used as a getter)
-	 * @returns 
+	 * @returns
 	 */
-	public valFormat (format, val) {
+	public valFormat(format, val) {
 		if (!val) {
 			return this._convert(this.val(), null, format);
 		}
 
 		// Convert from the format given here to the instance's configured format
-		this.val(
-			this._convert(val, format, null)
-		);
+		this.val(this._convert(val, format, null));
 
 		return this;
 	}
@@ -312,7 +318,7 @@ export default class DateTime {
 	 * Constructor
 	 */
 
-	constructor (input, opts) {
+	constructor(input, opts) {
 		// Attempt to auto detect the formatting library (if there is one). Having it in
 		// the constructor allows load order independence.
 		let win = window as any;
@@ -321,10 +327,10 @@ export default class DateTime {
 			dateLib = win.moment
 				? win.moment
 				: win.dayjs
-					? win.dayjs
-					: win.luxon
-						? win.luxon
-						: null;
+				? win.dayjs
+				: win.luxon
+				? win.luxon
+				: null;
 		}
 
 		this.c = util.object.assignDeep({}, DateTime.defaults, opts);
@@ -336,7 +342,7 @@ export default class DateTime {
 		}
 
 		if (this._isLuxon() && this.c.format == 'YYYY-MM-DD') {
-			this.c.format =  'yyyy-MM-dd'
+			this.c.format = 'yyyy-MM-dd';
 		}
 
 		// Min and max need to be `Date` objects in the config
@@ -348,38 +354,77 @@ export default class DateTime {
 		}
 
 		// DOM structure
-		var structure = dom.c('div').classAdd(classPrefix).html(
-			'<div class="' + classPrefix + '-date">' +
-			'<div class="' + classPrefix + '-title">' +
-			'<div class="' + classPrefix + '-iconLeft">' +
-			'<button type="button"></button>' +
-			'</div>' +
-			'<div class="' + classPrefix + '-iconRight">' +
-			'<button type="button"></button>' +
-			'</div>' +
-			'<div class="' + classPrefix + '-label">' +
-			'<span></span>' +
-			'<select class="' + classPrefix + '-month"></select>' +
-			'</div>' +
-			'<div class="' + classPrefix + '-label">' +
-			'<span></span>' +
-			'<select class="' + classPrefix + '-year"></select>' +
-			'</div>' +
-			'</div>' +
-			'<div class="' + classPrefix + '-buttons">' +
-			'<a class="' + classPrefix + '-clear"></a>' +
-			'<a class="' + classPrefix + '-today"></a>' +
-			'<a class="' + classPrefix + '-selected"></a>' +
-			'</div>' +
-			'<div class="' + classPrefix + '-calendar"></div>' +
-			'</div>' +
-			'<div class="' + classPrefix + '-time">' +
-			'<div class="' + classPrefix + '-hours"></div>' +
-			'<div class="' + classPrefix + '-minutes"></div>' +
-			'<div class="' + classPrefix + '-seconds"></div>' +
-			'</div>' +
-			'<div class="' + classPrefix + '-error"></div>'
-		);
+		var structure = dom
+			.c('div')
+			.classAdd(classPrefix)
+			.html(
+				'<div class="' +
+					classPrefix +
+					'-date">' +
+					'<div class="' +
+					classPrefix +
+					'-title">' +
+					'<div class="' +
+					classPrefix +
+					'-iconLeft">' +
+					'<button type="button"></button>' +
+					'</div>' +
+					'<div class="' +
+					classPrefix +
+					'-iconRight">' +
+					'<button type="button"></button>' +
+					'</div>' +
+					'<div class="' +
+					classPrefix +
+					'-label">' +
+					'<span></span>' +
+					'<select class="' +
+					classPrefix +
+					'-month"></select>' +
+					'</div>' +
+					'<div class="' +
+					classPrefix +
+					'-label">' +
+					'<span></span>' +
+					'<select class="' +
+					classPrefix +
+					'-year"></select>' +
+					'</div>' +
+					'</div>' +
+					'<div class="' +
+					classPrefix +
+					'-buttons">' +
+					'<a class="' +
+					classPrefix +
+					'-clear"></a>' +
+					'<a class="' +
+					classPrefix +
+					'-today"></a>' +
+					'<a class="' +
+					classPrefix +
+					'-selected"></a>' +
+					'</div>' +
+					'<div class="' +
+					classPrefix +
+					'-calendar"></div>' +
+					'</div>' +
+					'<div class="' +
+					classPrefix +
+					'-time">' +
+					'<div class="' +
+					classPrefix +
+					'-hours"></div>' +
+					'<div class="' +
+					classPrefix +
+					'-minutes"></div>' +
+					'<div class="' +
+					classPrefix +
+					'-seconds"></div>' +
+					'</div>' +
+					'<div class="' +
+					classPrefix +
+					'-error"></div>'
+			);
 
 		this.dom = {
 			container: structure,
@@ -402,7 +447,7 @@ export default class DateTime {
 			display: null,
 			minutesRange: null,
 			secondsRange: null,
-			namespace: 'datetime-' + (DateTime._instance++),
+			namespace: 'datetime-' + DateTime._instance++,
 			parts: {
 				date: this.c.format.match(/[yYMDd]|L(?!T)|l/) !== null,
 				time: this.c.format.match(/[Hhm]|LT|LTS/) !== null,
@@ -430,7 +475,7 @@ export default class DateTime {
 	/**
 	 * Build the control and assign initial event handlers
 	 */
-	private _init () {
+	private _init() {
 		var that = this;
 		var classPrefix = this.c.classPrefix;
 		var last = this.dom.input.val();
@@ -500,7 +545,10 @@ export default class DateTime {
 			.attr('autocomplete', 'off')
 			.on('focus.datetime click.datetime', function () {
 				// If already visible - don't do anything
-				if (that.dom.container.is(':visible') || that.dom.input.is(':disabled')) {
+				if (
+					that.dom.container.is(':visible') ||
+					that.dom.input.is(':disabled')
+				) {
 					return;
 				}
 
@@ -542,17 +590,29 @@ export default class DateTime {
 					that._setTitle();
 					that._setCalander();
 				}
-				else if (select.classHas(classPrefix + '-hours') || select.classHas(classPrefix + '-ampm')) {
+				else if (
+					select.classHas(classPrefix + '-hours') ||
+					select.classHas(classPrefix + '-ampm')
+				) {
 					// Hours - need to take account of AM/PM input if present
 					if (that.s.parts.hours12) {
-						var hours = parseInt(that.dom.container.find('.' + classPrefix + '-hours').val(), 10);
-						var pm = that.dom.container.find('.' + classPrefix + '-ampm').val() === 'pm';
+						var hours = parseInt(
+							that.dom.container
+								.find('.' + classPrefix + '-hours')
+								.val(),
+							10
+						);
+						var pm =
+							that.dom.container
+								.find('.' + classPrefix + '-ampm')
+								.val() === 'pm';
 
-						that.s.d.setUTCHours(hours === 12 && !pm ?
-							0 :
-							pm && hours !== 12 ?
-								hours + 12 :
-								hours
+						that.s.d.setUTCHours(
+							hours === 12 && !pm
+								? 0
+								: pm && hours !== 12
+								? hours + 12
+								: hours
 						);
 					}
 					else {
@@ -587,9 +647,8 @@ export default class DateTime {
 			.on('click', function (e) {
 				var d = that.s.d;
 				var nodeName = e.target.nodeName.toLowerCase();
-				var target = nodeName === 'span' ?
-					e.target.parentNode :
-					e.target;
+				var target =
+					nodeName === 'span' ? e.target.parentNode : e.target;
 
 				nodeName = target.nodeName.toLowerCase();
 
@@ -620,7 +679,9 @@ export default class DateTime {
 						that._setTitle();
 						that._setCalander();
 					}
-					else if (dom.s(target).classHas(classPrefix + '-selected')) {
+					else if (
+						dom.s(target).classHas(classPrefix + '-selected')
+					) {
 						// Don't change the value, but jump to where the selected value is
 						that.s.display = new Date(that.s.d.getTime());
 
@@ -632,14 +693,19 @@ export default class DateTime {
 					var button = dom.s(target);
 					var parent = button.parent();
 
-					if (parent.classHas('disabled') && !parent.classHas('range')) {
+					if (
+						parent.classHas('disabled') &&
+						!parent.classHas('range')
+					) {
 						button.blur();
 						return;
 					}
 
 					if (parent.classHas(classPrefix + '-iconLeft')) {
 						// Previous month
-						that.s.display.setUTCMonth(that.s.display.getUTCMonth() - 1);
+						that.s.display.setUTCMonth(
+							that.s.display.getUTCMonth() - 1
+						);
 						that._setTitle();
 						that._setCalander();
 
@@ -647,20 +713,28 @@ export default class DateTime {
 					}
 					else if (parent.classHas(classPrefix + '-iconRight')) {
 						// Next month
-						that._correctMonth(that.s.display, that.s.display.getUTCMonth() + 1);
+						that._correctMonth(
+							that.s.display,
+							that.s.display.getUTCMonth() + 1
+						);
 						that._setTitle();
 						that._setCalander();
 
 						that.dom.input.focus();
 					}
-					else if (button.closest('.' + classPrefix + '-time').count()) {
+					else if (
+						button.closest('.' + classPrefix + '-time').count()
+					) {
 						var val = button.data('value');
 						var unit = button.data('unit');
 
 						d = that._needValue();
 
 						if (unit === 'minutes') {
-							if (parent.classHas('disabled') && parent.classHas('range')) {
+							if (
+								parent.classHas('disabled') &&
+								parent.classHas('range')
+							) {
 								that.s.minutesRange = val as number;
 								that._setTime();
 								return;
@@ -671,7 +745,10 @@ export default class DateTime {
 						}
 
 						if (unit === 'seconds') {
-							if (parent.classHas('disabled') && parent.classHas('range')) {
+							if (
+								parent.classHas('disabled') &&
+								parent.classHas('range')
+							) {
 								that.s.secondsRange = val as number;
 								that._setTime();
 								return;
@@ -699,11 +776,12 @@ export default class DateTime {
 							}
 						}
 
-						var set = unit === 'hours' ?
-							'setUTCHours' :
-							unit === 'minutes' ?
-								'setUTCMinutes' :
-								'setSeconds';
+						var set =
+							unit === 'hours'
+								? 'setUTCHours'
+								: unit === 'minutes'
+								? 'setUTCMinutes'
+								: 'setSeconds';
 
 						d[set](val);
 						that._setCalander();
@@ -754,7 +832,6 @@ export default class DateTime {
 			});
 	}
 
-
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 * Private
 	 */
@@ -766,23 +843,28 @@ export default class DateTime {
 	 * @param a Date 1
 	 * @param b Date 2
 	 */
-	private _compareDates (a: Date, b: Date) {
+	private _compareDates(a: Date, b: Date) {
 		// Can't use toDateString as that converts to local time
 		// luxon uses different method names so need to be able to call them
 		return this._isLuxon()
-			? dateLib.DateTime.fromJSDate(a).toUTC().toISODate() === dateLib.DateTime.fromJSDate(b).toUTC().toISODate()
+			? dateLib.DateTime.fromJSDate(a).toUTC().toISODate() ===
+					dateLib.DateTime.fromJSDate(b).toUTC().toISODate()
 			: this._dateToUtcString(a) === this._dateToUtcString(b);
 	}
 
 	/**
 	 * Convert from one format to another
 	 *
-	 * @param val Value 
+	 * @param val Value
 	 * @param from Format to convert from. If null a `Date` must be given
 	 * @param to Format to convert to. If null a `Date` will be returned
 	 * @returns Converted value
 	 */
-	private _convert (val: string | Date, from: string | null, to: string | null) {
+	private _convert(
+		val: string | Date,
+		from: string | null,
+		to: string | null
+	) {
 		if (!val) {
 			return val;
 		}
@@ -796,45 +878,52 @@ export default class DateTime {
 			}
 			else if (!from && val instanceof Date) {
 				// Date in, string back
-				return val.getUTCFullYear() + '-' +
-					this._pad(val.getUTCMonth() + 1) + '-' +
-					this._pad(val.getUTCDate());
+				return (
+					val.getUTCFullYear() +
+					'-' +
+					this._pad(val.getUTCMonth() + 1) +
+					'-' +
+					this._pad(val.getUTCDate())
+				);
 			}
-			else if (typeof val === 'string') { // (! to)
+			else if (typeof val === 'string') {
+				// (! to)
 				// String in, date back
 				var match = val.match(/(\d{4})\-(\d{2})\-(\d{2})/);
-				return match ?
-					new Date(parseInt(match[1]), parseInt(match[2]) - 1, parseInt(match[3])) :
-					null;
+				return match
+					? new Date(
+							parseInt(match[1]),
+							parseInt(match[2]) - 1,
+							parseInt(match[3])
+					  )
+					: null;
 			}
 		}
 		else if (this._isLuxon()) {
 			// Luxon
-			var dtLux = val instanceof Date
-				? dateLib.DateTime.fromJSDate(val).toUTC()
-				: dateLib.DateTime.fromFormat(val, from);
+			var dtLux =
+				val instanceof Date
+					? dateLib.DateTime.fromJSDate(val).toUTC()
+					: dateLib.DateTime.fromFormat(val, from);
 
 			if (!dtLux.isValid) {
 				return null;
 			}
 
-			return to
-				? dtLux.toFormat(to)
-				: dtLux.toJSDate();
+			return to ? dtLux.toFormat(to) : dtLux.toJSDate();
 		}
 		else {
 			// Moment / DayJS
-			var dtMo = val instanceof Date
-				? dateLib.utc(val, undefined, this.c.locale, this.c.strict)
-				: dateLib(val, from, this.c.locale, this.c.strict);
+			var dtMo =
+				val instanceof Date
+					? dateLib.utc(val, undefined, this.c.locale, this.c.strict)
+					: dateLib(val, from, this.c.locale, this.c.strict);
 
 			if (!dtMo.isValid()) {
 				return null;
 			}
 
-			return to
-				? dtMo.format(to)
-				: dtMo.toDate();
+			return to ? dtMo.format(to) : dtMo.toDate();
 		}
 	}
 
@@ -847,7 +936,7 @@ export default class DateTime {
 	 * @param date  Date - will be modified
 	 * @param month Month to set
 	 */
-	private _correctMonth (date: Date, month: number) {
+	private _correctMonth(date: Date, month: number) {
 		var days = this._daysInMonth(date.getUTCFullYear(), month);
 		var correctDays = date.getUTCDate() > days;
 
@@ -866,10 +955,23 @@ export default class DateTime {
 	 * @param  year  Year
 	 * @param  month Month (starting at 0)
 	 */
-	private _daysInMonth (year: number, month: number) {
-		// 
-		var isLeap = ((year % 4) === 0 && ((year % 100) !== 0 || (year % 400) === 0));
-		var months = [31, (isLeap ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	private _daysInMonth(year: number, month: number) {
+		//
+		var isLeap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+		var months = [
+			31,
+			isLeap ? 29 : 28,
+			31,
+			30,
+			31,
+			30,
+			31,
+			31,
+			30,
+			31,
+			30,
+			31
+		];
 
 		return months[month];
 	}
@@ -882,15 +984,21 @@ export default class DateTime {
 	 * @param  s Date to "convert"
 	 * @return Shifted date
 	 */
-	private _dateToUtc (s: Date) {
+	private _dateToUtc(s: Date) {
 		if (!s) {
 			return s;
 		}
 
-		return new Date(Date.UTC(
-			s.getFullYear(), s.getMonth(), s.getDate(),
-			s.getHours(), s.getMinutes(), s.getSeconds()
-		));
+		return new Date(
+			Date.UTC(
+				s.getFullYear(),
+				s.getMonth(),
+				s.getDate(),
+				s.getHours(),
+				s.getMinutes(),
+				s.getSeconds()
+			)
+		);
 	}
 
 	/**
@@ -899,22 +1007,27 @@ export default class DateTime {
 	 * @param  d Date to "convert"
 	 * @return ISO formatted date
 	 */
-	private _dateToUtcString (d: Date) {
+	private _dateToUtcString(d: Date) {
 		// luxon uses different method names so need to be able to call them
 		return this._isLuxon()
 			? dateLib.DateTime.fromJSDate(d).toUTC().toISODate()
-			: d.getUTCFullYear() + '-' +
-			this._pad(d.getUTCMonth() + 1) + '-' +
-			this._pad(d.getUTCDate());
+			: d.getUTCFullYear() +
+					'-' +
+					this._pad(d.getUTCMonth() + 1) +
+					'-' +
+					this._pad(d.getUTCDate());
 	}
 
 	/**
 	 * Hide the control and remove events related to its display
-	 * 
+	 *
 	 * @param destroy Flag to indicate that the instance is being destroyed
 	 */
-	private _hide (destroy = false) {
-		if (!destroy && (this.dom.input.attr('type') === 'hidden' || this.c.alwaysVisible)) {
+	private _hide(destroy = false) {
+		if (
+			!destroy &&
+			(this.dom.input.attr('type') === 'hidden' || this.c.alwaysVisible)
+		) {
 			// Normally we wouldn't need to redraw the calander if it changes
 			// and then hides, but if it is hidden, then we do need to make sure
 			// that it is correctly up to date.
@@ -944,12 +1057,8 @@ export default class DateTime {
 	 * @param val 24 hour value
 	 * @return 12 hour value
 	 */
-	private _hours24To12 (val: number) {
-		return val === 0 ?
-			12 :
-			val > 12 ?
-				val - 12 :
-				val;
+	private _hours24To12(val: number) {
+		return val === 0 ? 12 : val > 12 ? val - 12 : val;
 	}
 
 	/**
@@ -960,7 +1069,7 @@ export default class DateTime {
 	 * @param  {object} day Day object from the `_htmlMonth` method
 	 * @return {string}     HTML cell
 	 */
-	private _htmlDay (day) {
+	private _htmlDay(day) {
 		var classPrefix = this.c.classPrefix;
 		if (day.empty) {
 			return '<td class="' + classPrefix + '-empty"></td>';
@@ -980,17 +1089,35 @@ export default class DateTime {
 			classes.push('selected');
 		}
 
-		return '<td data-day="' + day.day + '" class="' + classes.join(' ') + '">' +
-			'<button class="' + classPrefix + '-button ' + classPrefix + '-day" type="button" ' + 'data-year="' + day.year + '" data-month="' + day.month + '" data-day="' + day.day + '">' +
-			'<span>' + day.day + '</span>' +
+		return (
+			'<td data-day="' +
+			day.day +
+			'" class="' +
+			classes.join(' ') +
+			'">' +
+			'<button class="' +
+			classPrefix +
+			'-button ' +
+			classPrefix +
+			'-day" type="button" ' +
+			'data-year="' +
+			day.year +
+			'" data-month="' +
+			day.month +
+			'" data-day="' +
+			day.day +
+			'">' +
+			'<span>' +
+			day.day +
+			'</span>' +
 			'</button>' +
-			'</td>';
+			'</td>'
+		);
 	}
-
 
 	/**
 	 * Create the HTML for a month to be displayed in the calendar table.
-	 * 
+	 *
 	 * Based upon the logic used in Pikaday - MIT licensed
 	 * Copyright (c) 2014 David Bushell
 	 * https://github.com/dbushell/Pikaday
@@ -999,7 +1126,7 @@ export default class DateTime {
 	 * @param  month Month (starting at 0)
 	 * @return Calendar month HTML
 	 */
-	private _htmlMonth (year: number, month: number) {
+	private _htmlMonth(year: number, month: number) {
 		var now = this._dateToUtc(new Date()),
 			days = this._daysInMonth(year, month),
 			before = new Date(Date.UTC(year, month, 1)).getUTCDay(),
@@ -1042,15 +1169,21 @@ export default class DateTime {
 			var day = new Date(Date.UTC(year, month, 1 + (i - before))),
 				selected = this.s.d ? this._compareDates(day, this.s.d) : false,
 				today = this._compareDates(day, now),
-				empty = i < before || i >= (days + before),
-				disabled = (minDate && day < minDate) ||
-					(maxDate && day > maxDate);
+				empty = i < before || i >= days + before,
+				disabled =
+					(minDate && day < minDate) || (maxDate && day > maxDate);
 
 			var disableDays = this.c.disableDays;
-			if (Array.isArray(disableDays) && disableDays.includes(day.getUTCDay())) {
+			if (
+				Array.isArray(disableDays) &&
+				disableDays.includes(day.getUTCDay())
+			) {
 				disabled = true;
 			}
-			else if (typeof disableDays === 'function' && disableDays(day) === true) {
+			else if (
+				typeof disableDays === 'function' &&
+				disableDays(day) === true
+			) {
 				disabled = true;
 			}
 
@@ -1085,27 +1218,35 @@ export default class DateTime {
 
 		// Show / hide month icons based on min/max
 		if (minDate) {
-			var underMin = minDate >= new Date(Date.UTC(year, month, 1, 0, 0, 0));
+			var underMin =
+				minDate >= new Date(Date.UTC(year, month, 1, 0, 0, 0));
 
-			this.dom.title.find('div.' + classPrefix + '-iconLeft')
+			this.dom.title
+				.find('div.' + classPrefix + '-iconLeft')
 				.css('display', underMin ? 'none' : 'block');
 		}
 
 		if (maxDate) {
-			var overMax = maxDate < new Date(Date.UTC(year, month + 1, 1, 0, 0, 0));
+			var overMax =
+				maxDate < new Date(Date.UTC(year, month + 1, 1, 0, 0, 0));
 
-			this.dom.title.find('div.' + classPrefix + '-iconRight')
+			this.dom.title
+				.find('div.' + classPrefix + '-iconRight')
 				.css('display', overMax ? 'none' : 'block');
 		}
 
-		return '<table class="' + className + '">' +
+		return (
+			'<table class="' +
+			className +
+			'">' +
 			'<thead>' +
 			this._htmlMonthHead() +
 			'</thead>' +
 			'<tbody>' +
 			data.join('') +
 			'</tbody>' +
-			'</table>';
+			'</table>'
+		);
 	}
 
 	/**
@@ -1113,7 +1254,7 @@ export default class DateTime {
 	 *
 	 * @return {string} HTML cells for the row
 	 */
-	private _htmlMonthHead () {
+	private _htmlMonthHead() {
 		var a = [];
 		var firstDay = this.c.firstDay;
 		var i18n = this.c.i18n;
@@ -1152,16 +1293,20 @@ export default class DateTime {
 	 * @param  y Year
 	 * @return HTML string for a day
 	 */
-	private _htmlWeekOfYear (d: number, m: number, y: number) {
+	private _htmlWeekOfYear(d: number, m: number, y: number) {
 		var date = new Date(y, m, d, 0, 0, 0, 0);
 
 		// First week of the year always has 4th January in it
 		date.setDate(date.getDate() + 4 - (date.getDay() || 7));
 
 		var oneJan = new Date(y, 0, 1);
-		var weekNum = Math.ceil(((((date as any) - (oneJan as any)) / 86400000) + 1) / 7);
+		var weekNum = Math.ceil(
+			(((date as any) - (oneJan as any)) / 86400000 + 1) / 7
+		);
 
-		return '<td class="' + this.c.classPrefix + '-week">' + weekNum + '</td>';
+		return (
+			'<td class="' + this.c.classPrefix + '-week">' + weekNum + '</td>'
+		);
 	}
 
 	/**
@@ -1169,8 +1314,11 @@ export default class DateTime {
 	 *
 	 * @returns Flag for Luxon
 	 */
-	private _isLuxon () {
-		return dateLib && dateLib.DateTime && dateLib.Duration && dateLib.Settings
+	private _isLuxon() {
+		return dateLib &&
+			dateLib.DateTime &&
+			dateLib.Duration &&
+			dateLib.Settings
 			? true
 			: false;
 	}
@@ -1180,7 +1328,7 @@ export default class DateTime {
 	 * If is doesn't set one to now.
 	 * @returns A Date object
 	 */
-	private _needValue () {
+	private _needValue() {
 		if (!this.s.d) {
 			this.s.d = this._dateToUtc(new Date());
 
@@ -1203,12 +1351,14 @@ export default class DateTime {
 	 * @param labels Array of labels. If given must be the same length as the
 	 *   values parameter.
 	 */
-	private _options (selector: string, values: any[], labels?: any[]) {
+	private _options(selector: string, values: any[], labels?: any[]) {
 		if (!labels) {
 			labels = values;
 		}
 
-		var select = this.dom.container.find('select.' + this.c.classPrefix + '-' + selector);
+		var select = this.dom.container.find(
+			'select.' + this.c.classPrefix + '-' + selector
+		);
 		select.empty();
 
 		for (var i = 0, ien = values.length; i < ien; i++) {
@@ -1225,16 +1375,17 @@ export default class DateTime {
 	 * @param selector Class name unique to the select element to use
 	 * @param val      Value to set
 	 */
-	private _optionSet (selector: string, val: any) {
-		var select = this.dom.container.find('select.' + this.c.classPrefix + '-' + selector);
+	private _optionSet(selector: string, val: any) {
+		var select = this.dom.container.find(
+			'select.' + this.c.classPrefix + '-' + selector
+		);
 		var span = select.parent().children('span');
 
 		select.val(val);
 
 		var selected = select.find('option:selected');
-		span.html(selected.count() !== 0 ?
-			selected.text() :
-			this.c.i18n.unknown
+		span.html(
+			selected.count() !== 0 ? selected.text() : this.c.i18n.unknown
 		);
 	}
 
@@ -1247,13 +1398,24 @@ export default class DateTime {
 	 * @param allowed Values allow for selection
 	 * @param range Override range
 	 */
-	private _optionsTime (unit: string, count: number, val: number, allowed: number[], range?: number) {
+	private _optionsTime(
+		unit: string,
+		count: number,
+		val: number,
+		allowed: number[],
+		range?: number
+	) {
 		var classPrefix = this.c.classPrefix;
-		var container = this.dom.container.find('div.' + classPrefix + '-' + unit);
+		var container = this.dom.container.find(
+			'div.' + classPrefix + '-' + unit
+		);
 		var i, j;
-		var render = count === 12 ?
-			function (i) { return i; } :
-			this._pad;
+		var render =
+			count === 12
+				? function (i) {
+						return i;
+				  }
+				: this._pad;
 		var className = classPrefix + '-table';
 		var i18n = this.c.i18n;
 
@@ -1278,11 +1440,18 @@ export default class DateTime {
 				}
 			}
 
-			var selected = val === value || (value === 'am' && val < 12) || (value === 'pm' && val >= 12) ?
-				'selected' :
-				'';
+			var selected =
+				val === value ||
+				(value === 'am' && val < 12) ||
+				(value === 'pm' && val >= 12)
+					? 'selected'
+					: '';
 
-			if (typeof value === 'number' && allowed && !allowed.includes(value)) {
+			if (
+				typeof value === 'number' &&
+				allowed &&
+				!allowed.includes(value)
+			) {
 				selected += ' disabled';
 			}
 
@@ -1290,12 +1459,26 @@ export default class DateTime {
 				selected += ' ' + className;
 			}
 
-			return '<td class="selectable ' + selected + '">' +
-				'<button class="' + classPrefix + '-button ' + classPrefix + '-day" type="button" data-unit="' + unit + '" data-value="' + value + '">' +
-				'<span>' + label + '</span>' +
+			return (
+				'<td class="selectable ' +
+				selected +
+				'">' +
+				'<button class="' +
+				classPrefix +
+				'-button ' +
+				classPrefix +
+				'-day" type="button" data-unit="' +
+				unit +
+				'" data-value="' +
+				value +
+				'">' +
+				'<span>' +
+				label +
+				'</span>' +
 				'</button>' +
-				'</td>';
-		}
+				'</td>'
+			);
+		};
 
 		if (count === 12) {
 			// Hours with AM/PM
@@ -1340,11 +1523,17 @@ export default class DateTime {
 			a += '</tr>';
 
 			// Slight hack to allow for the different number of columns
-			a += '</tbody></thead><table class="' + className + ' ' + className + '-nospace"><tbody>';
+			a +=
+				'</tbody></thead><table class="' +
+				className +
+				' ' +
+				className +
+				'-nospace"><tbody>';
 
-			var start = range !== null
-				? range
-				: val === -1
+			var start =
+				range !== null
+					? range
+					: val === -1
 					? 0
 					: Math.floor(val / 10) * 10;
 
@@ -1360,29 +1549,39 @@ export default class DateTime {
 		container
 			.empty()
 			.html(
-				'<table class="' + className + '">' +
-				'<thead><tr><th colspan="' + span + '">' +
-				i18n[unit] +
-				'</th></tr></thead>' +
-				'<tbody>' +
-				a +
-				'</tbody>' +
-				'</table>'
+				'<table class="' +
+					className +
+					'">' +
+					'<thead><tr><th colspan="' +
+					span +
+					'">' +
+					i18n[unit] +
+					'</th></tr></thead>' +
+					'<tbody>' +
+					a +
+					'</tbody>' +
+					'</table>'
 			);
 	}
 
 	/**
 	 * Create the options for the month and year
 	 */
-	private _optionsTitle () {
+	private _optionsTitle() {
 		var i18n = this.c.i18n;
 		var min = this.c.minDate;
 		var max = this.c.maxDate;
 		var minYear = min ? min.getFullYear() : null;
 		var maxYear = max ? max.getFullYear() : null;
 
-		var i = minYear !== null ? minYear : new Date().getFullYear() - this.c.yearRange;
-		var j = maxYear !== null ? maxYear : new Date().getFullYear() + this.c.yearRange;
+		var i =
+			minYear !== null
+				? minYear
+				: new Date().getFullYear() - this.c.yearRange;
+		var j =
+			maxYear !== null
+				? maxYear
+				: new Date().getFullYear() + this.c.yearRange;
 
 		this._options('month', this._range(0, 11), i18n.months);
 		this._options('year', this._range(i, j));
@@ -1407,15 +1606,18 @@ export default class DateTime {
 	 * @param  {integer} i      Value that might need padding
 	 * @return {string|integer} Padded value
 	 */
-	private _pad (i) {
+	private _pad(i) {
 		return i < 10 ? '0' + i : i;
 	}
 
 	/**
 	 * Position the calendar to look attached to the input element
 	 */
-	private _position () {
-		var offset = this.c.attachTo === 'input' ? this.dom.input.position() : this.dom.input.offset();
+	private _position() {
+		var offset =
+			this.c.attachTo === 'input'
+				? this.dom.input.position()
+				: this.dom.input.offset();
 		var container = this.dom.container;
 		var inputHeight = this.dom.input.height('outer');
 
@@ -1434,7 +1636,7 @@ export default class DateTime {
 		if (this.c.attachTo === 'input') {
 			container
 				.css({
-					top: (offset.top + inputHeight) + 'px',
+					top: offset.top + inputHeight + 'px',
 					left: offset.left + 'px'
 				})
 				.insertAfter(this.dom.input);
@@ -1442,7 +1644,7 @@ export default class DateTime {
 		else {
 			container
 				.css({
-					top: (offset.top + inputHeight) + 'px',
+					top: offset.top + inputHeight + 'px',
 					left: offset.left + 'px'
 				})
 				.appendTo('body');
@@ -1465,7 +1667,9 @@ export default class DateTime {
 
 			// Account for elements which are inside a position absolute element
 			if (this.c.attachTo === 'input') {
-				newLeft -= container.map(e => e.offsetParent as HTMLElement).offset().left;
+				newLeft -= container
+					.map(e => e.offsetParent as HTMLElement)
+					.offset().left;
 			}
 
 			container.css('left', newLeft < 0 ? '0' : newLeft + 'px');
@@ -1480,7 +1684,7 @@ export default class DateTime {
 	 * @param  inc Increment value
 	 * @return Created array
 	 */
-	private _range (start: number, end: number, inc = 1) {
+	private _range(start: number, end: number, inc = 1) {
 		var a: number[] = [];
 
 		for (var i = start; i <= end; i += inc) {
@@ -1494,21 +1698,23 @@ export default class DateTime {
 	 * Redraw the calendar based on the display date - this is a destructive
 	 * operation
 	 */
-	private _setCalander () {
+	private _setCalander() {
 		if (this.s.display) {
 			this.dom.calendar
 				.empty()
-				.html(this._htmlMonth(
-					this.s.display.getUTCFullYear(),
-					this.s.display.getUTCMonth()
-				));
+				.html(
+					this._htmlMonth(
+						this.s.display.getUTCFullYear(),
+						this.s.display.getUTCMonth()
+					)
+				);
 		}
 	}
 
 	/**
 	 * Set the month and year for the calendar based on the current display date
 	 */
-	private _setTitle () {
+	private _setTitle() {
 		this._optionSet('month', this.s.display.getUTCMonth());
 		this._optionSet('year', this.s.display.getUTCFullYear());
 	}
@@ -1516,48 +1722,42 @@ export default class DateTime {
 	/**
 	 * Set the time based on the current value of the widget
 	 */
-	private _setTime () {
+	private _setTime() {
 		var that = this;
 		var d = this.s.d;
 
 		// luxon uses different method names so need to be able to call them. This happens a few time later in this method too
-		var luxDT = null
+		var luxDT = null;
 		if (this._isLuxon()) {
 			luxDT = dateLib.DateTime.fromJSDate(d).toUTC();
 		}
 
-		var hours = luxDT != null
-			? luxDT.hour
-			: d
-				? d.getUTCHours()
-				: -1;
+		var hours = luxDT != null ? luxDT.hour : d ? d.getUTCHours() : -1;
 
-		var allowed = function (prop) { // Backwards compt with `Increment` option
-			return that.c[prop + 'Available'] ?
-				that.c[prop + 'Available'] :
-				that._range(0, 59, that.c[prop + 'Increment']);
-		}
+		var allowed = function (prop) {
+			// Backwards compt with `Increment` option
+			return that.c[prop + 'Available']
+				? that.c[prop + 'Available']
+				: that._range(0, 59, that.c[prop + 'Increment']);
+		};
 
-		this._optionsTime('hours', this.s.parts.hours12 ? 12 : 24, hours, this.c.hoursAvailable)
+		this._optionsTime(
+			'hours',
+			this.s.parts.hours12 ? 12 : 24,
+			hours,
+			this.c.hoursAvailable
+		);
 		this._optionsTime(
 			'minutes',
 			60,
-			luxDT != null
-				? luxDT.minute
-				: d
-					? d.getUTCMinutes()
-					: -1,
+			luxDT != null ? luxDT.minute : d ? d.getUTCMinutes() : -1,
 			allowed('minutes'),
 			this.s.minutesRange
 		);
 		this._optionsTime(
 			'seconds',
 			60,
-			luxDT != null
-				? luxDT.second
-				: d
-					? d.getSeconds()
-					: -1,
+			luxDT != null ? luxDT.second : d ? d.getSeconds() : -1,
 			allowed('seconds'),
 			this.s.secondsRange
 		);
@@ -1566,9 +1766,9 @@ export default class DateTime {
 	/**
 	 * Show the widget and add events to the document required only while it
 	 * is displayed
-	 * 
+	 *
 	 */
-	private _show () {
+	private _show() {
 		var that = this;
 		var namespace = this.s.namespace;
 
@@ -1599,10 +1799,9 @@ export default class DateTime {
 		// in the date picker - this might need to be changed).
 		dom.s(document).on('keydown.' + namespace, function (e) {
 			if (
-				that.dom.container.is(':visible') && (
-					e.keyCode === 9 || // tab
-					e.keyCode === 13    // return
-				)
+				that.dom.container.is(':visible') &&
+				(e.keyCode === 9 || // tab
+					e.keyCode === 13) // return
 			) {
 				that._hide();
 			}
@@ -1611,7 +1810,8 @@ export default class DateTime {
 		// Esc is on keyup to allow Editor to know that the container was hidden and thus
 		// not act on the esc itself.
 		dom.s(document).on('keyup.' + namespace, function (e) {
-			if (that.dom.container.is(':visible') && e.keyCode === 27 ) { // esc
+			if (that.dom.container.is(':visible') && e.keyCode === 27) {
+				// esc
 				e.preventDefault();
 				that._hide();
 			}
@@ -1645,7 +1845,13 @@ export default class DateTime {
 		// inline)
 		setTimeout(function () {
 			dom.s(document).on('click.' + namespace, function (e) {
-				if (!dom.s(e.target).closest(that.dom.container.get(0)).count() && e.target !== that.dom.input.get(0)) {
+				if (
+					!dom
+						.s(e.target)
+						.closest(that.dom.container.get(0))
+						.count() &&
+					e.target !== that.dom.input.get(0)
+				) {
 					that._hide();
 				}
 			});
@@ -1656,7 +1862,7 @@ export default class DateTime {
 	 * Write the formatted string to the input element this control is attached
 	 * to
 	 */
-	private _writeOutput (focus = false, change = true) {
+	private _writeOutput(focus = false, change = true) {
 		var date = this.s.d;
 		var out = '';
 		var input = this.dom.input;
@@ -1684,7 +1890,6 @@ export default class DateTime {
 	}
 }
 
-
 // Global export - if no conflicts
 // TODO is this right in the UDM?
 if (!(window as any).DateTime) {
@@ -1697,7 +1902,7 @@ if ((window as any).jQuery) {
 		return this.each(function () {
 			new DateTime(this, options);
 		});
-	}
+	};
 }
 
 // Attach to DataTables
