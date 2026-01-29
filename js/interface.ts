@@ -15,23 +15,14 @@ export interface Defaults {
 	}
 	classPrefix: string;
 	disableDays: number[] | null | ((day: Date) => boolean);
+	display: {
+		year: number;
+		month: number;
+	} | null;
 	firstDay: number;
 	format: string;
 	hoursAvailable: number[] | null;
-	i18n: {
-		clear: string;
-		previous: string;
-		next: string;
-		months: string[];
-		weekdays: string[];
-		amPm: string[];
-		hours: string;
-		minutes: string;
-		seconds: string;
-		today: string;
-		selected: string;
-		unknown: string;
-	};
+	i18n: DTLanguage;
 	maxDate: Date | null;
 	minDate: Date | null;
 
@@ -62,8 +53,27 @@ interface JQuery {
 // Also attached to DataTables object
 declare module 'datatables.net' {
 	interface DataTablesStatic {
-		DataTime: DateTime;
+		DateTime: typeof DateTime;
 	}
+
+	interface Language {
+		datetime: DTLanguage;
+	}
+}
+
+export interface DTLanguage {
+	clear: string;
+	previous: string;
+	next: string;
+	months: string[];
+	weekdays: string[];
+	amPm: string[];
+	hours: string;
+	minutes: string;
+	seconds: string;
+	today: string;
+	selected: string;
+	unknown: string;
 }
 
 export interface Settings {

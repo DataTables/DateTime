@@ -61,6 +61,8 @@ export default class DateTime {
 		// function or array of ints
 		disableDays: null,
 
+		display: null,
+
 		// first day of the week (0: Sunday, 1: Monday, etc)
 		firstDay: 1,
 
@@ -201,17 +203,22 @@ export default class DateTime {
 	 * @return {boolean}   true if owned by this control, false otherwise
 	 */
 	public owns (node) {
-		return dom.s(node).parents().filter(this.dom.container).length > 0;
+		return dom.s(node).closest(this.dom.container.get(0)).count() > 0;
 	}
 
 	/**
-	 * Get / set the value
+	 * Get the value
+	 */
+	public val(): Date;
+	/**
+	 * Set the value
 	 *
 	 * @param set Value to set
 	 * @param write Flag to indicate if the formatted value
 	 *   should be written into the input element
 	 */
-	public val (set: string | Date, write: boolean = true) {
+	public val (set: string | Date, write?: boolean);
+	public val (set?: string | Date, write: boolean = true) {
 		if (set === undefined) {
 			return this.s.d;
 		}
@@ -244,7 +251,7 @@ export default class DateTime {
 			}
 			else {
 				// The input value was not valid...
-				this.dom.input.val(set);
+				this.dom.input.val(set as string);
 			}
 		}
 
@@ -646,7 +653,7 @@ export default class DateTime {
 
 						that.dom.input.focus();
 					}
-					else if (button.parents('.' + classPrefix + '-time').length) {
+					else if (button.closest('.' + classPrefix + '-time').count()) {
 						var val = button.data('value');
 						var unit = button.data('unit');
 
@@ -745,7 +752,7 @@ export default class DateTime {
 					that.dom.input.focus();
 				}
 			});
-	},
+	}
 
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -787,17 +794,17 @@ export default class DateTime {
 				// No conversion
 				return val;
 			}
-			else if (!from) {
+			else if (!from && val instanceof Date) {
 				// Date in, string back
 				return val.getUTCFullYear() + '-' +
 					this._pad(val.getUTCMonth() + 1) + '-' +
 					this._pad(val.getUTCDate());
 			}
-			else { // (! to)
+			else if (typeof val === 'string') { // (! to)
 				// String in, date back
 				var match = val.match(/(\d{4})\-(\d{2})\-(\d{2})/);
 				return match ?
-					new Date(match[1], match[2] - 1, match[3]) :
+					new Date(parseInt(match[1]), parseInt(match[2]) - 1, parseInt(match[3])) :
 					null;
 			}
 		}
@@ -1458,7 +1465,7 @@ export default class DateTime {
 
 			// Account for elements which are inside a position absolute element
 			if (this.c.attachTo === 'input') {
-				newLeft -= container.offsetParent().offset().left;
+				newLeft -= container.map(e => e.offsetParent as HTMLElement).offset().left;
 			}
 
 			container.css('left', newLeft < 0 ? '0' : newLeft + 'px');
@@ -1638,9 +1645,7 @@ export default class DateTime {
 		// inline)
 		setTimeout(function () {
 			dom.s(document).on('click.' + namespace, function (e) {
-				var parents = dom.s(e.target).parents();
-
-				if (!parents.filter(that.dom.container).length && e.target !== that.dom.input.get(0)) {
+				if (!dom.s(e.target).closest(that.dom.container.get(0)).count() && e.target !== that.dom.input.get(0)) {
 					that._hide();
 				}
 			});
@@ -1700,6 +1705,6 @@ DataTable.DateTime = DateTime;
 DataTable.use('datetime', DateTime);
 
 // And to Editor (legacy)
-if (DataTable.Editor) {
-	DataTable.Editor.DateTime = DateTime;
+if ((DataTable as any).Editor) {
+	(DataTable as any).Editor.DateTime = DateTime;
 }
