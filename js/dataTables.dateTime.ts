@@ -1109,6 +1109,10 @@ export class DateTime {
 			data = [],
 			row = [];
 
+		if (this.c.firstDay === null) {
+			this.c.firstDay = this._localeFirstDay();
+		}
+
 		if (this.c.firstDay > 0) {
 			before -= this.c.firstDay;
 
@@ -1297,6 +1301,61 @@ export class DateTime {
 			dateLib.Settings
 			? true
 			: false;
+	}
+
+	/**
+	 * Determine if Moment is being used
+	 *
+	 * @returns Flag for Moment
+	 */
+	private _isMoment() {
+		return dateLib &&
+			typeof dateLib.isDate === 'function' &&
+			typeof dateLib.weekdays === 'function'
+			? true
+			: false;
+	}
+
+	/**
+	 * Determine the first day of the week based on the current locale
+	 */
+	private _localeFirstDay() {
+		let locale = this.c.locale;
+
+		if (locale === 'en') {
+			// Somewhat bonkers way to get the current locale, but there doesn't
+			// seem to be a better way
+			let browserLocale = (new Intl.NumberFormat())
+				.resolvedOptions()
+				.locale;
+
+			// Not yet in Firefox
+			if ((Intl as any).Locale) {
+				let loc = new (Intl as any).Locale(browserLocale);
+
+				if (loc.getWeekInfo) {
+					let weekInfo = loc.getWeekInfo();
+
+					// Safari and new Chrome have it as a function
+					if (typeof weekInfo.firstDay === 'function') {
+						return weekInfo.firstDay();
+					}
+					else if (typeof weekInfo.firstDay === 'number') {
+						// Old Chrome as an accessor property
+						return weekInfo.firstDay;
+					}
+				}
+			}
+		}
+
+		if (this._isMoment()) {
+			return dateLib.localeData(this.c.locale).firstDayOfWeek();
+		}
+
+		// There doesn't appear to be a way to do it in luxon
+
+		// Default to Monday
+		return 1;
 	}
 
 	/**

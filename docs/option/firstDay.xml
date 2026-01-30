@@ -4,25 +4,36 @@
 	<summary>Change which day of the week is first on the calendar.</summary>
 	<since>DateTime 1.0.0</since>
 
-	<type type="number">
+	<type type="number | null">
 		<description>
-			This value represents which day of the week should be in the first column of datetime.
+			This value represents which day of the week should be in the first
+			column of datetime. If `null` is given autodetection will be
+			attempted, and if that fails, 1 (Monday) will be used.
+
+			The days are 0 indexed starting from Sunday:
+
+			* 0 - Sunday
+			* 1 - Monday
+			* 2 - Tuesday
+			* 3 - Wednesday
+			* 4 - Thursday
+			* 5 - Friday
+			* 6 - Saturday
 		</description>
 	</type>
 
-	<default value="1">
-		The default value of 0 represents Sunday - the days are 0 indexed starting from Sunday:
-
-		* 0 - Sunday
-		* 1 - Monday
-		* 2 - Tuesday
-		* 3 - Wednesday
-		* 4 - Thursday
-		* 5 - Friday
-		* 6 - Saturday
+	<default value="null">
+		The default value of `null` will result in auto detection being used.
 	</default>
 	<description>
-		This option allows for the "first" day to be changed to any of the days of the week as desired.
+		This option allows for the "first" day to be changed to any of the days
+		of the week as desired.
+
+		As of DateTime 2, this parameter supports auto detection through the
+		browser's native [`Intl.Locale`
+		API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale).
+		Please note that this API isn't supported in Firefox at the time of
+		writing. If the auto detection fails, `1` (Monday) will be used.
 	</description>
 
 	<example title="Change first day to Saturday"><![CDATA[
