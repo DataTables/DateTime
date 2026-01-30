@@ -3,7 +3,7 @@
 
 <css lib="datetime bootstrap4"/>
 
-<js lib="jquery moment datetime">
+<js lib="datatables moment datetime">
 <![CDATA[
 new DateTime('#inputDate', {
 	format: 'MMMM Do YYYY'

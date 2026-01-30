@@ -3,7 +3,7 @@
 
 <title lib="DateTime">DateTime Picker</title>
 
-<js lib="jquery" />
+<js lib="" />
 <info><![CDATA[
 
 This is the section that shows the key configuration options for the DateTime Picker.

@@ -2,7 +2,7 @@
 <dt-example table-type="html" table-class="display nowrap" order="7">
 
 <css lib="datetime"/>
-<js lib="jquery moment datetime">
+<js lib="datatables moment datetime">
 <![CDATA[
 
 new DateTime(document.getElementById('test'), {

@@ -23,6 +23,18 @@ DT_SRC=$(dirname $(dirname $(pwd)))
 DT_BUILT="${DT_SRC}/built/DataTables"
 . $DT_SRC/build/include.sh
 
+rm -r dist
+mkdir dist
+
+# CSS
+cp css/dataTables.dateTime.scss dist
+scss_compile dist/dataTables.dateTime
+rm dist/dataTables.dateTime.scss
+
+# Typescript
+#
+# This is a bit of a mess due to using js_wrap to create both the UMD and the
+# ESM files.
 $DT_SRC/node_modules/typescript/bin/tsc -p ./tsconfig.json
 
 sed -i "s#import DataTable from 'datatables.net';##" dist/dataTables.dateTime.js
@@ -30,9 +42,9 @@ sed -i "s#import DataTable from 'datatables.net';##" dist/dataTables.dateTime.js
 $DT_SRC/node_modules/rollup/dist/bin/rollup \
 	--config rollup.config.mjs
 
-js_wrap dist/dataTables.dateTime.js "datatables.net"
+sed -i "s#export { DateTime };##" dist/dataTables.dateTime.js
 
-css_compress dist/dataTables.dateTime.css
+js_wrap dist/dataTables.dateTime.js "datatables.net"
 
 if [ ! -d $OUT_DIR ]; then
 	mkdir $OUT_DIR

@@ -546,7 +546,7 @@ export class DateTime {
 			.on('focus.datetime click.datetime', function () {
 				// If already visible - don't do anything
 				if (
-					that.dom.container.is(':visible') ||
+					that.dom.container.isVisible() ||
 					that.dom.input.is(':disabled')
 				) {
 					return;
@@ -568,7 +568,7 @@ export class DateTime {
 		// focus as outside the modal and thus immediately blur focus on the
 		// picker. Need to use a native addEL since jQuery changes the focusin
 		// to focus for some reason! focusin bubbles, focus does not.
-		this.dom.container[0].addEventListener('focusin', function (e) {
+		this.dom.container.get(0).addEventListener('focusin', function (e) {
 			e.stopPropagation();
 		});
 
@@ -1384,7 +1384,10 @@ export class DateTime {
 
 		select.val(val);
 
-		var selected = select.find('option:selected');
+		var selected = select
+			.find('option')
+			.filter(e => (e as HTMLOptionElement).selected);
+
 		span.html(
 			selected.count() !== 0 ? selected.text() : this.c.i18n.unknown
 		);
@@ -1801,7 +1804,7 @@ export class DateTime {
 		// in the date picker - this might need to be changed).
 		dom.s(document).on('keydown.' + namespace, function (e) {
 			if (
-				that.dom.container.is(':visible') &&
+				that.dom.container.isVisible() &&
 				(e.keyCode === 9 || // tab
 					e.keyCode === 13) // return
 			) {
@@ -1812,7 +1815,7 @@ export class DateTime {
 		// Esc is on keyup to allow Editor to know that the container was hidden
 		// and thus not act on the esc itself.
 		dom.s(document).on('keyup.' + namespace, function (e) {
-			if (that.dom.container.is(':visible') && e.keyCode === 27) {
+			if (that.dom.container.isVisible() && e.keyCode === 27) {
 				// esc
 				e.preventDefault();
 				that._hide();

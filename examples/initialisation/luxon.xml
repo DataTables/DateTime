@@ -3,7 +3,7 @@
 
 <css lib="datetime"/>
 <js lib="//cdnjs.cloudflare.com/ajax/libs/luxon/1.25.0/luxon.min.js"/>
-<js lib="jquery datetime">
+<js lib="datatables datetime">
 <![CDATA[
 
 new DateTime(document.getElementById('test'), {

@@ -3,7 +3,7 @@
 
 <css lib="datetime"/>
 
-<js lib="jquery datetime">
+<js lib="datatables datetime">
 <![CDATA[
 
 $('#test').dtDateTime({

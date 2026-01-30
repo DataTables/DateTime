@@ -5,7 +5,7 @@
 <js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/dayjs.min.js"/>
 <js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/plugin/utc.js"/>
 <js lib="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/plugin/customParseFormat.min.js"/>
-<js lib="jquery datetime">
+<js lib="datatables datetime">
 <![CDATA[
 
 dayjs.extend(dayjs_plugin_utc);

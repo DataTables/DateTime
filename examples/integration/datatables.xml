@@ -3,7 +3,7 @@
 
 <css lib="datatables datetime"/>
 
-<js lib="jquery datatables moment datetime">
+<js lib="datatables datatables moment datetime">
 <![CDATA[
 var minDate, maxDate;
 
