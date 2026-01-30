@@ -46,7 +46,7 @@ This example shows both buttons enabled.
 ]]></info>
 
 <custom-table>
-    <input id="test" type="text" value="2021-06-01" />
+    <input id="test" type="text" value="2026-01-30" />
 </custom-table>
 
 </dt-example>

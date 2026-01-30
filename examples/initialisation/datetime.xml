@@ -32,7 +32,7 @@ This example shows the date / time input used for both date and time inputs.
 ]]></info>
 
 <custom-table>
-    <input id="test" type="text" value="17 Jan 2020 12:19" />
+    <input id="test" type="text" value="30 Jan 2026 12:19" />
 </custom-table>
 
 </dt-example>

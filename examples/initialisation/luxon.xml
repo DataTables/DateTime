@@ -32,7 +32,7 @@ This example shows the date / time input with [Luxon](https://moment.github.io/l
 ]]></info>
 
 <custom-table>
-    <input id="test" type="text" value="17/1/2020, 16:56" />
+    <input id="test" type="text" value="30/1/2026, 16:56" />
 </custom-table>
 
 </dt-example>

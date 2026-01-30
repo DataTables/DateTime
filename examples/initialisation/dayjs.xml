@@ -42,7 +42,7 @@ Please note that you also need the DayJS `UTC` and `customParseFormat` plug-ins.
 ]]></info>
 
 <custom-table>
-    <input id="test" type="text" value="17/1/2022" />
+    <input id="test" type="text" value="30/1/2026" />
 </custom-table>
 
 </dt-example>

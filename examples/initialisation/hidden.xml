@@ -28,7 +28,7 @@ This example demonstrates DateTime being used with a hidden `-tag input`. The pi
 ]]></info>
 
 <custom-table>
-    <input id="test" type="hidden" value="2020-01-17" />
+    <input id="test" type="hidden" value="2026-01-30" />
 </custom-table>
 
 </dt-example>
