@@ -44,30 +44,18 @@ export class DateTime {
 	 */
 	public static defaults: Defaults = {
 		alwaysVisible: false,
-
 		attachTo: 'body',
-
 		buttons: {
 			clear: false,
 			selected: false,
 			today: false
 		},
-
-		// Not documented - could be an internal property
 		classPrefix: 'dt-datetime',
-
-		// function or array of ints
 		disableDays: null,
-
 		display: null,
-
-		// first day of the week (0: Sunday, 1: Monday, etc)
-		firstDay: 1,
-
+		firstDay: null,
 		format: 'YYYY-MM-DD',
-
 		hoursAvailable: null,
-
 		i18n: {
 			clear: 'Clear',
 			previous: 'Previous',
@@ -95,29 +83,16 @@ export class DateTime {
 			today: 'Today',
 			selected: 'Selected'
 		},
-
 		maxDate: null,
-
 		minDate: null,
-
 		minutesAvailable: null,
-
 		minutesIncrement: 1, // deprecated
-
 		strict: true,
-
 		locale: 'en',
-
 		onChange: () => {},
-
 		secondsAvailable: null,
-
 		secondsIncrement: 1, // deprecated
-
-		// show the ISO week number at the head of the row
 		showWeekNumber: false,
-
-		// overruled by max / min date
 		yearRange: 25
 	};
 
