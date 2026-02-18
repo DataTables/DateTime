@@ -62,6 +62,6 @@ interface JQuery {
 // Also attached to DataTables object
 declare module 'datatables.net-datetime' {
 	interface ApiStatic {
-		DataTime: DateTime;
+		DateTime: DateTime;
 	}
 }
