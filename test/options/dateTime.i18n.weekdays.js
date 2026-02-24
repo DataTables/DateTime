@@ -7,6 +7,8 @@ describe('dateTime - i18n - weekdays', function () {
 	describe('Functional tests', function () {
 		dt.html('input');
 		it('Default', function () {
+			DateTime.defaults.firstDay = 1;
+
 			let el = new DateTime(document.getElementById('test'));
 
 			$('#test').click();

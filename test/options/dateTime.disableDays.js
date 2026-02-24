@@ -15,6 +15,8 @@ describe('dateTime - options - disableDays', function () {
 	describe('Functional tests', function () {
 		dt.html('input');
 		it('Default - all enabled', function () {
+			DateTime.defaults.firstDay = 1;
+
 			new DateTime(document.getElementById('value'), {});
 			$('#value').click();
 			checkDays([false, false, false, false, false, false, false]);

@@ -7,6 +7,8 @@ describe('dateTime - options - firstDay', function () {
 	describe('Functional tests', function () {
 		dt.html('input');
 		it('Default', function () {
+			DateTime.defaults.firstDay = 1;
+
 			new DateTime(document.getElementById('test'), {});
 			$('#test').click();
 			expect($('.dt-datetime-date thead th').text()).toBe('MonTueWedThuFriSatSun');
