@@ -459,7 +459,12 @@ export class DateTime {
 			var curr = that.dom.input.val();
 
 			if (curr !== last) {
-				that.c.onChange.call(that, curr, that.s.d, that.dom.input);
+				that.c.onChange.call(
+					that,
+					curr,
+					that.s.d,
+					that.dom.input.get(0)
+				);
 				last = curr;
 			}
 		};
@@ -1325,8 +1330,7 @@ export class DateTime {
 		if (locale === 'en') {
 			// Somewhat bonkers way to get the current locale, but there doesn't
 			// seem to be a better way
-			let browserLocale = (new Intl.NumberFormat())
-				.resolvedOptions()
+			let browserLocale = new Intl.NumberFormat().resolvedOptions()
 				.locale;
 
 			// Not yet in Firefox
