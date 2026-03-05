@@ -1,15 +1,10 @@
-/*! DateTime picker for DataTables.net v2.0.0-dev
- *
- * © SpryMedia Ltd, all rights reserved.
- * License: MIT datatables.net/license/mit
+/*! DateTime for DataTables.net
+ * Copyright (c) SpryMedia Ltd - datatables.net/license
  */
 
-import DataTable, { Context } from 'datatables.net';
+import DataTable, { Context, Dom, util } from 'datatables.net';
 import './interface';
 import { Defaults, DomInternal, Settings } from './interface';
-
-const dom = DataTable.dom;
-const util = DataTable.util;
 
 // Supported formatting and parsing libraries:
 // * Moment
@@ -186,7 +181,7 @@ export class DateTime {
 	 * @return {boolean}   true if owned by this control, false otherwise
 	 */
 	public owns(node) {
-		return dom.s(node).closest(this.dom.container.get(0)).count() > 0;
+		return Dom.s(node).closest(this.dom.container.get(0)).count() > 0;
 	}
 
 	/**
@@ -329,7 +324,7 @@ export class DateTime {
 		}
 
 		// DOM structure
-		var structure = dom
+		var structure = Dom
 			.c('div')
 			.classAdd(classPrefix)
 			.html(
@@ -414,7 +409,7 @@ export class DateTime {
 			selected: structure.find('.' + classPrefix + '-selected'),
 			previous: structure.find('.' + classPrefix + '-iconLeft'),
 			next: structure.find('.' + classPrefix + '-iconRight'),
-			input: dom.s(input)
+			input: Dom.s(input)
 		};
 
 		this.s = {
@@ -497,7 +492,7 @@ export class DateTime {
 		// Render the options
 		this._optionsTitle();
 
-		dom.s(document).on('i18n.dt', function (e, settings: Context) {
+		Dom.s(document).on('i18n.dt', function (e, settings: Context) {
 			if (settings.language.datetime) {
 				util.object.assignDeep(that.c.i18n, settings.language.datetime);
 				that._optionsTitle();
@@ -555,7 +550,7 @@ export class DateTime {
 		// Main event handlers for input in the widget
 		this.dom.container
 			.on('change', 'select', function () {
-				var select = dom.s(this);
+				var select = Dom.s(this);
 				var val = parseInt(select.val());
 
 				if (select.classHas(classPrefix + '-month')) {
@@ -641,7 +636,7 @@ export class DateTime {
 				if (nodeName === 'a') {
 					e.preventDefault();
 
-					if (dom.s(target).classHas(classPrefix + '-clear')) {
+					if (Dom.s(target).classHas(classPrefix + '-clear')) {
 						// Clear the value and don't change the display
 						that.s.d = null;
 						that.dom.input.val('');
@@ -651,7 +646,7 @@ export class DateTime {
 
 						onChange();
 					}
-					else if (dom.s(target).classHas(classPrefix + '-today')) {
+					else if (Dom.s(target).classHas(classPrefix + '-today')) {
 						// Don't change the value, but jump to the month
 						// containing today
 						that.s.display = new Date();
@@ -660,7 +655,7 @@ export class DateTime {
 						that._setCalander();
 					}
 					else if (
-						dom.s(target).classHas(classPrefix + '-selected')
+						Dom.s(target).classHas(classPrefix + '-selected')
 					) {
 						// Don't change the value, but jump to where the
 						// selected value is
@@ -671,7 +666,7 @@ export class DateTime {
 					}
 				}
 				if (nodeName === 'button') {
-					var button = dom.s(target);
+					var button = Dom.s(target);
 					var parent = button.parent();
 
 					if (
@@ -1022,14 +1017,14 @@ export class DateTime {
 
 		this.dom.container.detach();
 
-		dom.w.off('.' + namespace);
-		dom.s(document)
+		Dom.w.off('.' + namespace);
+		Dom.s(document)
 			.off('keydown.' + namespace)
 			.off('keyup.' + namespace)
 			.off('click.' + namespace);
-		dom.s('div.dt-scroll').off('scroll.' + namespace);
-		dom.s('div.DTE_Body_Content').off('scroll.' + namespace);
-		dom.s(this.dom.input.get(0).offsetParent).off('.' + namespace);
+		Dom.s('div.dt-scroll').off('scroll.' + namespace);
+		Dom.s('div.DTE_Body_Content').off('scroll.' + namespace);
+		Dom.s(this.dom.input.get(0).offsetParent).off('.' + namespace);
 	}
 
 	/**
@@ -1402,7 +1397,7 @@ export class DateTime {
 
 		for (var i = 0, ien = values.length; i < ien; i++) {
 			select.append(
-				dom.c('option').attr('value', values[i]).text(labels[i])
+				Dom.c('option').attr('value', values[i]).text(labels[i])
 			);
 		}
 	}
@@ -1668,7 +1663,7 @@ export class DateTime {
 			return;
 		}
 
-		if (this.s.parts.date && this.s.parts.time && dom.w.width() > 550) {
+		if (this.s.parts.date && this.s.parts.time && Dom.w.width() > 550) {
 			container.classAdd('horizontal');
 		}
 		else {
@@ -1694,18 +1689,18 @@ export class DateTime {
 
 		var calHeight = container.height('outer');
 		var calWidth = container.width('outer');
-		var scrollTop = dom.w.scrollTop();
+		var scrollTop = Dom.w.scrollTop();
 
 		// Correct to the bottom
-		if (offset.top + inputHeight + calHeight - scrollTop > dom.w.height()) {
+		if (offset.top + inputHeight + calHeight - scrollTop > Dom.w.height()) {
 			var newTop = offset.top - calHeight;
 
 			container.css('top', newTop < 0 ? '0' : newTop + 'px');
 		}
 
 		// Correct to the right
-		if (calWidth + offset.left > dom.w.width()) {
-			var newLeft = dom.w.width() - calWidth - 5;
+		if (calWidth + offset.left > Dom.w.width()) {
+			var newLeft = Dom.w.width() - calWidth - 5;
 
 			// Account for elements which are inside a position absolute element
 			if (this.c.attachTo === 'input') {
@@ -1818,29 +1813,29 @@ export class DateTime {
 		this._position();
 
 		// Need to reposition on scroll
-		dom.w.on('scroll.' + namespace + ' resize.' + namespace, function () {
+		Dom.w.on('scroll.' + namespace + ' resize.' + namespace, function () {
 			that._position();
 		});
 
-		dom.s('div.DTE_Body_Content').on('scroll.' + namespace, function () {
+		Dom.s('div.DTE_Body_Content').on('scroll.' + namespace, function () {
 			that._position();
 		});
 
-		dom.s('div.dt-scroll').on('scroll.' + namespace, function () {
+		Dom.s('div.dt-scroll').on('scroll.' + namespace, function () {
 			that._position();
 		});
 
 		var offsetParent = this.dom.input.get(0).offsetParent;
 
 		if (offsetParent !== document.body) {
-			dom.s(offsetParent).on('scroll.' + namespace, function () {
+			Dom.s(offsetParent).on('scroll.' + namespace, function () {
 				that._position();
 			});
 		}
 
 		// On tab focus will move to a different field (no keyboard navigation
 		// in the date picker - this might need to be changed).
-		dom.s(document).on('keydown.' + namespace, function (e) {
+		Dom.s(document).on('keydown.' + namespace, function (e) {
 			if (
 				that.dom.container.isVisible() &&
 				(e.keyCode === 9 || // tab
@@ -1852,7 +1847,7 @@ export class DateTime {
 
 		// Esc is on keyup to allow Editor to know that the container was hidden
 		// and thus not act on the esc itself.
-		dom.s(document).on('keyup.' + namespace, function (e) {
+		Dom.s(document).on('keyup.' + namespace, function (e) {
 			if (that.dom.container.isVisible() && e.keyCode === 27) {
 				// esc
 				e.preventDefault();
@@ -1887,9 +1882,9 @@ export class DateTime {
 		// event from the one that was used to trigger the show (bubble and
 		// inline)
 		setTimeout(function () {
-			dom.s(document).on('click.' + namespace, function (e) {
+			Dom.s(document).on('click.' + namespace, function (e) {
 				if (
-					!dom
+					!Dom
 						.s(e.target)
 						.closest(that.dom.container.get(0))
 						.count() &&

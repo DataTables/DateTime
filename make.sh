@@ -34,19 +34,15 @@ scss_compile dist/dataTables.dateTime
 rm dist/dataTables.dateTime.scss
 
 # Typescript
-#
-# This is a bit of a mess due to using js_wrap to create both the UMD and the
-# ESM files.
 $DT_SRC/node_modules/typescript/bin/tsc -p ./tsconfig.json
-
-sed -i "s#import DataTable from 'datatables.net';##" dist/dataTables.dateTime.js
-
 $DT_SRC/node_modules/rollup/dist/bin/rollup \
 	--config rollup.config.mjs
 
 sed -i "s#export { DateTime };##" dist/dataTables.dateTime.js
 
-js_wrap dist/dataTables.dateTime.js "datatables.net"
+VERSION=$(grep "version.*[0-9]\+[.][0-9]\+[.][0-9]" dist/dataTables.dateTime.js | perl -nle'print $& if m{\d+\.\d+\.\d+(\-\w*(\-\d+)?)?}')
+
+js_wrap dist/dataTables.dateTime.js $VERSION "datatables.net"
 
 if [ ! -d $OUT_DIR ]; then
 	mkdir $OUT_DIR
