@@ -6,18 +6,10 @@
 <js lib="datatables datetime">
 <![CDATA[
 
-$('#test').dtDateTime();
-
-]]>
-</js>
-
-<js-vanilla>
-<![CDATA[
-
 new DateTime(document.getElementById('test'));
 
 ]]>
-</js-vanilla>
+</js>
 
 <title lib="DateTime">Hidden input</title>
 

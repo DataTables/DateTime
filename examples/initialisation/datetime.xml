@@ -6,22 +6,12 @@
 <js lib="datatables datetime">
 <![CDATA[
 
-$('#test').dtDateTime({
-	format: 'D MMM YYYY HH:mm'
-});
-
-]]>
-</js>
-
-<js-vanilla>
-<![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	format: 'D MMM YYYY HH:mm'
 });
 
 ]]>
-</js-vanilla>
+</js>
 
 <title lib="DateTime">Date and time</title>
 

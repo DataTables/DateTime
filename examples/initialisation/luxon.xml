@@ -13,16 +13,6 @@ new DateTime(document.getElementById('test'), {
 ]]>
 </js>
 
-<js-vanilla>
-<![CDATA[
-
-new DateTime(document.getElementById('test'), {
-	format: 'd/M/yyyy, HH:mm'
-});
-
-]]>
-</js-vanilla>
-
 <title lib="DateTime">Luxon formatting</title>
 
 <info><![CDATA[

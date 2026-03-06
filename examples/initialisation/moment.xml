@@ -12,16 +12,6 @@ new DateTime(document.getElementById('test'), {
 ]]>
 </js>
 
-<js-vanilla>
-<![CDATA[
-
-new DateTime(document.getElementById('test'), {
-	format: 'D/M/YYYY'
-});
-
-]]>
-</js-vanilla>
-
 <title lib="DateTime">Moment formatting</title>
 
 <info><![CDATA[

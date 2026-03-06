@@ -6,22 +6,12 @@
 <js lib="datatables datetime">
 <![CDATA[
 
-$('#test').dtDateTime({
-    alwaysVisible: true
-});
-
-]]>
-</js>
-
-<js-vanilla>
-<![CDATA[
-
 new DateTime(document.getElementById('test'), {
     alwaysVisible: true
 });
 
 ]]>
-</js-vanilla>
+</js>
 
 <title lib="DateTime">Always visible picker</title>
 

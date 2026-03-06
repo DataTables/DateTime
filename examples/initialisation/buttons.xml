@@ -6,20 +6,6 @@
 <js lib="datatables datetime">
 <![CDATA[
 
-$('#test').dtDateTime({
-	buttons: {
-		clear: true,
-		today: true,
-		selected: true
-	}
-});
-
-]]>
-</js>
-
-<js-vanilla>
-<![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	buttons: {
 		clear: true,
@@ -29,7 +15,7 @@ new DateTime(document.getElementById('test'), {
 });
 
 ]]>
-</js-vanilla>
+</js>
 
 <title lib="DateTime">Action buttons (clear, today and selected)</title>
 

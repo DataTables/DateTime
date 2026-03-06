@@ -6,34 +6,6 @@
 <js lib="datatables datetime">
 <![CDATA[
 
-$('#test').dtDateTime({
-	i18n: {
-		previous: 'Précédent',
-		next: 'Premier',
-		months: [
-			'Janvier',
-			'Février',
-			'Mars',
-			'Avril',
-			'Mai',
-			'Juin',
-			'Juillet',
-			'Août',
-			'Septembre',
-			'Octobre',
-			'Novembre',
-			'Décembre'
-		],
-		weekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
-	}
-});
-
-]]>
-</js>
-
-<js-vanilla>
-<![CDATA[
-
 new DateTime(document.getElementById('test'), {
 	i18n: {
 		previous: 'Précédent',
@@ -57,7 +29,7 @@ new DateTime(document.getElementById('test'), {
 });
 
 ]]>
-</js-vanilla>
+</js>
 
 <title lib="DateTime">Internationalisation</title>
 
