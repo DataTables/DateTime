@@ -106,7 +106,7 @@ export class DateTime {
 		this.dom.container.off().empty();
 		this.dom.input
 			.classRemove('dt-datetime')
-			.removeAttr('autocomplete')
+			.attrRemove('autocomplete')
 			.off('.datetime');
 	}
 
