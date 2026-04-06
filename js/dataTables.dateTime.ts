@@ -91,7 +91,7 @@ export class DateTime {
 		yearRange: 25
 	};
 
-	public static version = '2.0.0-dev';
+	public static version = '2.0.0-beta.1';
 
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 * Public methods
