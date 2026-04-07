@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>datatables.net-datetime</id>
-        <version>1.6.3</version>
+        <version>2.0.0-beta.1</version>
         <description>DataTables date / time picker</description>
         <authors>SpryMedia Ltd</authors>
         <projectUrl>http://datatables.net</projectUrl>
@@ -10,7 +10,7 @@
         <tags>date time DataTables jQuery table</tags>
         <repository type="git" url="https://github.com/DataTables/DateTime.git"/>
         <dependencies>
-            <dependency id="jquery" version="1.7.0"/>
+            <dependency id="datatables.net" version="3.0.0-beta.1"/>
         </dependencies>
     </metadata>
     <files>

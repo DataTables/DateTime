@@ -1,6 +1,6 @@
 {
   "name": "datatables.net-datetime",
-  "version": "1.6.3",
+  "version": "2.0.0-beta.1",
   "description": "DateTime picker for DataTables.net",
   "main": "dist/dataTables.dateTime.js",
   "module": "dist/dataTables.dateTime.mjs",
@@ -25,6 +25,9 @@
     "url": "https://github.com/DataTables/DateTime/issues"
   },
   "homepage": "https://github.com/DataTables/DateTime#readme",
+  "dependencies": {
+      "datatables.net": "3.0.0-beta.1"
+  },
   "devDependencies": {
     "gulp": "^5.0.0",
     "gulp-sass": "^5.0.0",
