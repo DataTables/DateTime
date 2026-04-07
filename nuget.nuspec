@@ -15,6 +15,5 @@
     </metadata>
     <files>
         <file src="dist/**"/>
-        <file src="js/dataTables.dateTime.d.ts"/>
     </files>
 </package>
