@@ -40,7 +40,7 @@ $DT_SRC/node_modules/rollup/dist/bin/rollup \
 
 sed -i "s#export { DateTime };##" dist/dataTables.dateTime.js
 
-VERSION=$(grep "version.*[0-9]\+[.][0-9]\+[.][0-9]" dist/dataTables.dateTime.js | perl -nle'print $& if m{\d+\.\d+\.\d+(\-\w*(\-\d+)?)?}')
+VERSION=$(grep "version.*[0-9]\+[.][0-9]\+[.][0-9]" dist/dataTables.dateTime.js | perl -nle'print $& if m{\d+\.\d+\.\d+(\-\w*(\.\d+)?)?}')
 
 js_wrap dist/dataTables.dateTime.js $VERSION "datatables.net"
 
