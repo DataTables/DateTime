@@ -101,6 +101,8 @@ export class DateTime {
 	 * Destroy the control
 	 */
 	public destroy() {
+		var namespace = this.s.namespace;
+
 		clearTimeout(this.s.showTo);
 		this._hide(true);
 		this.dom.container.off().empty();
@@ -108,6 +110,8 @@ export class DateTime {
 			.classRemove('dt-datetime')
 			.attrRemove('autocomplete')
 			.off('.datetime');
+		Dom.s(document).off('.' + namespace);
+		Dom.w.off('.' + namespace);
 	}
 
 	public display(year, month) {
@@ -324,8 +328,7 @@ export class DateTime {
 		}
 
 		// DOM structure
-		var structure = Dom
-			.c('div')
+		var structure = Dom.c('div')
 			.classAdd(classPrefix)
 			.html(
 				'<div class="' +
@@ -449,6 +452,7 @@ export class DateTime {
 		var that = this;
 		var classPrefix = this.c.classPrefix;
 		var last = this.dom.input.val();
+		var namespace = this.s.namespace;
 
 		var onChange = function () {
 			var curr = that.dom.input.val();
@@ -492,12 +496,18 @@ export class DateTime {
 		// Render the options
 		this._optionsTitle();
 
-		Dom.s(document).on('i18n.dt', function (e, settings: Context) {
-			if (settings.language.datetime) {
-				util.object.assignDeep(that.c.i18n, settings.language.datetime);
-				that._optionsTitle();
+		Dom.s(document).on(
+			'i18n.dt.' + namespace,
+			function (e, settings: Context) {
+				if (settings.language.datetime) {
+					util.object.assignDeep(
+						that.c.i18n,
+						settings.language.datetime
+					);
+					that._optionsTitle();
+				}
 			}
-		});
+		);
 
 		// When attached to a hidden input, we always show the input picker, and
 		// do so inline
@@ -1884,8 +1894,7 @@ export class DateTime {
 		setTimeout(function () {
 			Dom.s(document).on('click.' + namespace, function (e) {
 				if (
-					!Dom
-						.s(e.target)
+					!Dom.s(e.target)
 						.closest(that.dom.container.get(0))
 						.count() &&
 					e.target !== that.dom.input.get(0)
