@@ -23,10 +23,11 @@ DT_SRC=$(dirname $(dirname $(pwd)))
 DT_BUILT="${DT_SRC}/built/DataTables"
 . $DT_SRC/build/include.sh
 
-if [ -d dist ]; then
+if [ -e dist ]; then
 	rm -r dist
-	mkdir dist
 fi
+
+mkdir dist
 
 # CSS
 cp css/dataTables.dateTime.scss dist
