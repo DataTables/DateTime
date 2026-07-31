@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dt-type>
+	<name>DateTime</name>
+	<summary>DateTime instance</summary>
+
+	<description>
+	<![CDATA[
+
+This data type represents an instance of the [DateTime](/manual/extensions/datetime) library. The API for the `DateTime` instance can be found [in its reference section](/ref/datetime/api/).
+
+	]]>
+	</description>
+</dt-type>
