@@ -7,7 +7,7 @@
 	<default value="Selected"></default>
 
 	<description>
-		Sets the string that will be shown in the _Selected_ button when enabled by `dt-init buttons.selected`, and causes the display to jump to the currently selected value when activated.
+		Sets the string that will be shown in the _Selected_ button when enabled by `de-init buttons.selected`, and causes the display to jump to the currently selected value when activated.
 	</description>
 
 	<example title="Set selected button text"><![CDATA[

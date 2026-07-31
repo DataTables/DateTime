@@ -7,7 +7,7 @@
 	<default value="Today"></default>
 
 	<description>
-		Sets the string that will be shown in the _Today_ button when enabled by `dt-init buttons.today`.
+		Sets the string that will be shown in the _Today_ button when enabled by `de-init buttons.today`.
 	</description>
 
 	<example title="Set today button text"><![CDATA[

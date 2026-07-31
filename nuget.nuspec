@@ -10,7 +10,7 @@
         <tags>date time DataTables jQuery table</tags>
         <repository type="git" url="https://github.com/DataTables/DateTime.git"/>
         <dependencies>
-            <dependency id="datatables.net" version="3"/>
+            <dependency id="datatables.net" version="3.0.0"/>
         </dependencies>
     </metadata>
     <files>

@@ -49,7 +49,7 @@ document.querySelectorAll('#min, #max').forEach((el) => {
 
 This example shows the DateTime picker being used to filter a DataTable. The example is [the same as the DataTables number range filter](https://datatables.net/examples/plug-ins/range_filtering.html), but operating on the _Start date_ column rather than _Age_.
 
-In this example we use `de-api val()` to get a `Date` object from the input element which can then be easily compared to the value from the table's rows in [a DataTables search function](https://datatables.net/manual/plug-ins/search).
+In this example we use `de-api val()` to get a `Date` object from the input element which can then be easily compared to the value from the table's rows in [a DataTables search function](https://datatables.net/manual/core/search).
 
 ]]></info>
 
