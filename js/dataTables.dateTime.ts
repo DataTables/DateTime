@@ -1938,14 +1938,15 @@ export class DateTime {
 }
 
 // Global export - if no conflicts
-// TODO is this right in the UDM?
-if (!(window as any).DateTime) {
-	(window as any).DateTime = DateTime;
+const win = DataTable.use('win');
+
+if (win && !win.DateTime) {
+	win.DateTime = DateTime;
 }
 
 // Make available via jQuery
-if ((window as any).jQuery) {
-	(window as any).jQuery.fn.dtDateTime = function (options) {
+if (win.jQuery) {
+	win.jQuery.fn.dtDateTime = function (options) {
 		return this.each(function () {
 			new DateTime(this, options);
 		});
