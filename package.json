@@ -1,36 +1,49 @@
 {
-  "name": "datatables.net-datetime",
-  "version": "2.0.0",
-  "description": "DateTime picker for DataTables.net",
-  "main": "dist/dataTables.dateTime.js",
-  "module": "dist/dataTables.dateTime.mjs",
-  "style": "dist/dataTables.dateTime.css",
-  "types": "js/dataTables.dateTime.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DataTables/DateTime.git"
-  },
-  "keywords": [
-    "DateTables",
-    "Date",
-    "Time",
-    "Picker"
-  ],
-  "author": "SpryMedia Ltd",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/DataTables/DateTime/issues"
-  },
-  "homepage": "https://github.com/DataTables/DateTime#readme",
-  "dependencies": {
-      "datatables.net": "^3"
-  },
-  "devDependencies": {
-    "gulp": "^5.0.0",
-    "gulp-sass": "^5.0.0",
-    "sass": "^1.43.4"
-  }
+	"name": "datatables.net-datetime",
+	"version": "2.0.0",
+	"description": "DateTime picker for DataTables.net",
+	"main": "./dist/dataTables.dateTime.js",
+	"module": "./dist/dataTables.dateTime.mjs",
+	"style": "./dist/dataTables.dateTime.css",
+	"types": "./dist/dataTables.dateTime.d.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DataTables/DateTime.git"
+	},
+	"keywords": [
+		"DateTables",
+		"Date",
+		"Time",
+		"Picker"
+	],
+	"author": "SpryMedia Ltd",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/DataTables/DateTime/issues"
+	},
+	"homepage": "https://github.com/DataTables/DateTime#readme",
+	"dependencies": {
+		"datatables.net": "^3"
+	},
+	"devDependencies": {
+		"gulp": "^5.0.0",
+		"gulp-sass": "^5.0.0",
+		"sass": "^1.43.4"
+	},
+	"sideEffects": true,
+	"exports": {
+		".": {
+			"types": "./dist/dataTables.dateTime.d.ts",
+			"require": "./dist/dataTables.dateTime.js",
+			"import": "./dist/dataTables.dateTime.mjs",
+			"default": "./dist/dataTables.dataTables.mjs"
+		},
+		"./js/*": "./dist/*.js",
+		"./css": "./dist/dataTables.dateTime.css",
+		"./css/*": "./dist/*.css",
+		"./package.json": "./package.json"
+	}
 }
