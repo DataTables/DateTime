@@ -1,6 +1,6 @@
 {
 	"name": "datatables.net-datetime",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "DateTime picker for DataTables.net",
 	"main": "./dist/dataTables.dateTime.js",
 	"module": "./dist/dataTables.dateTime.mjs",
@@ -26,7 +26,7 @@
 	},
 	"homepage": "https://github.com/DataTables/DateTime#readme",
 	"dependencies": {
-		"datatables.net": "^3"
+		"datatables.net": "^3.1"
 	},
 	"devDependencies": {
 		"gulp": "^5.0.0",
@@ -37,13 +37,19 @@
 	"exports": {
 		".": {
 			"types": "./dist/dataTables.dateTime.d.ts",
-			"require": "./dist/dataTables.dateTime.js",
 			"import": "./dist/dataTables.dateTime.mjs",
+			"require": "./dist/dataTables.dateTime.js",
 			"default": "./dist/dataTables.dataTables.mjs"
 		},
 		"./js/*": "./dist/*.js",
-		"./css": "./dist/dataTables.dateTime.css",
-		"./css/*": "./dist/*.css",
+        "./css": {
+            "types": "./dist/css.d.ts",
+            "default": "./dist/dataTables.dateTime.css"
+        },
+        "./css/*": {
+            "types": "./dist/css.d.ts",
+            "default": "./dist/*.css"
+        },
 		"./package.json": "./package.json"
 	}
 }

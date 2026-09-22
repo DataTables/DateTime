@@ -27,6 +27,7 @@ mkdir dist
 
 # CSS
 cp css/dataTables.dateTime.scss dist
+cp css/css.d.ts dist
 scss_compile dist/dataTables.dateTime
 rm dist/dataTables.dateTime.scss
 
