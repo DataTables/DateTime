@@ -1,11 +1,14 @@
 {
 	"name": "datatables.net-datetime",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "DateTime picker for DataTables.net",
 	"main": "./dist/dataTables.dateTime.js",
 	"module": "./dist/dataTables.dateTime.mjs",
 	"style": "./dist/dataTables.dateTime.css",
 	"types": "./dist/dataTables.dateTime.d.ts",
+    "files": [
+        "dist"
+    ],
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
