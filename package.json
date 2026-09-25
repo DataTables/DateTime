@@ -1,6 +1,6 @@
 {
 	"name": "datatables.net-datetime",
-	"version": "2.1.1",
+	"version": "2.1.2",
 	"description": "DateTime picker for DataTables.net",
 	"main": "./dist/dataTables.dateTime.js",
 	"module": "./dist/dataTables.dateTime.mjs",
@@ -40,6 +40,7 @@
 	"exports": {
 		".": {
 			"types": "./dist/dataTables.dateTime.d.ts",
+			"style": "./dist/dataTables.dateTime.css",
 			"import": "./dist/dataTables.dateTime.mjs",
 			"require": "./dist/dataTables.dateTime.js",
 			"default": "./dist/dataTables.dataTables.mjs"
