@@ -1207,23 +1207,19 @@ export class DateTime {
 		}
 
 		// Show / hide month icons based on min/max
-		if (minDate) {
-			var underMin =
-				minDate >= new Date(Date.UTC(year, month, 1, 0, 0, 0));
+		var underMin = minDate
+			&& minDate >= new Date(Date.UTC(year, month, 1, 0, 0, 0));
 
-			this.dom.title
-				.find('div.' + classPrefix + '-iconLeft')
-				.css('display', underMin ? 'none' : 'block');
-		}
+		this.dom.title
+			.find('div.' + classPrefix + '-iconLeft')
+			.css('display', underMin ? 'none' : 'block');
 
-		if (maxDate) {
-			var overMax =
-				maxDate < new Date(Date.UTC(year, month + 1, 1, 0, 0, 0));
+		var overMax = maxDate
+			&& maxDate < new Date(Date.UTC(year, month + 1, 1, 0, 0, 0));
 
-			this.dom.title
-				.find('div.' + classPrefix + '-iconRight')
-				.css('display', overMax ? 'none' : 'block');
-		}
+		this.dom.title
+			.find('div.' + classPrefix + '-iconRight')
+			.css('display', overMax ? 'none' : 'block');
 
 		return (
 			'<table class="' +
