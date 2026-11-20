@@ -4,7 +4,7 @@
 
 import DataTable, { Context, Dom, util } from 'datatables.net';
 import './interface';
-import { Defaults, DomInternal, Settings } from './interface';
+import { Defaults, DomInternal, Options, Settings } from './interface';
 
 // Supported formatting and parsing libraries:
 // * Moment
@@ -292,7 +292,7 @@ export class DateTime {
 	 * Constructor
 	 */
 
-	constructor(input, opts) {
+	constructor(input: Dom | string | HTMLElement, opts?: Options) {
 		// Attempt to auto detect the formatting library (if there is one).
 		// Having it in the constructor allows load order independence.
 		let win = window as any;

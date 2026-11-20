@@ -5,7 +5,7 @@
 	"main": "./dist/dataTables.dateTime.js",
 	"module": "./dist/dataTables.dateTime.mjs",
 	"style": "./dist/dataTables.dateTime.css",
-	"types": "./dist/dataTables.dateTime.d.ts",
+	"types": "./dist/types.d.ts",
     "files": [
         "dist"
     ],
@@ -39,7 +39,7 @@
 	"sideEffects": true,
 	"exports": {
 		".": {
-			"types": "./dist/dataTables.dateTime.d.ts",
+			"types": "./dist/types.d.ts",
 			"style": "./dist/dataTables.dateTime.css",
 			"import": "./dist/dataTables.dateTime.mjs",
 			"require": "./dist/dataTables.dateTime.js",

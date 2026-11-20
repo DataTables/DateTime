@@ -115,22 +115,49 @@ declare module 'datatables.net' {
 	}
 
 	interface Language {
+		/**
+		 * Language configuration for any DateTime instances initialised through
+		 * the DataTables extensions.
+		 */
 		datetime: DTLanguage;
 	}
 }
 
 export interface DTLanguage {
+	/** Clear button text value */
 	clear: string;
+
+	/** Tooltip for previous button */
 	previous: string;
+
+	/** Tooltip for next button */
 	next: string;
+
+	/** Text used to indicate the months available for selection */
 	months: string[];
+
+	/** Text used to indicate the days of the week */
 	weekdays: string[];
+
+	/** The strings appended to hours to distinguish between am and pm */
 	amPm: string[];
+
+	/** Label for the hours selection */
 	hours: string;
+
+	/** Label for the minutes selection */
 	minutes: string;
+
+	/** Label for the seconds selection */
 	seconds: string;
+
+	/** Today button text value */
 	today: string;
+
+	/** Selected button text value */
 	selected: string;
+
+	/** String to use if a value is unknown */
 	unknown: string;
 }
 
