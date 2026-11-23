@@ -1,11 +1,11 @@
 import { Dom } from 'datatables.net';
 import { DateTime } from './dataTables.dateTime';
 
-type DeepPartial<T> = T extends object
-	? {
-			[P in keyof T]?: DeepPartial<T[P]>;
-	  }
-	: T;
+type DeepPartial<T> = T extends (...args: any[]) => any
+    ? T
+    : T extends object
+        ? { [P in keyof T]?: DeepPartial<T[P]> }
+        : T;
 
 export interface Defaults {
 	/** Makes the date picker always display. */
