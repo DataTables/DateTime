@@ -6,6 +6,16 @@
 	"module": "./dist/dataTables.dateTime.mjs",
 	"style": "./dist/dataTables.dateTime.css",
 	"types": "./dist/types.d.ts",
+	"typesVersions": {
+		"*": {
+		"css": ["./dist/css.d.ts"],
+		"css/*": ["./dist/css.d.ts"]
+		}
+	},
+	"type": "commonjs",
+	"engines": {
+		"node": ">=12"
+	},
     "files": [
         "dist"
     ],
@@ -39,11 +49,17 @@
 	"sideEffects": true,
 	"exports": {
 		".": {
-			"types": "./dist/types.d.ts",
 			"style": "./dist/dataTables.dateTime.css",
-			"import": "./dist/dataTables.dateTime.mjs",
-			"require": "./dist/dataTables.dateTime.js",
-			"default": "./dist/dataTables.dataTables.mjs"
+			"import": {
+				"types": "./dist/types.d.mts",
+				"default": "./dist/dataTables.dateTime.mjs"
+			},
+			"require": {
+				"types": "./dist/types.d.ts",
+				"default": "./dist/dataTables.dateTime.js"
+			},
+			"types": "./dist/types.d.ts",
+			"default": "./dist/dataTables.dateTime.js"
 		},
 		"./js/*": "./dist/*.js",
         "./css": {

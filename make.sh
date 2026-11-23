@@ -42,6 +42,13 @@ VERSION=$(grep "version.*[0-9]\+[.][0-9]\+[.][0-9]" dist/dataTables.dateTime.js 
 
 js_wrap dist/dataTables.dateTime.js $VERSION "datatables.net"
 
+# Tweak the definition files
+cp dist/types.d.ts dist/types.d.mts
+sed -i "s#export { DateTime as default };#export = DateTime#" dist/types.d.ts
+
+rm dist/interface.d.ts
+rm dist/interface.js
+
 if [ ! -d $OUT_DIR ]; then
 	mkdir $OUT_DIR
 	mkdir $OUT_DIR/js
@@ -59,3 +66,7 @@ examples_process $OUT_DIR/examples
 # Readme and license
 cp readme.md $OUT_DIR
 cp license.txt $OUT_DIR
+
+# Packaging tests
+# npx @arethetypeswrong/cli --pack .
+# npx publint
